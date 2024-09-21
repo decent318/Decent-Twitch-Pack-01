@@ -1,0 +1,361 @@
+[gd_scene load_steps=22 format=3 uid="uid://g8vwqia1pcwp"]
+
+[ext_resource type="Texture2D" uid="uid://cehqaxlbljd0i" path="res://assets/sprites/title.png" id="1_30s3l"]
+[ext_resource type="Script" path="res://scripts/title/title.gd" id="2_ovs4d"]
+[ext_resource type="Theme" uid="uid://d23w4u6imctvp" path="res://themes/title.tres" id="2_r0pdg"]
+[ext_resource type="Texture2D" uid="uid://b7ot082q27nuv" path="res://assets/sprites/play.svg" id="2_s6d86"]
+[ext_resource type="Texture2D" uid="uid://deppn4ndurh5k" path="res://assets/sprites/gear.svg" id="3_vgndh"]
+[ext_resource type="Texture2D" uid="uid://c0vooqxxiwagq" path="res://assets/sprites/credits.svg" id="4_icv6d"]
+[ext_resource type="Texture2D" uid="uid://diq2c3y0rdhwf" path="res://assets/sprites/exit.svg" id="5_5lue6"]
+[ext_resource type="Texture2D" uid="uid://bdrh34gl1j6r0" path="res://assets/sprites/notifaction.svg" id="6_hs2jo"]
+[ext_resource type="Texture2D" uid="uid://cv27w3221i78h" path="res://assets/sprites/scroll.svg" id="6_rujar"]
+
+[sub_resource type="Gradient" id="Gradient_nhu45"]
+colors = PackedColorArray(0.581376, 0.502449, 0.735807, 1, 0.799986, 0.292765, 0.850855, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_j3ucb"]
+gradient = SubResource("Gradient_nhu45")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0.752577, 0.0515464)
+
+[sub_resource type="InputEventKey" id="InputEventKey_5oadj"]
+device = -1
+keycode = 81
+unicode = 113
+
+[sub_resource type="Shortcut" id="Shortcut_tlw8b"]
+events = [SubResource("InputEventKey_5oadj")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_36khe"]
+device = -1
+keycode = 87
+unicode = 119
+
+[sub_resource type="Shortcut" id="Shortcut_r6ap0"]
+events = [SubResource("InputEventKey_36khe")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_c4pgn"]
+device = -1
+keycode = 69
+unicode = 101
+
+[sub_resource type="Shortcut" id="Shortcut_7kywd"]
+events = [SubResource("InputEventKey_c4pgn")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_2i87e"]
+device = -1
+keycode = 82
+unicode = 114
+
+[sub_resource type="Shortcut" id="Shortcut_4ixvl"]
+events = [SubResource("InputEventKey_2i87e")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_30oee"]
+device = -1
+keycode = 84
+unicode = 116
+
+[sub_resource type="Shortcut" id="Shortcut_jhjvh"]
+events = [SubResource("InputEventKey_30oee")]
+
+[node name="title" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_r0pdg")
+script = ExtResource("2_ovs4d")
+
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_j3ucb")
+
+[node name="title" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(1000, 300)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -869.0
+offset_top = 38.0
+offset_right = 869.0
+offset_bottom = 562.0
+grow_horizontal = 2
+texture = ExtResource("1_30s3l")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -899.0
+offset_top = -228.0
+offset_right = 899.0
+offset_bottom = -101.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 48
+
+[node name="Play" type="TextureButton" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(127, 127)
+layout_mode = 2
+shortcut = SubResource("Shortcut_tlw8b")
+texture_normal = ExtResource("2_s6d86")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="HBoxContainer/Play"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -39.5
+offset_top = 13.0
+offset_right = 39.5
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 28
+text = "Play"
+horizontal_alignment = 1
+
+[node name="keybind" type="Label" parent="HBoxContainer/Play"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -39.5
+offset_top = 46.0
+offset_right = 39.5
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 28
+text = "Q"
+horizontal_alignment = 1
+
+[node name="Options" type="TextureButton" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(127, 127)
+layout_mode = 2
+shortcut = SubResource("Shortcut_r6ap0")
+texture_normal = ExtResource("3_vgndh")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="HBoxContainer/Options"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -39.5
+offset_top = 13.0
+offset_right = 39.5
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 28
+text = "Options"
+horizontal_alignment = 1
+
+[node name="keybind" type="Label" parent="HBoxContainer/Options"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -39.5
+offset_top = 46.0
+offset_right = 39.5
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 28
+text = "W"
+horizontal_alignment = 1
+
+[node name="notifaction" type="TextureRect" parent="HBoxContainer/Options"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -22.0
+offset_top = -6.0
+offset_right = 18.0
+offset_bottom = 34.0
+grow_horizontal = 0
+rotation = -0.179874
+pivot_offset = Vector2(20, 20)
+texture = ExtResource("6_hs2jo")
+expand_mode = 1
+
+[node name="Credits" type="TextureButton" parent="HBoxContainer"]
+custom_minimum_size = Vector2(127, 127)
+layout_mode = 2
+shortcut = SubResource("Shortcut_7kywd")
+texture_normal = ExtResource("4_icv6d")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="HBoxContainer/Credits"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -39.5
+offset_top = 13.0
+offset_right = 39.5
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 28
+text = "Credits"
+horizontal_alignment = 1
+
+[node name="keybind" type="Label" parent="HBoxContainer/Credits"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -39.5
+offset_top = 46.0
+offset_right = 39.5
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 28
+text = "E"
+horizontal_alignment = 1
+
+[node name="Updatelog" type="TextureButton" parent="HBoxContainer"]
+modulate = Color(1, 1, 1, 0.498039)
+custom_minimum_size = Vector2(127, 127)
+layout_mode = 2
+shortcut = SubResource("Shortcut_4ixvl")
+texture_normal = ExtResource("6_rujar")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="HBoxContainer/Updatelog"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -39.5
+offset_top = 13.0
+offset_right = 39.5
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 28
+text = "Updatelog"
+horizontal_alignment = 1
+
+[node name="keybind" type="Label" parent="HBoxContainer/Updatelog"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -39.5
+offset_top = 46.0
+offset_right = 39.5
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 28
+text = "R"
+horizontal_alignment = 1
+
+[node name="Exit" type="TextureButton" parent="HBoxContainer"]
+custom_minimum_size = Vector2(127, 127)
+layout_mode = 2
+shortcut = SubResource("Shortcut_jhjvh")
+texture_normal = ExtResource("5_5lue6")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="HBoxContainer/Exit"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -39.5
+offset_top = 13.0
+offset_right = 39.5
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 28
+text = "Exit"
+horizontal_alignment = 1
+
+[node name="keybind" type="Label" parent="HBoxContainer/Exit"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -39.5
+offset_top = 46.0
+offset_right = 39.5
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 28
+text = "T"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -602.0
+offset_top = -104.0
+offset_right = -21.0
+offset_bottom = -21.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 64
+text = "[8.03.24]- DEMO #01"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[connection signal="pressed" from="HBoxContainer/Play" to="." method="play"]
+[connection signal="pressed" from="HBoxContainer/Options" to="." method="options"]
+[connection signal="pressed" from="HBoxContainer/Credits" to="." method="credits"]
+[connection signal="pressed" from="HBoxContainer/Updatelog" to="." method="updatelog"]
+[connection signal="pressed" from="HBoxContainer/Exit" to="." method="exit"]

@@ -1,0 +1,274 @@
+[gd_scene load_steps=13 format=3 uid="uid://de7sc7l0440pu"]
+
+[ext_resource type="Theme" uid="uid://c3hg6ndkr8syx" path="res://themes/trivitime.tres" id="1_0unt5"]
+[ext_resource type="Script" path="res://scripts/trivitime/tt_config.gd" id="1_v5777"]
+[ext_resource type="Script" path="res://scripts/SceneButton.gd" id="3_xihwp"]
+[ext_resource type="Texture2D" uid="uid://dm5nsmn151qbx" path="res://assets/sprites/trivitime/trivtime horizantal.svg" id="4_qpsr8"]
+[ext_resource type="Script" path="res://scripts/SineComponent.gd" id="5_i1yvv"]
+[ext_resource type="PackedScene" uid="uid://d07oe55owlkpm" path="res://scenes/scene_button.tscn" id="5_qgidx"]
+[ext_resource type="Script" path="res://scripts/HoverComponent.gd" id="5_yqvjc"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_6l8p4"]
+device = -1
+keycode = 4194309
+
+[sub_resource type="Shortcut" id="Shortcut_jc66f"]
+events = [SubResource("InputEventKey_6l8p4")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_gfvoa"]
+device = -1
+keycode = 4194308
+
+[sub_resource type="Shortcut" id="Shortcut_eurf3"]
+events = [SubResource("InputEventKey_gfvoa")]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rgjdw"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.4862, 0.65, 0.286, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[node name="config" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_0unt5")
+script = ExtResource("1_v5777")
+
+[node name="BG" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.54902, 0.733333, 0.321569, 1)
+
+[node name="TITLE" type="TextureRect" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -644.0
+offset_top = 15.0
+offset_right = 644.0
+offset_bottom = 162.0
+grow_horizontal = 2
+texture = ExtResource("4_qpsr8")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DROPSHADOW" type="TextureRect" parent="TITLE"]
+self_modulate = Color(0, 0, 0, 1)
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -70.5
+offset_right = 648.0
+offset_bottom = 76.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_qpsr8")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BUTTONS" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 624.0
+offset_top = 196.0
+offset_right = 1297.0
+offset_bottom = 795.0
+theme_override_constants/separation = 45
+
+[node name="NEXT" type="Button" parent="BUTTONS"]
+custom_minimum_size = Vector2(513, 116)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 72
+shortcut = SubResource("Shortcut_jc66f")
+text = "PLAY"
+script = ExtResource("3_xihwp")
+Scene = "res://scenes/trivitime/tt_players.tscn"
+color = Color(0.34902, 0.52549, 0.278431, 1)
+
+[node name="HoverComponent" type="Node" parent="BUTTONS/NEXT"]
+script = ExtResource("5_yqvjc")
+Translate = Vector2(0, 7)
+style_easing = 1
+style_transition = 5
+
+[node name="SETTINGS" type="Button" parent="BUTTONS"]
+custom_minimum_size = Vector2(611, 116)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 72
+text = "SETTINGS"
+
+[node name="PACKCREATOR" parent="BUTTONS" instance=ExtResource("5_qgidx")]
+custom_minimum_size = Vector2(0, 116)
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "PACK CREATOR"
+Scene = "res://scenes/trivitime/tt_question_creator.tscn"
+color = Color(0.34902, 0.52549, 0.278431, 1)
+
+[node name="BACK" type="Button" parent="BUTTONS"]
+custom_minimum_size = Vector2(450, 116)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 72
+shortcut = SubResource("Shortcut_eurf3")
+text = "BACK"
+script = ExtResource("3_xihwp")
+Scene = "res://scenes/title/games.tscn"
+color = Color(0.34902, 0.52549, 0.278431, 1)
+
+[node name="game settings" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -579.0
+offset_top = -492.0
+offset_right = -24.0
+offset_bottom = 484.0
+grow_vertical = 2
+theme_override_constants/separation = 80
+
+[node name="title" type="Label" parent="game settings"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 64
+text = "Game Settings"
+
+[node name="rounds" type="LineEdit" parent="game settings"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 48
+text = "13"
+alignment = 1
+max_length = 2
+
+[node name="Label" type="Label" parent="game settings/rounds"]
+layout_mode = 1
+offset_top = -76.0
+offset_right = 260.0
+offset_bottom = -4.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 48
+text = "Rounds"
+vertical_alignment = 1
+
+[node name="Gamemode" type="OptionButton" parent="game settings"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+alignment = 1
+allow_reselect = true
+
+[node name="l;abel" type="Label" parent="game settings/Gamemode"]
+layout_mode = 0
+offset_top = -76.0
+offset_right = 260.0
+offset_bottom = -4.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 48
+text = "Gamemode"
+vertical_alignment = 1
+
+[node name="description" type="Label" parent="game settings/Gamemode"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+offset_top = 103.0
+offset_right = 555.0
+offset_bottom = 203.0
+grow_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 36
+text = "Gamemode Description"
+autowrap_mode = 3
+
+[node name="upload" type="Button" parent="game settings"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 66
+text = "Upload File"
+
+[node name="UploadDialog" type="FileDialog" parent="game settings/upload"]
+unique_name_in_owner = true
+title = "Open a File"
+initial_position = 2
+ok_button_text = "Open"
+file_mode = 0
+filters = PackedStringArray("*.json")
+
+[node name="recap" type="Panel" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -708.0
+offset_top = -123.0
+offset_right = 708.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_rgjdw")
+
+[node name="settings_recap" type="Label" parent="recap"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SineComponent" type="Node" parent="recap"]
+script = ExtResource("5_i1yvv")
+Speed = 2.5
+YSine = true
+YThreshold = 10
+
+[connection signal="pressed" from="BUTTONS/SETTINGS" to="." method="reveal_settings"]
+[connection signal="focus_exited" from="game settings/rounds" to="." method="backup_change_round"]
+[connection signal="text_submitted" from="game settings/rounds" to="." method="change_round"]
+[connection signal="item_selected" from="game settings/Gamemode" to="." method="change_gamemode"]
+[connection signal="pressed" from="game settings/upload" to="." method="prompt_upload"]
+[connection signal="file_selected" from="game settings/upload/UploadDialog" to="." method="upload"]

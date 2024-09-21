@@ -1,0 +1,995 @@
+[gd_scene load_steps=21 format=3 uid="uid://cjrlscy12n6hv"]
+
+[ext_resource type="Script" path="res://scripts/trivitime/tt_questions.gd" id="1_pp1ea"]
+[ext_resource type="Theme" uid="uid://c3hg6ndkr8syx" path="res://themes/trivitime.tres" id="2_jqjqm"]
+[ext_resource type="Texture2D" uid="uid://bhtp4fl3vejyl" path="res://assets/sprites/heart.svg" id="3_hn77l"]
+[ext_resource type="Texture2D" uid="uid://b1h0trj0dacfi" path="res://assets/sprites/forward-solid.svg" id="4_hrgab"]
+[ext_resource type="AudioStream" uid="uid://c3upufn15mm1x" path="res://assets/sfx/trivitime/correct.wav" id="5_xb4g2"]
+[ext_resource type="AudioStream" uid="uid://cekrjsp464tol" path="res://assets/sfx/trivitime/incorrect.wav" id="6_negle"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_efupd"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.356863, 0.458824, 0.235294, 1)
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+corner_detail = 5
+
+[sub_resource type="Theme" id="Theme_rtsl7"]
+Panel/styles/panel = SubResource("StyleBoxFlat_efupd")
+
+[sub_resource type="InputEventKey" id="InputEventKey_p6upi"]
+device = -1
+keycode = 65
+unicode = 97
+
+[sub_resource type="Shortcut" id="Shortcut_tai68"]
+events = [SubResource("InputEventKey_p6upi")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_yjlfj"]
+device = -1
+keycode = 66
+unicode = 98
+
+[sub_resource type="Shortcut" id="Shortcut_wsr4u"]
+events = [SubResource("InputEventKey_yjlfj")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_le5n6"]
+device = -1
+keycode = 67
+unicode = 99
+
+[sub_resource type="Shortcut" id="Shortcut_rsflm"]
+events = [SubResource("InputEventKey_le5n6")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_1k7ie"]
+device = -1
+keycode = 68
+unicode = 100
+
+[sub_resource type="Shortcut" id="Shortcut_dltf0"]
+events = [SubResource("InputEventKey_1k7ie")]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gt1ap"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.356863, 0.458824, 0.235294, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_detail = 5
+
+[sub_resource type="Theme" id="Theme_ssk2n"]
+Panel/styles/panel = SubResource("StyleBoxFlat_gt1ap")
+
+[sub_resource type="InputEventKey" id="InputEventKey_sokl5"]
+device = -1
+shift_pressed = true
+keycode = 83
+unicode = 83
+
+[sub_resource type="Shortcut" id="Shortcut_q1g0r"]
+events = [SubResource("InputEventKey_sokl5")]
+
+[node name="Questions" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_jqjqm")
+script = ExtResource("1_pp1ea")
+
+[node name="BG" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.54902, 0.733333, 0.321569, 1)
+
+[node name="questionPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -880.0
+offset_right = 880.0
+offset_bottom = 230.0
+grow_horizontal = 2
+theme = SubResource("Theme_rtsl7")
+
+[node name="question" type="Label" parent="questionPanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "What did the ancient Romans use as a mouthwash?"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Questions" type="GridContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -874.0
+offset_top = 277.0
+offset_right = 874.0
+offset_bottom = 725.0
+grow_horizontal = 2
+theme_override_constants/h_separation = 48
+theme_override_constants/v_separation = 48
+columns = 2
+
+[node name="ButtonA" type="Button" parent="Questions"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(850, 200)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+shortcut = SubResource("Shortcut_tai68")
+text = "Saltwater"
+
+[node name="A" type="Label" parent="Questions/ButtonA"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -177.0
+offset_top = -54.0
+offset_right = -17.0
+offset_bottom = -17.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "!answer A"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="ButtonB" type="Button" parent="Questions"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(850, 200)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+shortcut = SubResource("Shortcut_wsr4u")
+text = "Vinegar"
+
+[node name="B" type="Label" parent="Questions/ButtonB"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -54.0
+offset_right = -17.0
+offset_bottom = -17.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "!answer B"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="ButtonC" type="Button" parent="Questions"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(850, 200)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+shortcut = SubResource("Shortcut_rsflm")
+text = "Wine"
+
+[node name="C" type="Label" parent="Questions/ButtonC"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -54.0
+offset_right = -17.0
+offset_bottom = -17.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "!answer C"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="ButtonD" type="Button" parent="Questions"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(850, 200)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+shortcut = SubResource("Shortcut_dltf0")
+text = "Urine"
+
+[node name="D" type="Label" parent="Questions/ButtonD"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -54.0
+offset_right = -17.0
+offset_bottom = -17.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "!answer D"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="stats" type="Panel" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -880.0
+offset_top = -300.0
+offset_right = 880.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_ssk2n")
+
+[node name="Round" type="Label" parent="stats"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -326.0
+offset_top = -46.0
+offset_right = 326.0
+offset_bottom = -2.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.25098)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Players" type="HBoxContainer" parent="stats"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -863.0
+offset_top = -200.0
+offset_right = 863.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 108
+alignment = 1
+
+[node name="Player1" type="Panel" parent="stats/Players"]
+visible = false
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("2_jqjqm")
+
+[node name="Username" type="Label" parent="stats/Players/Player1"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -106.0
+offset_top = 11.0
+offset_right = 105.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[node name="score" type="Label" parent="stats/Players/Player1"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -105.5
+offset_top = -43.0
+offset_right = 105.5
+offset_bottom = -6.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[node name="heart" type="TextureRect" parent="stats/Players/Player1"]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -29.0
+offset_top = -5.0
+offset_right = 27.0
+offset_bottom = 51.0
+grow_horizontal = 0
+rotation = -0.0370369
+scale = Vector2(0.659608, 0.659608)
+texture = ExtResource("3_hn77l")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="stats/Players/Player1/heart"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.0
+offset_top = -20.0
+offset_right = 23.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="status" type="TextureRect" parent="stats/Players/Player1"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -41.0
+offset_top = -133.0
+offset_right = 41.0
+offset_bottom = -51.0
+grow_horizontal = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Player2" type="Panel" parent="stats/Players"]
+visible = false
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("2_jqjqm")
+
+[node name="Username" type="Label" parent="stats/Players/Player2"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -106.0
+offset_top = 11.0
+offset_right = 105.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[node name="score" type="Label" parent="stats/Players/Player2"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -105.5
+offset_top = -43.0
+offset_right = 105.5
+offset_bottom = -6.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[node name="heart" type="TextureRect" parent="stats/Players/Player2"]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -29.0
+offset_top = -5.0
+offset_right = 27.0
+offset_bottom = 51.0
+grow_horizontal = 0
+rotation = -0.0370369
+scale = Vector2(0.659608, 0.659608)
+texture = ExtResource("3_hn77l")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="stats/Players/Player2/heart"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.0
+offset_top = -20.0
+offset_right = 23.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="status" type="TextureRect" parent="stats/Players/Player2"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -41.0
+offset_top = -133.0
+offset_right = 41.0
+offset_bottom = -51.0
+grow_horizontal = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Player3" type="Panel" parent="stats/Players"]
+visible = false
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("2_jqjqm")
+
+[node name="Username" type="Label" parent="stats/Players/Player3"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -106.0
+offset_top = 11.0
+offset_right = 105.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[node name="score" type="Label" parent="stats/Players/Player3"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -105.5
+offset_top = -43.0
+offset_right = 105.5
+offset_bottom = -6.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[node name="heart" type="TextureRect" parent="stats/Players/Player3"]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -29.0
+offset_top = -5.0
+offset_right = 27.0
+offset_bottom = 51.0
+grow_horizontal = 0
+rotation = -0.0370369
+scale = Vector2(0.659608, 0.659608)
+texture = ExtResource("3_hn77l")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="stats/Players/Player3/heart"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.0
+offset_top = -20.0
+offset_right = 23.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="status" type="TextureRect" parent="stats/Players/Player3"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -41.0
+offset_top = -133.0
+offset_right = 41.0
+offset_bottom = -51.0
+grow_horizontal = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Player4" type="Panel" parent="stats/Players"]
+visible = false
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("2_jqjqm")
+
+[node name="Username" type="Label" parent="stats/Players/Player4"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -106.0
+offset_top = 11.0
+offset_right = 105.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[node name="score" type="Label" parent="stats/Players/Player4"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -105.5
+offset_top = -43.0
+offset_right = 105.5
+offset_bottom = -6.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[node name="heart" type="TextureRect" parent="stats/Players/Player4"]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -29.0
+offset_top = -5.0
+offset_right = 27.0
+offset_bottom = 51.0
+grow_horizontal = 0
+rotation = -0.0370369
+scale = Vector2(0.659608, 0.659608)
+texture = ExtResource("3_hn77l")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="stats/Players/Player4/heart"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.0
+offset_top = -20.0
+offset_right = 23.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="status" type="TextureRect" parent="stats/Players/Player4"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -41.0
+offset_top = -133.0
+offset_right = 41.0
+offset_bottom = -51.0
+grow_horizontal = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Player5" type="Panel" parent="stats/Players"]
+visible = false
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("2_jqjqm")
+
+[node name="Username" type="Label" parent="stats/Players/Player5"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -106.0
+offset_top = 11.0
+offset_right = 105.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[node name="score" type="Label" parent="stats/Players/Player5"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -105.5
+offset_top = -43.0
+offset_right = 105.5
+offset_bottom = -6.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[node name="heart" type="TextureRect" parent="stats/Players/Player5"]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -29.0
+offset_top = -5.0
+offset_right = 27.0
+offset_bottom = 51.0
+grow_horizontal = 0
+rotation = -0.0370369
+scale = Vector2(0.659608, 0.659608)
+texture = ExtResource("3_hn77l")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="stats/Players/Player5/heart"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.0
+offset_top = -20.0
+offset_right = 23.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="status" type="TextureRect" parent="stats/Players/Player5"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -41.0
+offset_top = -133.0
+offset_right = 41.0
+offset_bottom = -51.0
+grow_horizontal = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Player6" type="Panel" parent="stats/Players"]
+visible = false
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("2_jqjqm")
+
+[node name="Username" type="Label" parent="stats/Players/Player6"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -106.0
+offset_top = 11.0
+offset_right = 105.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[node name="score" type="Label" parent="stats/Players/Player6"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -105.5
+offset_top = -43.0
+offset_right = 105.5
+offset_bottom = -6.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[node name="heart" type="TextureRect" parent="stats/Players/Player6"]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -29.0
+offset_top = -5.0
+offset_right = 27.0
+offset_bottom = 51.0
+grow_horizontal = 0
+rotation = -0.0370369
+scale = Vector2(0.659608, 0.659608)
+texture = ExtResource("3_hn77l")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="stats/Players/Player6/heart"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.0
+offset_top = -20.0
+offset_right = 23.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="status" type="TextureRect" parent="stats/Players/Player6"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -41.0
+offset_top = -133.0
+offset_right = 41.0
+offset_bottom = -51.0
+grow_horizontal = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Player7" type="Panel" parent="stats/Players"]
+visible = false
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("2_jqjqm")
+
+[node name="Username" type="Label" parent="stats/Players/Player7"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -106.0
+offset_top = 11.0
+offset_right = 105.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[node name="score" type="Label" parent="stats/Players/Player7"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -105.5
+offset_top = -43.0
+offset_right = 105.5
+offset_bottom = -6.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[node name="heart" type="TextureRect" parent="stats/Players/Player7"]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -29.0
+offset_top = -5.0
+offset_right = 27.0
+offset_bottom = 51.0
+grow_horizontal = 0
+rotation = -0.0370369
+scale = Vector2(0.659608, 0.659608)
+texture = ExtResource("3_hn77l")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="stats/Players/Player7/heart"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.0
+offset_top = -20.0
+offset_right = 23.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="status" type="TextureRect" parent="stats/Players/Player7"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -41.0
+offset_top = -133.0
+offset_right = 41.0
+offset_bottom = -51.0
+grow_horizontal = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Player8" type="Panel" parent="stats/Players"]
+visible = false
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("2_jqjqm")
+
+[node name="Username" type="Label" parent="stats/Players/Player8"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -106.0
+offset_top = 11.0
+offset_right = 105.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[node name="score" type="Label" parent="stats/Players/Player8"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -105.5
+offset_top = -43.0
+offset_right = 105.5
+offset_bottom = -6.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[node name="heart" type="TextureRect" parent="stats/Players/Player8"]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -29.0
+offset_top = -5.0
+offset_right = 27.0
+offset_bottom = 51.0
+grow_horizontal = 0
+rotation = -0.0370369
+scale = Vector2(0.659608, 0.659608)
+texture = ExtResource("3_hn77l")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="stats/Players/Player8/heart"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.0
+offset_top = -20.0
+offset_right = 23.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="status" type="TextureRect" parent="stats/Players/Player8"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -41.0
+offset_top = -133.0
+offset_right = 41.0
+offset_bottom = -51.0
+grow_horizontal = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Skip" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 12.0
+offset_right = 64.0
+offset_bottom = 58.0
+shortcut = SubResource("Shortcut_q1g0r")
+texture_normal = ExtResource("4_hrgab")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Correct" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_xb4g2")
+bus = &"SFX"
+
+[node name="Incorrect" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("6_negle")
+bus = &"SFX"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 317.0
+offset_right = 45.0
+offset_bottom = 357.0
+expand_mode = 1
+
+[connection signal="pressed" from="Questions/ButtonA" to="." method="local_a"]
+[connection signal="pressed" from="Questions/ButtonB" to="." method="local_b"]
+[connection signal="pressed" from="Questions/ButtonC" to="." method="local_c"]
+[connection signal="pressed" from="Questions/ButtonD" to="." method="local_d"]
+[connection signal="pressed" from="Skip" to="." method="_on_skip_pressed"]

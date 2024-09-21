@@ -1,0 +1,360 @@
+[gd_scene load_steps=14 format=3 uid="uid://bbecd7j1stdqn"]
+
+[ext_resource type="Texture2D" uid="uid://c0vooqxxiwagq" path="res://assets/sprites/credits.svg" id="2_7r5vd"]
+[ext_resource type="Theme" uid="uid://d23w4u6imctvp" path="res://themes/title.tres" id="2_bwcfe"]
+[ext_resource type="Texture2D" uid="uid://82vjisfp65i3" path="res://assets/sprites/credits/kingboo.png" id="3_3r41w"]
+[ext_resource type="Texture2D" uid="uid://bcg6moctmoibi" path="res://assets/sprites/credits/decent.png" id="3_22avs"]
+[ext_resource type="Texture2D" uid="uid://dumf4nrc22seb" path="res://assets/sprites/credits/stari.jpg" id="5_6bq27"]
+[ext_resource type="Script" path="res://scripts/SceneButton.gd" id="5_x8e32"]
+[ext_resource type="Texture2D" uid="uid://hco7sclpttoo" path="res://assets/sprites/credits/flormatt.jpg" id="6_5tv5k"]
+[ext_resource type="Texture2D" uid="uid://bt1oachc8blgb" path="res://assets/sprites/credits/rainysebby.jpg" id="7_sgmsb"]
+[ext_resource type="Texture2D" uid="uid://ctf6p8xil2o3s" path="res://assets/sprites/credits/qwerty.webp" id="8_4me7i"]
+
+[sub_resource type="Gradient" id="Gradient_nhu45"]
+colors = PackedColorArray(0.581376, 0.502449, 0.735807, 1, 0.799986, 0.292765, 0.850855, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_j3ucb"]
+gradient = SubResource("Gradient_nhu45")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0.752577, 0.0515464)
+
+[sub_resource type="InputEventKey" id="InputEventKey_q11oh"]
+device = -1
+keycode = 4194308
+
+[sub_resource type="Shortcut" id="Shortcut_t41io"]
+events = [SubResource("InputEventKey_q11oh")]
+
+[node name="title" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_bwcfe")
+
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_j3ucb")
+
+[node name="title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -826.0
+offset_top = 14.0
+offset_right = -427.0
+offset_bottom = 168.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 128
+text = "Credits"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="title"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -115.5
+offset_top = -51.0
+offset_right = -13.5
+offset_bottom = 51.0
+grow_vertical = 2
+texture = ExtResource("2_7r5vd")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 167.0
+offset_right = 120.0
+offset_bottom = 965.0
+theme_override_constants/separation = 12
+
+[node name="decent" type="TextureRect" parent="VBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(110, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_22avs")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="person" type="Label" parent="VBoxContainer/decent"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -44.0
+offset_right = 404.0
+offset_bottom = 2.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 36
+text = "@decent_games"
+vertical_alignment = 1
+
+[node name="roles" type="Label" parent="VBoxContainer/decent"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 1.0
+offset_right = 290.0
+offset_bottom = 47.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 16
+text = "Solo Developer ⋅ Solo Designer"
+autowrap_mode = 3
+
+[node name="theonekingboo" type="TextureRect" parent="VBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_3r41w")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="person" type="Label" parent="VBoxContainer/theonekingboo"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -44.0
+offset_right = 404.0
+offset_bottom = 2.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 36
+text = "@theonekingboo"
+vertical_alignment = 1
+
+[node name="roles" type="Label" parent="VBoxContainer/theonekingboo"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 1.0
+offset_right = 290.0
+offset_bottom = 47.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 16
+text = "Playtester ⋅ Design Reviewer ⋅ Debugger"
+autowrap_mode = 3
+
+[node name="flormatt" type="TextureRect" parent="VBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("6_5tv5k")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="person" type="Label" parent="VBoxContainer/flormatt"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 6.0
+offset_top = -44.0
+offset_right = 410.0
+offset_bottom = 2.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 36
+text = "@TheFlorMatt"
+vertical_alignment = 1
+
+[node name="roles" type="Label" parent="VBoxContainer/flormatt"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 6.0
+offset_top = 1.0
+offset_right = 296.0
+offset_bottom = 47.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 16
+text = "Playtester ⋅ Music Production"
+autowrap_mode = 3
+
+[node name="stariwabi" type="TextureRect" parent="VBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("5_6bq27")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="person" type="Label" parent="VBoxContainer/stariwabi"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 6.0
+offset_top = -44.0
+offset_right = 410.0
+offset_bottom = 2.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 36
+text = "@stariwabi"
+vertical_alignment = 1
+
+[node name="roles" type="Label" parent="VBoxContainer/stariwabi"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 6.0
+offset_top = 1.0
+offset_right = 296.0
+offset_bottom = 47.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 16
+text = "Playtester"
+autowrap_mode = 3
+
+[node name="rainysebby" type="TextureRect" parent="VBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("7_sgmsb")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="person" type="Label" parent="VBoxContainer/rainysebby"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 6.0
+offset_top = -44.0
+offset_right = 410.0
+offset_bottom = 2.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 36
+text = "@rainysebby"
+vertical_alignment = 1
+
+[node name="roles" type="Label" parent="VBoxContainer/rainysebby"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 6.0
+offset_top = 1.0
+offset_right = 296.0
+offset_bottom = 47.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 16
+text = "Playtester"
+autowrap_mode = 3
+
+[node name="qwertymankirill" type="TextureRect" parent="VBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("8_4me7i")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="person" type="Label" parent="VBoxContainer/qwertymankirill"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 6.0
+offset_top = -44.0
+offset_right = 410.0
+offset_bottom = 2.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 36
+text = "@qwertymankirill"
+vertical_alignment = 1
+
+[node name="roles" type="Label" parent="VBoxContainer/qwertymankirill"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 6.0
+offset_top = 1.0
+offset_right = 296.0
+offset_bottom = 47.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 16
+text = "Playtester"
+autowrap_mode = 3
+
+[node name="EXIT" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -113.0
+offset_top = -84.0
+offset_right = 113.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 48
+shortcut = SubResource("Shortcut_t41io")
+text = "Exit"
+script = ExtResource("5_x8e32")
+Scene = "res://scenes/title/title.tscn"

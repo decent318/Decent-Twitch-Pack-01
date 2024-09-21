@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://iusmgnj2roi7"]
+
+[ext_resource type="AudioStream" uid="uid://dl5tij80kjdcb" path="res://assets/music/SWAG_JAZZ.mp3" id="1_beqd8"]
+[ext_resource type="Script" path="res://scripts/music_handler.gd" id="1_w0pgi"]
+
+[node name="MusicHandler" type="Node"]
+script = ExtResource("1_w0pgi")
+
+[node name="Track" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("1_beqd8")
+volume_db = -22.286
+bus = &"Music"
+
+[connection signal="finished" from="Track" to="." method="loop"]

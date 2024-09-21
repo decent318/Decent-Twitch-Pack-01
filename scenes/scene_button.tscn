@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://d07oe55owlkpm"]
+
+[ext_resource type="Script" path="res://scripts/SceneButton.gd" id="1_mlhfj"]
+
+[node name="SceneButton" type="Button"]
+offset_right = 122.0
+offset_bottom = 48.0
+script = ExtResource("1_mlhfj")
+
+[connection signal="mouse_entered" from="." to="." method="hover"]
+[connection signal="pressed" from="." to="." method="change_scene"]

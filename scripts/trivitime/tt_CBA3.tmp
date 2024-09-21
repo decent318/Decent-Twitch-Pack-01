@@ -1,0 +1,55 @@
+# TO DO
+# INTERACTIVE DESIGN
+# FILE UPDATING
+# THE INTERACTIVE DESIGN SHOULD NOT WRITE TO THE FILE, IT SHOULD READ FROM IT
+# PAGE CONTROLS 
+
+
+extends Control
+
+@onready var import_dialog = %Import
+
+var file 
+var json_data
+
+var questionsPerPage = 10
+
+func prompt_import():
+	import_dialog.visible = true
+	
+
+func import(path):
+	file = path
+	json_data = JSON.parse_string(FileAccess.get_file_as_string(file))
+	update()
+
+func update():
+	%FilePreview.text = FileAccess.get_file_as_string(file)
+	%AdditionalInfo.text = str(file).get_file() + " - " + json_data.format.to_upper() + " | " + json_data.difficulty.to_upper() + " | " + str(len(json_data.questions.keys())) + " Questions"
+	for question in json_data.questions:
+		var panel = %Question.duplicate()
+		panel.get_child(0).text = question
+		panel.get_child(0).text_changed.connect(func(): 
+			update_JSON(question, panel.get_child(0).text)
+			update()
+		)
+		var pos = 0
+		for ans in json_data.questions[question]:
+			panel.get_child(1).get_child(pos).text = ans
+			panel.get_child(1).get_child(pos).text_changed.connect(func(): 
+				update_JSON(question, ans, pos)
+				update()
+			)
+			pos += 1
+		panel.visible = true
+		%Panels.add_child(panel)
+
+func update_JSON(question, new_value, array_pos = -1):
+	if array_pos == -1: # CHANGING QUESTION
+		json_data.questions[new_value] = json_data.questions[question]
+		json_data.questions.erase(question)
+	else:
+		json_data.questions[question][array_pos] = new_value
+	
+	var savefile = FileAccess.open(file, FileAccess.WRITE)
+	savefile.store_string(JSON.stringify(json_data))
