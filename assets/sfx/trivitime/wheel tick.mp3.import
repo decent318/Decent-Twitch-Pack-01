@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dji37f61fuy8y"
+path="res://.godot/imported/wheel tick.mp3-45c555ee2344712239f603240592c794.mp3str"
+
+[deps]
+
+source_file="res://assets/sfx/trivitime/wheel tick.mp3"
+dest_files=["res://.godot/imported/wheel tick.mp3-45c555ee2344712239f603240592c794.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

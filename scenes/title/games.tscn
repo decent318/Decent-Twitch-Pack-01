@@ -1,24 +1,12 @@
 [gd_scene load_steps=10 format=3 uid="uid://cum0a1mr60xer"]
 
 [ext_resource type="Theme" uid="uid://d23w4u6imctvp" path="res://themes/title.tres" id="1_rapvu"]
+[ext_resource type="Script" path="res://scripts/title/games.gd" id="2_gcwrv"]
 [ext_resource type="Texture2D" uid="uid://b7ot082q27nuv" path="res://assets/sprites/play.svg" id="3_8xsjv"]
-[ext_resource type="Texture2D" uid="uid://c1mhhx75vkrh8" path="res://assets/sprites/trivitime/trivitime-icon.svg" id="3_pa5fs"]
+[ext_resource type="Texture2D" uid="uid://f6cvddoqi6hu" path="res://assets/sprites/DTP BG.png" id="5_f0ptx"]
 [ext_resource type="Script" path="res://scripts/SceneButton.gd" id="5_q7sda"]
-
-[sub_resource type="Gradient" id="Gradient_lhti0"]
-colors = PackedColorArray(0.581376, 0.502449, 0.735807, 1, 0.799986, 0.292765, 0.850855, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_j3ucb"]
-gradient = SubResource("Gradient_lhti0")
-fill_from = Vector2(0, 1)
-fill_to = Vector2(0.752577, 0.0515464)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8uk4v"]
-bg_color = Color(0.54902, 0.733333, 0.321569, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
+[ext_resource type="Texture2D" uid="uid://dm5nsmn151qbx" path="res://assets/sprites/trivitime/trivtime horizantal.svg" id="6_kguj6"]
+[ext_resource type="FontFile" uid="uid://btmrxohxjovqk" path="res://assets/fonts/Comfortaa/Comfortaa-VariableFont_wght.ttf" id="7_0upka"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_n7xsm"]
 device = -1
@@ -27,7 +15,7 @@ keycode = 4194308
 [sub_resource type="Shortcut" id="Shortcut_dhgci"]
 events = [SubResource("InputEventKey_n7xsm")]
 
-[node name="title" type="Control"]
+[node name="games" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,15 +23,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_rapvu")
-
-[node name="BG" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("GradientTexture2D_j3ucb")
+script = ExtResource("2_gcwrv")
 
 [node name="title" type="Label" parent="."]
 layout_mode = 1
@@ -73,72 +53,6 @@ texture = ExtResource("3_8xsjv")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="TT" type="Control" parent="."]
-anchors_preset = 0
-offset_left = 19.0
-offset_top = 208.0
-offset_right = 681.0
-offset_bottom = 471.0
-
-[node name="TriviTime" type="TextureRect" parent="TT"]
-layout_mode = 0
-offset_right = 93.0
-offset_bottom = 93.0
-texture = ExtResource("3_pa5fs")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="title" type="Label" parent="TT/TriviTime"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 9.0
-offset_top = -33.5
-offset_right = 357.0
-offset_bottom = 33.5
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_font_sizes/font_size = 42
-text = "trivitime"
-vertical_alignment = 1
-
-[node name="desc" type="Label" parent="TT/TriviTime/title"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -174.0
-offset_top = -7.0
-offset_right = 386.0
-offset_bottom = 38.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 32
-text = "A fun trivia game for up to 8 players!"
-autowrap_mode = 3
-
-[node name="play" type="Button" parent="TT/TriviTime/title/desc"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = 1.0
-offset_right = 137.0
-offset_bottom = 56.0
-grow_vertical = 0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_8uk4v")
-text = "Play"
-script = ExtResource("5_q7sda")
-Scene = "res://scenes/trivitime/tt_config.tscn"
-color = Color(0.34902, 0.52549, 0.278431, 1)
-
 [node name="EXIT" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 7
@@ -147,7 +61,7 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -113.0
-offset_top = -84.0
+offset_top = -101.0
 offset_right = 113.0
 offset_bottom = -19.0
 grow_horizontal = 2
@@ -157,3 +71,61 @@ shortcut = SubResource("Shortcut_dhgci")
 text = "Exit"
 script = ExtResource("5_q7sda")
 Scene = "res://scenes/title/title.tscn"
+
+[node name="BG" type="TextureRect" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("5_f0ptx")
+expand_mode = 1
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, 0)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="games_container" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="tt" type="Button" parent="games_container"]
+offset_left = 633.0
+offset_top = 131.0
+offset_right = 1287.0
+offset_bottom = 371.0
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="games_container/tt"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -285.0
+offset_top = 16.5
+offset_right = 286.0
+offset_bottom = 120.5
+grow_horizontal = 2
+texture = ExtResource("6_kguj6")
+
+[node name="Label" type="Label" parent="games_container/tt"]
+self_modulate = Color(0.73, 0.73, 0.73, 1)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -187.0
+offset_top = 134.5
+offset_right = 187.0
+offset_bottom = 206.5
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("7_0upka")
+theme_override_font_sizes/font_size = 24
+text = "Test your trivia knowledge.
+(2-8 PLAYERS)"
+horizontal_alignment = 1
+autowrap_mode = 3

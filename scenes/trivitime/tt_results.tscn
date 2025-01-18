@@ -1,20 +1,35 @@
-[gd_scene load_steps=10 format=3 uid="uid://dblnspyokgnra"]
+[gd_scene load_steps=15 format=3 uid="uid://dblnspyokgnra"]
 
 [ext_resource type="Script" path="res://scripts/trivitime/tt_results.gd" id="1_bmvug"]
 [ext_resource type="Theme" uid="uid://c3hg6ndkr8syx" path="res://themes/trivitime.tres" id="2_162g3"]
 [ext_resource type="Script" path="res://scripts/HoverComponent.gd" id="3_3udal"]
+[ext_resource type="Texture2D" uid="uid://b61pxjfq6desr" path="res://assets/sprites/trivitime/trivitime bg.png" id="3_nyygx"]
+[ext_resource type="Texture2D" uid="uid://cy3nwsh0t60ui" path="res://assets/sprites/trivitime/awards/a+.png" id="5_niwpm"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x2vmb"]
-bg_color = Color(0.356863, 0.458824, 0.235294, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_32ro3"]
-bg_color = Color(0.356863, 0.458824, 0.235294, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rjwyy"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.247, 0.38, 0.114, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o7jnj"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.32195, 0.47, 0.1739, 1)
+border_width_bottom = 4
+border_color = Color(0.321569, 0.470588, 0.172549, 1)
+corner_radius_top_left = 64
+corner_radius_top_right = 64
+corner_radius_bottom_right = 64
+corner_radius_bottom_left = 64
+anti_aliasing = false
 
 [sub_resource type="InputEventKey" id="InputEventKey_2q7e2"]
 device = -1
@@ -34,6 +49,20 @@ unicode = 83
 [sub_resource type="Shortcut" id="Shortcut_ildru"]
 events = [SubResource("InputEventKey_p25ix")]
 
+[sub_resource type="Animation" id="Animation_kiaik"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_66puq"]
+resource_name = "animation"
+length = 1.5
+step = 0.1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8kr80"]
+_data = {
+"RESET": SubResource("Animation_kiaik"),
+"animation": SubResource("Animation_66puq")
+}
+
 [node name="results" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -43,19 +72,63 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_162g3")
 script = ExtResource("1_bmvug")
-username = "TriviTime"
 metadata/_edit_horizontal_guides_ = [-4309.0]
 
-[node name="BG" type="ColorRect" parent="."]
+[node name="temp_award" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 248.0
+offset_top = 652.0
+offset_right = 580.0
+offset_bottom = 760.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_rjwyy")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="temp_award"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="icon" type="Panel" parent="temp_award/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_o7jnj")
+
+[node name="icon" type="TextureRect" parent="temp_award/HBoxContainer/icon"]
+layout_mode = 2
+offset_left = -5.0
+offset_top = -4.0
+offset_right = 106.0
+offset_bottom = 107.0
+rotation = -0.0785398
+texture = ExtResource("5_niwpm")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="info" type="VBoxContainer" parent="temp_award/HBoxContainer"]
+layout_mode = 2
+
+[node name="title" type="Label" parent="temp_award/HBoxContainer/info"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "A+"
+
+[node name="desc" type="Label" parent="temp_award/HBoxContainer/info"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Awarded for scoring 95% or higher."
+autowrap_mode = 2
+
+[node name="BG" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 8.0
+offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.54902, 0.733333, 0.321569, 1)
+texture = ExtResource("3_nyygx")
 
-[node name="Label" type="Label" parent="."]
+[node name="title" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -69,538 +142,8 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 4
 theme_override_constants/shadow_offset_y = 4
 theme_override_font_sizes/font_size = 128
-text = "The End"
+text = "Report"
 horizontal_alignment = 1
-
-[node name="leaderboard" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -346.0
-offset_top = -820.0
-offset_right = 336.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="1st" type="Panel" parent="leaderboard"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -102.0
-offset_top = -542.0
-offset_right = 102.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_x2vmb")
-
-[node name="TextureRect" type="TextureRect" parent="leaderboard/1st"]
-layout_mode = 0
-offset_left = 35.0
-offset_top = -171.0
-offset_right = 169.0
-offset_bottom = -37.0
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Username" type="Label" parent="leaderboard/1st/TextureRect"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -138.0
-offset_top = -180.0
-offset_right = 137.0
-offset_bottom = -143.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 24
-text = "Username"
-horizontal_alignment = 1
-text_overrun_behavior = 3
-
-[node name="score" type="Label" parent="leaderboard/1st/TextureRect"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -105.5
-offset_top = -107.0
-offset_right = 105.5
-offset_bottom = -52.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 48
-text = "000"
-horizontal_alignment = 1
-text_overrun_behavior = 3
-
-[node name="2nd" type="Panel" parent="leaderboard"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -341.0
-offset_top = -454.0
-offset_right = -137.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_x2vmb")
-
-[node name="TextureRect" type="TextureRect" parent="leaderboard/2nd"]
-layout_mode = 0
-offset_left = 35.0
-offset_top = -171.0
-offset_right = 169.0
-offset_bottom = -37.0
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Username" type="Label" parent="leaderboard/2nd/TextureRect"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -138.0
-offset_top = -180.0
-offset_right = 137.0
-offset_bottom = -143.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 24
-text = "Username"
-horizontal_alignment = 1
-text_overrun_behavior = 3
-
-[node name="score" type="Label" parent="leaderboard/2nd/TextureRect"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -105.5
-offset_top = -107.0
-offset_right = 105.5
-offset_bottom = -52.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 48
-text = "000"
-horizontal_alignment = 1
-text_overrun_behavior = 3
-
-[node name="3rd" type="Panel" parent="leaderboard"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 137.0
-offset_top = -349.0
-offset_right = 341.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_x2vmb")
-
-[node name="TextureRect" type="TextureRect" parent="leaderboard/3rd"]
-layout_mode = 0
-offset_left = 35.0
-offset_top = -171.0
-offset_right = 169.0
-offset_bottom = -37.0
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Username" type="Label" parent="leaderboard/3rd/TextureRect"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -138.0
-offset_top = -180.0
-offset_right = 137.0
-offset_bottom = -143.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 24
-text = "Username"
-horizontal_alignment = 1
-text_overrun_behavior = 3
-
-[node name="score" type="Label" parent="leaderboard/3rd/TextureRect"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -105.5
-offset_top = -107.0
-offset_right = 105.5
-offset_bottom = -52.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 48
-text = "000"
-horizontal_alignment = 1
-text_overrun_behavior = 3
-
-[node name="full_leaderboard" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -491.0
-offset_top = -520.0
-offset_right = -25.0
-offset_bottom = 520.0
-grow_horizontal = 0
-grow_vertical = 2
-
-[node name="p1" type="Panel" parent="full_leaderboard"]
-custom_minimum_size = Vector2(0, 120)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_32ro3")
-
-[node name="pic" type="TextureRect" parent="full_leaderboard/p1"]
-layout_mode = 0
-offset_left = 19.0
-offset_top = 19.0
-offset_right = 102.0
-offset_bottom = 102.0
-expand_mode = 1
-stretch_mode = 5
-
-[node name="name" type="Label" parent="full_leaderboard/p1"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 112.0
-offset_top = -41.0
-offset_right = 399.0
-offset_bottom = -16.0
-grow_vertical = 2
-text = "Username"
-vertical_alignment = 1
-
-[node name="score" type="Label" parent="full_leaderboard/p1"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 112.0
-offset_top = -16.0
-offset_right = 452.0
-offset_bottom = 42.0
-grow_vertical = 2
-theme_override_font_sizes/font_size = 48
-text = "000"
-vertical_alignment = 2
-
-[node name="p2" type="Panel" parent="full_leaderboard"]
-visible = false
-custom_minimum_size = Vector2(0, 120)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_32ro3")
-
-[node name="pic" type="TextureRect" parent="full_leaderboard/p2"]
-layout_mode = 0
-offset_left = 19.0
-offset_top = 19.0
-offset_right = 102.0
-offset_bottom = 102.0
-expand_mode = 1
-stretch_mode = 5
-
-[node name="name" type="Label" parent="full_leaderboard/p2"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 112.0
-offset_top = -41.0
-offset_right = 399.0
-offset_bottom = -16.0
-grow_vertical = 2
-text = "decent381"
-vertical_alignment = 1
-
-[node name="score" type="Label" parent="full_leaderboard/p2"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 112.0
-offset_top = -16.0
-offset_right = 452.0
-offset_bottom = 42.0
-grow_vertical = 2
-theme_override_font_sizes/font_size = 48
-text = "2000"
-vertical_alignment = 2
-
-[node name="p3" type="Panel" parent="full_leaderboard"]
-visible = false
-custom_minimum_size = Vector2(0, 120)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_32ro3")
-
-[node name="pic" type="TextureRect" parent="full_leaderboard/p3"]
-layout_mode = 0
-offset_left = 19.0
-offset_top = 19.0
-offset_right = 102.0
-offset_bottom = 102.0
-expand_mode = 1
-stretch_mode = 5
-
-[node name="name" type="Label" parent="full_leaderboard/p3"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 112.0
-offset_top = -41.0
-offset_right = 399.0
-offset_bottom = -16.0
-grow_vertical = 2
-text = "decent381"
-vertical_alignment = 1
-
-[node name="score" type="Label" parent="full_leaderboard/p3"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 112.0
-offset_top = -16.0
-offset_right = 452.0
-offset_bottom = 42.0
-grow_vertical = 2
-theme_override_font_sizes/font_size = 48
-text = "2000"
-vertical_alignment = 2
-
-[node name="p4" type="Panel" parent="full_leaderboard"]
-visible = false
-custom_minimum_size = Vector2(0, 120)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_32ro3")
-
-[node name="pic" type="TextureRect" parent="full_leaderboard/p4"]
-layout_mode = 0
-offset_left = 19.0
-offset_top = 19.0
-offset_right = 102.0
-offset_bottom = 102.0
-expand_mode = 1
-stretch_mode = 5
-
-[node name="name" type="Label" parent="full_leaderboard/p4"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 112.0
-offset_top = -41.0
-offset_right = 399.0
-offset_bottom = -16.0
-grow_vertical = 2
-text = "decent381"
-vertical_alignment = 1
-
-[node name="score" type="Label" parent="full_leaderboard/p4"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 112.0
-offset_top = -16.0
-offset_right = 452.0
-offset_bottom = 42.0
-grow_vertical = 2
-theme_override_font_sizes/font_size = 48
-text = "2000"
-vertical_alignment = 2
-
-[node name="p5" type="Panel" parent="full_leaderboard"]
-visible = false
-custom_minimum_size = Vector2(0, 120)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_32ro3")
-
-[node name="pic" type="TextureRect" parent="full_leaderboard/p5"]
-layout_mode = 0
-offset_left = 19.0
-offset_top = 19.0
-offset_right = 102.0
-offset_bottom = 102.0
-expand_mode = 1
-stretch_mode = 5
-
-[node name="name" type="Label" parent="full_leaderboard/p5"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 112.0
-offset_top = -41.0
-offset_right = 399.0
-offset_bottom = -16.0
-grow_vertical = 2
-text = "decent381"
-vertical_alignment = 1
-
-[node name="score" type="Label" parent="full_leaderboard/p5"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 112.0
-offset_top = -16.0
-offset_right = 452.0
-offset_bottom = 42.0
-grow_vertical = 2
-theme_override_font_sizes/font_size = 48
-text = "2000"
-vertical_alignment = 2
-
-[node name="p6" type="Panel" parent="full_leaderboard"]
-visible = false
-custom_minimum_size = Vector2(0, 120)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_32ro3")
-
-[node name="pic" type="TextureRect" parent="full_leaderboard/p6"]
-layout_mode = 0
-offset_left = 19.0
-offset_top = 19.0
-offset_right = 102.0
-offset_bottom = 102.0
-expand_mode = 1
-stretch_mode = 5
-
-[node name="name" type="Label" parent="full_leaderboard/p6"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 112.0
-offset_top = -41.0
-offset_right = 399.0
-offset_bottom = -16.0
-grow_vertical = 2
-text = "decent381"
-vertical_alignment = 1
-
-[node name="score" type="Label" parent="full_leaderboard/p6"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 112.0
-offset_top = -16.0
-offset_right = 452.0
-offset_bottom = 42.0
-grow_vertical = 2
-theme_override_font_sizes/font_size = 48
-text = "2000"
-vertical_alignment = 2
-
-[node name="p7" type="Panel" parent="full_leaderboard"]
-visible = false
-custom_minimum_size = Vector2(0, 120)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_32ro3")
-
-[node name="pic" type="TextureRect" parent="full_leaderboard/p7"]
-layout_mode = 0
-offset_left = 19.0
-offset_top = 19.0
-offset_right = 102.0
-offset_bottom = 102.0
-expand_mode = 1
-stretch_mode = 5
-
-[node name="name" type="Label" parent="full_leaderboard/p7"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 112.0
-offset_top = -41.0
-offset_right = 399.0
-offset_bottom = -16.0
-grow_vertical = 2
-text = "decent381"
-vertical_alignment = 1
-
-[node name="score" type="Label" parent="full_leaderboard/p7"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 112.0
-offset_top = -16.0
-offset_right = 452.0
-offset_bottom = 42.0
-grow_vertical = 2
-theme_override_font_sizes/font_size = 48
-text = "2000"
-vertical_alignment = 2
-
-[node name="p8" type="Panel" parent="full_leaderboard"]
-visible = false
-custom_minimum_size = Vector2(0, 120)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_32ro3")
-
-[node name="pic" type="TextureRect" parent="full_leaderboard/p8"]
-layout_mode = 0
-offset_left = 19.0
-offset_top = 19.0
-offset_right = 102.0
-offset_bottom = 102.0
-expand_mode = 1
-stretch_mode = 5
-
-[node name="name" type="Label" parent="full_leaderboard/p8"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 112.0
-offset_top = -41.0
-offset_right = 399.0
-offset_bottom = -16.0
-grow_vertical = 2
-text = "decent381"
-vertical_alignment = 1
-
-[node name="score" type="Label" parent="full_leaderboard/p8"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 112.0
-offset_top = -16.0
-offset_right = 452.0
-offset_bottom = 42.0
-grow_vertical = 2
-theme_override_font_sizes/font_size = 48
-text = "2000"
-vertical_alignment = 2
 
 [node name="new_players" type="Button" parent="."]
 layout_mode = 1
@@ -676,5 +219,115 @@ Translate = Vector2(0, -5)
 style_easing = 1
 style_transition = 5
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8kr80")
+}
+autoplay = "animation"
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -731.0
+offset_top = -338.0
+offset_right = 731.0
+offset_bottom = 271.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="overview" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+offset_left = 64.0
+offset_top = 28.0
+offset_right = 425.0
+offset_bottom = 320.0
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="username" type="Label" parent="Panel/overview"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "decent_games"
+
+[node name="place" type="Label" parent="Panel/overview"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "1st"
+
+[node name="score" type="Label" parent="Panel/overview"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "400"
+
+[node name="percent" type="Label" parent="Panel/overview"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "90% (9/10)"
+
+[node name="heading" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 364.0
+offset_right = 340.0
+offset_bottom = 438.0
+theme_override_font_sizes/font_size = 65
+text = "AWARDS"
+
+[node name="awards" type="HBoxContainer" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -712.0
+offset_top = -159.0
+offset_right = 712.0
+offset_bottom = -51.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 32
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1741.0
+offset_top = 430.0
+offset_right = 1823.0
+offset_bottom = 512.0
+theme_override_font_sizes/font_size = 48
+text = ">"
+
+[node name="HoverComponent" type="Node" parent="Button"]
+script = ExtResource("3_3udal")
+Translate = Vector2(0, 5)
+style_easing = 1
+style_transition = 5
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 97.0
+offset_top = 430.0
+offset_right = 179.0
+offset_bottom = 512.0
+theme_override_font_sizes/font_size = 48
+text = "<"
+
+[node name="HoverComponent" type="Node" parent="Button2"]
+script = ExtResource("3_3udal")
+Translate = Vector2(0, 5)
+style_easing = 1
+style_transition = 5
+
 [connection signal="pressed" from="new_players" to="." method="new_players"]
 [connection signal="pressed" from="same_players" to="." method="same_players"]
+[connection signal="pressed" from="Button" to="." method="next_person"]
+[connection signal="pressed" from="Button2" to="." method="previous_person"]

@@ -41,7 +41,8 @@ func play_sfx_from_preload(pload, loops = 1):
 	for i in loops:
 		sfx.play()
 		await sfx.finished
-	sfx.quene_free()
+	sfx.queue_free()
+
 
 var muted = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master"))) == 0
 func toggleMute():

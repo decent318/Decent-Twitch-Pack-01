@@ -1,15 +1,18 @@
-[gd_scene load_steps=28 format=3 uid="uid://cjrlscy12n6hv"]
+[gd_scene load_steps=39 format=3 uid="uid://cjrlscy12n6hv"]
 
 [ext_resource type="Script" path="res://scripts/trivitime/tt_questions.gd" id="1_pp1ea"]
 [ext_resource type="Theme" uid="uid://c3hg6ndkr8syx" path="res://themes/trivitime.tres" id="2_jqjqm"]
 [ext_resource type="Script" path="res://scripts/HoverComponent.gd" id="3_4ij46"]
-[ext_resource type="Texture2D" uid="uid://bhtp4fl3vejyl" path="res://assets/sprites/heart.svg" id="3_hn77l"]
+[ext_resource type="Texture2D" uid="uid://b61pxjfq6desr" path="res://assets/sprites/trivitime/trivitime bg.png" id="3_w0r7e"]
+[ext_resource type="Texture2D" uid="uid://cxn1lgnq5eqan" path="res://icon.svg" id="4_557qg"]
 [ext_resource type="Texture2D" uid="uid://c7fhsonlap363" path="res://assets/sprites/turn.svg" id="4_v7ey5"]
-[ext_resource type="Script" path="res://scripts/SineComponent.gd" id="5_o85gi"]
 [ext_resource type="AudioStream" uid="uid://c3upufn15mm1x" path="res://assets/sfx/trivitime/correct.wav" id="5_xb4g2"]
 [ext_resource type="AudioStream" uid="uid://cekrjsp464tol" path="res://assets/sfx/trivitime/incorrect.wav" id="6_negle"]
 [ext_resource type="Texture2D" uid="uid://cy25ixu5m4a5k" path="res://assets/sprites/pause.svg" id="7_kj1xp"]
 [ext_resource type="Texture2D" uid="uid://dp7cjvbw7hdxg" path="res://assets/sprites/fast-forward.svg" id="7_puayb"]
+[ext_resource type="Shader" path="res://shaders/shake.gdshader" id="8_xq6fu"]
+[ext_resource type="PackedScene" uid="uid://d07oe55owlkpm" path="res://scenes/scene_button.tscn" id="10_os711"]
+[ext_resource type="Texture2D" uid="uid://8ajkhrhx0srr" path="res://assets/sprites/caret-down-solid.svg" id="11_v1lw6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_efupd"]
 content_margin_left = 0.0
@@ -24,8 +27,7 @@ corner_detail = 5
 [sub_resource type="Theme" id="Theme_rtsl7"]
 Panel/styles/panel = SubResource("StyleBoxFlat_efupd")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rum1m"]
-bg_color = Color(0.356863, 0.458824, 0.235294, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6pu4m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lgrha"]
 content_margin_left = 4.0
@@ -93,6 +95,98 @@ unicode = 100
 [sub_resource type="Shortcut" id="Shortcut_dltf0"]
 events = [SubResource("InputEventKey_1k7ie")]
 
+[sub_resource type="Animation" id="Animation_ocrd1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("score:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-55.5, -43)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("score:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ir7pk"]
+resource_name = "correct"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("score:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.5),
+"transitions": PackedFloat32Array(0.5, -2, 1),
+"update": 0,
+"values": [Vector2(-55.5, -43), Vector2(-55.5, -50), Vector2(-55.5, -43)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("score:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Color(0.86, 1, 0.16, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_btcpq"]
+resource_name = "incorrect"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("score:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.5),
+"transitions": PackedFloat32Array(0.5, -2, 1),
+"update": 0,
+"values": [Vector2(-55.5, -43), Vector2(-55.5, -36), Vector2(-55.5, -43)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("score:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Color(1, 0.16, 0.16, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2yrkx"]
+_data = {
+"RESET": SubResource("Animation_ocrd1"),
+"correct": SubResource("Animation_ir7pk"),
+"incorrect": SubResource("Animation_btcpq")
+}
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gt1ap"]
 content_margin_left = 0.0
 content_margin_top = 0.0
@@ -115,6 +209,241 @@ unicode = 83
 [sub_resource type="Shortcut" id="Shortcut_q1g0r"]
 events = [SubResource("InputEventKey_sokl5")]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vo8ec"]
+shader = ExtResource("8_xq6fu")
+shader_parameter/dist = 0.0
+shader_parameter/speed = 0.01
+
+[sub_resource type="Animation" id="Animation_hbekr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("players_container:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(80, 800)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("questionPanel:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(80, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pause:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(18, 12)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Skip:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(18, 77)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Exit:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8, 138)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Answers:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Answers:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("question_num:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(634, 747)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("minileaderboard:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(419, 1193)]
+}
+
+[sub_resource type="Animation" id="Animation_plqgg"]
+resource_name = "intermission"
+length = 0.8
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("players_container:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(80, 800), Vector2(80, 1110)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("questionPanel:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(80, 0), Vector2(80, -250)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pause:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(18, 12), Vector2(-50, 12)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Skip:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(18, 77), Vector2(-50, 77)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Exit:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(8, 138), Vector2(-50, 138)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Answers:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(-2, 0.5),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Answers:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.55),
+"transitions": PackedFloat32Array(-2, 0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("question_num:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(-2, 0.5),
+"update": 0,
+"values": [Vector2(634, 745), Vector2(634, 39)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("minileaderboard:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.65),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(419, 1193), Vector2(419, 875)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_32xtd"]
+_data = {
+"RESET": SubResource("Animation_hbekr"),
+"intermission": SubResource("Animation_plqgg")
+}
+
 [node name="Questions" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -124,20 +453,22 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_jqjqm")
 script = ExtResource("1_pp1ea")
-SecondsToAnswer = 60
 
-[node name="BG" type="ColorRect" parent="."]
+[node name="BG" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -123.0
-offset_top = -69.0
-offset_right = 122.0
-offset_bottom = 69.0
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 107.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.54902, 0.733333, 0.321569, 1)
+rotation = 0.00202999
+scale = Vector2(1.01055, 0.91885)
+texture = ExtResource("3_w0r7e")
+stretch_mode = 6
 
 [node name="questionPanel" type="Panel" parent="."]
 layout_mode = 1
@@ -160,50 +491,41 @@ offset_top = 19.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 48
-text = "What did the ancient Romans use as a mouthwash?"
+text = "decent, What did the ancient Romans use as a mouthwash?"
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="padding" type="Panel" parent="questionPanel"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -880.0
-offset_top = -69.0
-offset_right = 880.0
-offset_bottom = 1.0
-grow_horizontal = 2
-theme = SubResource("Theme_rtsl7")
-theme_override_styles/panel = SubResource("StyleBoxFlat_rum1m")
-
-[node name="Questions" type="GridContainer" parent="."]
+[node name="Answers" type="GridContainer" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -874.0
-offset_top = 277.0
+offset_top = 243.0
 offset_right = 874.0
-offset_bottom = 725.0
+offset_bottom = 691.0
 grow_horizontal = 2
+pivot_offset = Vector2(874, 224)
+theme = ExtResource("2_jqjqm")
 theme_override_constants/h_separation = 48
 theme_override_constants/v_separation = 48
 columns = 2
 
-[node name="ButtonA" type="Button" parent="Questions"]
+[node name="ButtonA" type="Button" parent="Answers"]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_6pu4m")
 custom_minimum_size = Vector2(850, 200)
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme = ExtResource("2_jqjqm")
 theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 32
 theme_override_styles/disabled = SubResource("StyleBoxFlat_lgrha")
 shortcut = SubResource("Shortcut_tai68")
 text = "Saltwater"
 
-[node name="A" type="Label" parent="Questions/ButtonA"]
+[node name="A" type="Label" parent="Answers/ButtonA"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -221,25 +543,35 @@ text = "!answer A"
 horizontal_alignment = 2
 vertical_alignment = 2
 
-[node name="HoverComponent" type="Node" parent="Questions/ButtonA"]
+[node name="HoverComponent" type="Node" parent="Answers/ButtonA"]
 script = ExtResource("3_4ij46")
 Translate = Vector2(0, -5)
+Rotation = 1.0
+RotationRandomness = 0.1
 active_when_disabled = false
 style_easing = 1
-style_transition = 5
+style_transition = 6
 
-[node name="ButtonB" type="Button" parent="Questions"]
+[node name="Line2D" type="Line2D" parent="Answers/ButtonA"]
+position = Vector2(425, 225)
+points = PackedVector2Array(0, 0)
+closed = true
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="ButtonB" type="Button" parent="Answers"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(850, 200)
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 32
 theme_override_styles/disabled = SubResource("StyleBoxFlat_yyqm1")
 shortcut = SubResource("Shortcut_wsr4u")
 text = "Vinegar"
 
-[node name="B" type="Label" parent="Questions/ButtonB"]
+[node name="B" type="Label" parent="Answers/ButtonB"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -257,25 +589,36 @@ text = "!answer B"
 horizontal_alignment = 2
 vertical_alignment = 2
 
-[node name="HoverComponent" type="Node" parent="Questions/ButtonB"]
+[node name="HoverComponent" type="Node" parent="Answers/ButtonB"]
 script = ExtResource("3_4ij46")
 Translate = Vector2(0, -5)
+Rotation = -1.0
+RotationRandomness = 0.1
 active_when_disabled = false
 style_easing = 1
-style_transition = 5
+style_transition = 6
+AnchorPoint = 2
 
-[node name="ButtonC" type="Button" parent="Questions"]
+[node name="Line2D" type="Line2D" parent="Answers/ButtonB"]
+position = Vector2(425, 225)
+points = PackedVector2Array(0, 0)
+closed = true
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="ButtonC" type="Button" parent="Answers"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(850, 200)
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 32
 theme_override_styles/disabled = SubResource("StyleBoxFlat_yyqm1")
 shortcut = SubResource("Shortcut_rsflm")
 text = "Wine"
 
-[node name="C" type="Label" parent="Questions/ButtonC"]
+[node name="C" type="Label" parent="Answers/ButtonC"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -293,25 +636,36 @@ text = "!answer C"
 horizontal_alignment = 2
 vertical_alignment = 2
 
-[node name="HoverComponent" type="Node" parent="Questions/ButtonC"]
+[node name="HoverComponent" type="Node" parent="Answers/ButtonC"]
 script = ExtResource("3_4ij46")
-Translate = Vector2(0, -5)
+Translate = Vector2(0, 5)
+Rotation = -1.0
+RotationRandomness = 0.1
 active_when_disabled = false
 style_easing = 1
-style_transition = 5
+style_transition = 6
+AnchorPoint = 6
 
-[node name="ButtonD" type="Button" parent="Questions"]
+[node name="Line2D" type="Line2D" parent="Answers/ButtonC"]
+position = Vector2(425, 225)
+points = PackedVector2Array(0, 0)
+closed = true
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="ButtonD" type="Button" parent="Answers"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(850, 200)
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 32
 theme_override_styles/disabled = SubResource("StyleBoxFlat_yyqm1")
 shortcut = SubResource("Shortcut_dltf0")
 text = "Urine"
 
-[node name="D" type="Label" parent="Questions/ButtonD"]
+[node name="D" type="Label" parent="Answers/ButtonD"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -329,33 +683,119 @@ text = "!answer D"
 horizontal_alignment = 2
 vertical_alignment = 2
 
-[node name="HoverComponent" type="Node" parent="Questions/ButtonD"]
+[node name="HoverComponent" type="Node" parent="Answers/ButtonD"]
 script = ExtResource("3_4ij46")
-Translate = Vector2(0, -5)
+Translate = Vector2(0, 5)
+Rotation = 1.0
+RotationRandomness = 0.1
 active_when_disabled = false
 style_easing = 1
-style_transition = 5
+style_transition = 6
+AnchorPoint = 8
 
-[node name="Pinpoint" type="LineEdit" parent="."]
+[node name="Line2D" type="Line2D" parent="Answers/ButtonD"]
+position = Vector2(425, 225)
+points = PackedVector2Array(0, 0)
+closed = true
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="question_num" type="Label" parent="."]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -513.0
-offset_top = -78.0
-offset_right = 513.0
-offset_bottom = -3.0
+offset_left = -326.0
+offset_top = 205.0
+offset_right = 326.0
+offset_bottom = 249.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 24
-placeholder_text = "Give your best answer.."
-alignment = 1
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.25098)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 32
+text = "QUESTION #1"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="stats" type="Panel" parent="."]
+[node name="templatePlayer" type="TextureRect" parent="."]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+offset_left = -209.0
+offset_top = 923.0
+offset_right = -109.0
+offset_bottom = 1023.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_557qg")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Username" type="Label" parent="templatePlayer"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -106.0
+offset_top = -191.0
+offset_right = 105.0
+offset_bottom = -154.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 24
+text = "decent"
+horizontal_alignment = 1
+vertical_alignment = 2
+text_overrun_behavior = 3
+
+[node name="score" type="Label" parent="templatePlayer"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -105.5
+offset_top = -43.0
+offset_right = 105.5
+offset_bottom = -6.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "100"
+horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[node name="turn_icon" type="TextureRect" parent="templatePlayer"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -18.0
+offset_right = 20.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("4_v7ey5")
+expand_mode = 1
+
+[node name="Animations" type="AnimationPlayer" parent="templatePlayer"]
+libraries = {
+"": SubResource("AnimationLibrary_2yrkx")
+}
+
+[node name="players_container" type="HBoxContainer" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 7
@@ -364,911 +804,50 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -880.0
-offset_top = -300.0
+offset_top = -280.0
 offset_right = 880.0
-offset_bottom = 69.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_constants/separation = 48
+alignment = 1
+
+[node name="players_panel" type="Panel" parent="players_container"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(816, 300)
+layout_mode = 2
+size_flags_horizontal = 3
 theme = SubResource("Theme_ssk2n")
 
-[node name="Round" type="Label" parent="stats"]
+[node name="players" type="HBoxContainer" parent="players_container/players_panel"]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -326.0
-offset_top = -46.0
-offset_right = 326.0
-offset_bottom = -2.0
-grow_horizontal = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.25098)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 2
-theme_override_constants/shadow_outline_size = 2
-theme_override_font_sizes/font_size = 32
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Players" type="HBoxContainer" parent="stats"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
+anchors_preset = 12
 anchor_top = 1.0
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -863.0
-offset_top = -200.0
-offset_right = 863.0
+offset_top = -139.0
+offset_bottom = -39.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 108
 alignment = 1
 
-[node name="Player1" type="TextureRect" parent="stats/Players"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Username" type="Label" parent="stats/Players/Player1"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -106.0
-offset_top = 11.0
-offset_right = 105.0
-offset_bottom = 48.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 24
-horizontal_alignment = 1
-text_overrun_behavior = 3
-
-[node name="score" type="Label" parent="stats/Players/Player1"]
+[node name="name" type="Label" parent="players_container/players_panel"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -105.5
-offset_top = -43.0
-offset_right = 105.5
-offset_bottom = -6.0
+offset_left = -20.0
+offset_top = 17.0
+offset_right = 20.0
+offset_bottom = 36.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 32
-horizontal_alignment = 1
-text_overrun_behavior = 3
-
-[node name="heart" type="TextureRect" parent="stats/Players/Player1"]
-visible = false
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -29.0
-offset_top = -5.0
-offset_right = 27.0
-offset_bottom = 51.0
-grow_horizontal = 0
-rotation = -0.0370369
-scale = Vector2(0.659608, 0.659608)
-texture = ExtResource("3_hn77l")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="stats/Players/Player1/heart"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -23.0
-offset_top = -20.0
-offset_right = 23.0
-offset_bottom = 21.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 36
+text = "CONTESTANTS"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="status" type="TextureRect" parent="stats/Players/Player1"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -41.0
-offset_top = -133.0
-offset_right = 41.0
-offset_bottom = -51.0
-grow_horizontal = 2
-expand_mode = 1
-stretch_mode = 5
-
-[node name="SineComponent" type="Node" parent="stats/Players/Player1/status"]
-script = ExtResource("5_o85gi")
-YSine = true
-YFrequency = 0.2
-YAmplitude = 0.6
-
-[node name="turn_icon" type="TextureRect" parent="stats/Players/Player1"]
-visible = false
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -18.0
-offset_right = 20.0
-offset_bottom = 22.0
-grow_horizontal = 2
-grow_vertical = 0
-texture = ExtResource("4_v7ey5")
-expand_mode = 1
-
-[node name="Player2" type="TextureRect" parent="stats/Players"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Username" type="Label" parent="stats/Players/Player2"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -106.0
-offset_top = 11.0
-offset_right = 105.0
-offset_bottom = 48.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 24
-horizontal_alignment = 1
-text_overrun_behavior = 3
-
-[node name="score" type="Label" parent="stats/Players/Player2"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -105.5
-offset_top = -43.0
-offset_right = 105.5
-offset_bottom = -6.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 32
-horizontal_alignment = 1
-text_overrun_behavior = 3
-
-[node name="heart" type="TextureRect" parent="stats/Players/Player2"]
-visible = false
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -29.0
-offset_top = -5.0
-offset_right = 27.0
-offset_bottom = 51.0
-grow_horizontal = 0
-rotation = -0.0370369
-scale = Vector2(0.659608, 0.659608)
-texture = ExtResource("3_hn77l")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="stats/Players/Player2/heart"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -23.0
-offset_top = -20.0
-offset_right = 23.0
-offset_bottom = 21.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 24
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="status" type="TextureRect" parent="stats/Players/Player2"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -41.0
-offset_top = -133.0
-offset_right = 41.0
-offset_bottom = -51.0
-grow_horizontal = 2
-expand_mode = 1
-stretch_mode = 5
-
-[node name="SineComponent" type="Node" parent="stats/Players/Player2/status"]
-script = ExtResource("5_o85gi")
-YSine = true
-YFrequency = 0.2
-YAmplitude = 0.6
-
-[node name="turn_icon" type="TextureRect" parent="stats/Players/Player2"]
-visible = false
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -18.0
-offset_right = 20.0
-offset_bottom = 22.0
-grow_horizontal = 2
-grow_vertical = 0
-texture = ExtResource("4_v7ey5")
-expand_mode = 1
-
-[node name="Player3" type="TextureRect" parent="stats/Players"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Username" type="Label" parent="stats/Players/Player3"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -106.0
-offset_top = 11.0
-offset_right = 105.0
-offset_bottom = 48.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 24
-horizontal_alignment = 1
-text_overrun_behavior = 3
-
-[node name="score" type="Label" parent="stats/Players/Player3"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -105.5
-offset_top = -43.0
-offset_right = 105.5
-offset_bottom = -6.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 32
-horizontal_alignment = 1
-text_overrun_behavior = 3
-
-[node name="heart" type="TextureRect" parent="stats/Players/Player3"]
-visible = false
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -29.0
-offset_top = -5.0
-offset_right = 27.0
-offset_bottom = 51.0
-grow_horizontal = 0
-rotation = -0.0370369
-scale = Vector2(0.659608, 0.659608)
-texture = ExtResource("3_hn77l")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="stats/Players/Player3/heart"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -23.0
-offset_top = -20.0
-offset_right = 23.0
-offset_bottom = 21.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 24
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="status" type="TextureRect" parent="stats/Players/Player3"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -41.0
-offset_top = -133.0
-offset_right = 41.0
-offset_bottom = -51.0
-grow_horizontal = 2
-expand_mode = 1
-stretch_mode = 5
-
-[node name="SineComponent" type="Node" parent="stats/Players/Player3/status"]
-script = ExtResource("5_o85gi")
-YSine = true
-YFrequency = 0.2
-YAmplitude = 0.6
-
-[node name="turn_icon" type="TextureRect" parent="stats/Players/Player3"]
-visible = false
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -18.0
-offset_right = 20.0
-offset_bottom = 22.0
-grow_horizontal = 2
-grow_vertical = 0
-texture = ExtResource("4_v7ey5")
-expand_mode = 1
-
-[node name="Player4" type="TextureRect" parent="stats/Players"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Username" type="Label" parent="stats/Players/Player4"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -106.0
-offset_top = 11.0
-offset_right = 105.0
-offset_bottom = 48.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 24
-horizontal_alignment = 1
-text_overrun_behavior = 3
-
-[node name="score" type="Label" parent="stats/Players/Player4"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -105.5
-offset_top = -43.0
-offset_right = 105.5
-offset_bottom = -6.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 32
-horizontal_alignment = 1
-text_overrun_behavior = 3
-
-[node name="heart" type="TextureRect" parent="stats/Players/Player4"]
-visible = false
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -29.0
-offset_top = -5.0
-offset_right = 27.0
-offset_bottom = 51.0
-grow_horizontal = 0
-rotation = -0.0370369
-scale = Vector2(0.659608, 0.659608)
-texture = ExtResource("3_hn77l")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="stats/Players/Player4/heart"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -23.0
-offset_top = -20.0
-offset_right = 23.0
-offset_bottom = 21.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 24
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="status" type="TextureRect" parent="stats/Players/Player4"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -41.0
-offset_top = -133.0
-offset_right = 41.0
-offset_bottom = -51.0
-grow_horizontal = 2
-expand_mode = 1
-stretch_mode = 5
-
-[node name="SineComponent" type="Node" parent="stats/Players/Player4/status"]
-script = ExtResource("5_o85gi")
-YSine = true
-YFrequency = 0.2
-YAmplitude = 0.6
-
-[node name="turn_icon" type="TextureRect" parent="stats/Players/Player4"]
-visible = false
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -18.0
-offset_right = 20.0
-offset_bottom = 22.0
-grow_horizontal = 2
-grow_vertical = 0
-texture = ExtResource("4_v7ey5")
-expand_mode = 1
-
-[node name="Player5" type="TextureRect" parent="stats/Players"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Username" type="Label" parent="stats/Players/Player5"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -106.0
-offset_top = 11.0
-offset_right = 105.0
-offset_bottom = 48.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 24
-horizontal_alignment = 1
-text_overrun_behavior = 3
-
-[node name="score" type="Label" parent="stats/Players/Player5"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -105.5
-offset_top = -43.0
-offset_right = 105.5
-offset_bottom = -6.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 32
-horizontal_alignment = 1
-text_overrun_behavior = 3
-
-[node name="heart" type="TextureRect" parent="stats/Players/Player5"]
-visible = false
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -29.0
-offset_top = -5.0
-offset_right = 27.0
-offset_bottom = 51.0
-grow_horizontal = 0
-rotation = -0.0370369
-scale = Vector2(0.659608, 0.659608)
-texture = ExtResource("3_hn77l")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="stats/Players/Player5/heart"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -23.0
-offset_top = -20.0
-offset_right = 23.0
-offset_bottom = 21.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 24
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="status" type="TextureRect" parent="stats/Players/Player5"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -41.0
-offset_top = -133.0
-offset_right = 41.0
-offset_bottom = -51.0
-grow_horizontal = 2
-expand_mode = 1
-stretch_mode = 5
-
-[node name="SineComponent" type="Node" parent="stats/Players/Player5/status"]
-script = ExtResource("5_o85gi")
-YSine = true
-YFrequency = 0.2
-YAmplitude = 0.6
-
-[node name="turn_icon" type="TextureRect" parent="stats/Players/Player5"]
-visible = false
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -18.0
-offset_right = 20.0
-offset_bottom = 22.0
-grow_horizontal = 2
-grow_vertical = 0
-texture = ExtResource("4_v7ey5")
-expand_mode = 1
-
-[node name="Player6" type="TextureRect" parent="stats/Players"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Username" type="Label" parent="stats/Players/Player6"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -106.0
-offset_top = 11.0
-offset_right = 105.0
-offset_bottom = 48.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 24
-horizontal_alignment = 1
-text_overrun_behavior = 3
-
-[node name="score" type="Label" parent="stats/Players/Player6"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -105.5
-offset_top = -43.0
-offset_right = 105.5
-offset_bottom = -6.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 32
-horizontal_alignment = 1
-text_overrun_behavior = 3
-
-[node name="heart" type="TextureRect" parent="stats/Players/Player6"]
-visible = false
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -29.0
-offset_top = -5.0
-offset_right = 27.0
-offset_bottom = 51.0
-grow_horizontal = 0
-rotation = -0.0370369
-scale = Vector2(0.659608, 0.659608)
-texture = ExtResource("3_hn77l")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="stats/Players/Player6/heart"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -23.0
-offset_top = -20.0
-offset_right = 23.0
-offset_bottom = 21.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 24
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="status" type="TextureRect" parent="stats/Players/Player6"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -41.0
-offset_top = -133.0
-offset_right = 41.0
-offset_bottom = -51.0
-grow_horizontal = 2
-expand_mode = 1
-stretch_mode = 5
-
-[node name="SineComponent" type="Node" parent="stats/Players/Player6/status"]
-script = ExtResource("5_o85gi")
-YSine = true
-YFrequency = 0.2
-YAmplitude = 0.6
-
-[node name="turn_icon" type="TextureRect" parent="stats/Players/Player6"]
-visible = false
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -18.0
-offset_right = 20.0
-offset_bottom = 22.0
-grow_horizontal = 2
-grow_vertical = 0
-texture = ExtResource("4_v7ey5")
-expand_mode = 1
-
-[node name="Player7" type="TextureRect" parent="stats/Players"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Username" type="Label" parent="stats/Players/Player7"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -106.0
-offset_top = 11.0
-offset_right = 105.0
-offset_bottom = 48.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 24
-horizontal_alignment = 1
-text_overrun_behavior = 3
-
-[node name="score" type="Label" parent="stats/Players/Player7"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -105.5
-offset_top = -43.0
-offset_right = 105.5
-offset_bottom = -6.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 32
-horizontal_alignment = 1
-text_overrun_behavior = 3
-
-[node name="heart" type="TextureRect" parent="stats/Players/Player7"]
-visible = false
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -29.0
-offset_top = -5.0
-offset_right = 27.0
-offset_bottom = 51.0
-grow_horizontal = 0
-rotation = -0.0370369
-scale = Vector2(0.659608, 0.659608)
-texture = ExtResource("3_hn77l")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="stats/Players/Player7/heart"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -23.0
-offset_top = -20.0
-offset_right = 23.0
-offset_bottom = 21.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 24
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="status" type="TextureRect" parent="stats/Players/Player7"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -41.0
-offset_top = -133.0
-offset_right = 41.0
-offset_bottom = -51.0
-grow_horizontal = 2
-expand_mode = 1
-stretch_mode = 5
-
-[node name="SineComponent" type="Node" parent="stats/Players/Player7/status"]
-script = ExtResource("5_o85gi")
-YSine = true
-YFrequency = 0.2
-YAmplitude = 0.6
-
-[node name="turn_icon" type="TextureRect" parent="stats/Players/Player7"]
-visible = false
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -18.0
-offset_right = 20.0
-offset_bottom = 22.0
-grow_horizontal = 2
-grow_vertical = 0
-texture = ExtResource("4_v7ey5")
-expand_mode = 1
-
-[node name="Player8" type="TextureRect" parent="stats/Players"]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Username" type="Label" parent="stats/Players/Player8"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -106.0
-offset_top = 11.0
-offset_right = 105.0
-offset_bottom = 48.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 24
-horizontal_alignment = 1
-text_overrun_behavior = 3
-
-[node name="score" type="Label" parent="stats/Players/Player8"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -105.5
-offset_top = -43.0
-offset_right = 105.5
-offset_bottom = -6.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 32
-horizontal_alignment = 1
-text_overrun_behavior = 3
-
-[node name="heart" type="TextureRect" parent="stats/Players/Player8"]
-visible = false
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -29.0
-offset_top = -5.0
-offset_right = 27.0
-offset_bottom = 51.0
-grow_horizontal = 0
-rotation = -0.0370369
-scale = Vector2(0.659608, 0.659608)
-texture = ExtResource("3_hn77l")
-expand_mode = 1
-
-[node name="Label" type="Label" parent="stats/Players/Player8/heart"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -23.0
-offset_top = -20.0
-offset_right = 23.0
-offset_bottom = 21.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 24
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="status" type="TextureRect" parent="stats/Players/Player8"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -41.0
-offset_top = -133.0
-offset_right = 41.0
-offset_bottom = -51.0
-grow_horizontal = 2
-expand_mode = 1
-stretch_mode = 5
-
-[node name="SineComponent" type="Node" parent="stats/Players/Player8/status"]
-script = ExtResource("5_o85gi")
-YSine = true
-YFrequency = 0.2
-YAmplitude = 0.6
-
-[node name="turn_icon" type="TextureRect" parent="stats/Players/Player8"]
-visible = false
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -18.0
-offset_right = 20.0
-offset_bottom = 22.0
-grow_horizontal = 2
-grow_vertical = 0
-texture = ExtResource("4_v7ey5")
-expand_mode = 1
 
 [node name="Pause" type="TextureButton" parent="."]
 unique_name_in_owner = true
@@ -1282,7 +861,15 @@ texture_normal = ExtResource("7_kj1xp")
 ignore_texture_size = true
 stretch_mode = 0
 
+[node name="HoverComponent" type="Node" parent="Pause"]
+script = ExtResource("3_4ij46")
+HoverLength = 0.4
+Scale = 1.15
+style_easing = 1
+style_transition = 6
+
 [node name="Skip" type="TextureButton" parent="."]
+material = SubResource("ShaderMaterial_vo8ec")
 layout_mode = 0
 offset_left = 18.0
 offset_top = 77.0
@@ -1292,6 +879,37 @@ shortcut = SubResource("Shortcut_q1g0r")
 texture_normal = ExtResource("7_puayb")
 ignore_texture_size = true
 stretch_mode = 0
+
+[node name="HoverComponent" type="Node" parent="Skip"]
+script = ExtResource("3_4ij46")
+HoverLength = 0.4
+Scale = 1.15
+style_easing = 1
+style_transition = 6
+
+[node name="Exit" parent="." instance=ExtResource("10_os711")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -952.0
+offset_top = 138.0
+offset_right = -891.0
+offset_bottom = 197.0
+grow_horizontal = 2
+icon = ExtResource("11_v1lw6")
+flat = true
+icon_alignment = 1
+expand_icon = true
+Scene = "res://scenes/trivitime/tt_config.tscn"
+color = Color(0.34902, 0.52549, 0.278431, 1)
+
+[node name="HoverComponent" type="Node" parent="Exit"]
+script = ExtResource("3_4ij46")
+HoverLength = 0.4
+Scale = 1.15
+style_easing = 1
+style_transition = 6
 
 [node name="timer" type="Label" parent="."]
 unique_name_in_owner = true
@@ -1320,13 +938,167 @@ unique_name_in_owner = true
 stream = ExtResource("6_negle")
 bus = &"SFX"
 
-[node name="Cam" type="Camera2D" parent="."]
-position = Vector2(960, 540)
-ignore_rotation = false
+[node name="SceneAnimations" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_32xtd")
+}
 
-[connection signal="pressed" from="Questions/ButtonA" to="." method="local_a"]
-[connection signal="pressed" from="Questions/ButtonB" to="." method="local_b"]
-[connection signal="pressed" from="Questions/ButtonC" to="." method="local_c"]
-[connection signal="pressed" from="Questions/ButtonD" to="." method="local_d"]
-[connection signal="pressed" from="Pause" to="." method="togglePause"]
-[connection signal="pressed" from="Skip" to="." method="skip"]
+[node name="TOPIC" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -319.0
+offset_top = -70.0
+offset_right = 319.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 124
+horizontal_alignment = 1
+
+[node name="minileaderboard" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -541.0
+offset_top = 113.0
+offset_right = 541.0
+offset_bottom = 259.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 160
+alignment = 1
+
+[node name="second" type="TextureRect" parent="minileaderboard"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_557qg")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Username" type="Label" parent="minileaderboard/second"]
+modulate = Color(0.608567, 0.837466, 0.844415, 1)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -106.0
+offset_top = -191.0
+offset_right = 105.0
+offset_bottom = -154.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 2
+text_overrun_behavior = 3
+
+[node name="score" type="Label" parent="minileaderboard/second"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -105.5
+offset_top = -43.0
+offset_right = 105.5
+offset_bottom = -6.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[node name="first" type="TextureRect" parent="minileaderboard"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_557qg")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Username" type="Label" parent="minileaderboard/first"]
+modulate = Color(0.336932, 0.961796, 0.668493, 1)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -105.5
+offset_top = -80.0
+offset_right = 105.5
+offset_bottom = -43.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 2
+text_overrun_behavior = 3
+
+[node name="score" type="Label" parent="minileaderboard/first"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -105.5
+offset_top = -43.0
+offset_right = 105.5
+offset_bottom = -6.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[node name="third" type="TextureRect" parent="minileaderboard"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_557qg")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Username" type="Label" parent="minileaderboard/third"]
+modulate = Color(0.546925, 0.506692, 0.945725, 1)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -106.0
+offset_top = -191.0
+offset_right = 105.0
+offset_bottom = -154.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 2
+text_overrun_behavior = 3
+
+[node name="score" type="Label" parent="minileaderboard/third"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -105.5
+offset_top = -43.0
+offset_right = 105.5
+offset_bottom = -6.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+text_overrun_behavior = 3

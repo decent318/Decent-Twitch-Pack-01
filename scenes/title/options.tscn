@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://g66qsndvtb0e"]
+[gd_scene load_steps=10 format=3 uid="uid://g66qsndvtb0e"]
 
 [ext_resource type="Theme" uid="uid://d23w4u6imctvp" path="res://themes/title.tres" id="1_xylkh"]
 [ext_resource type="Script" path="res://scripts/title/options.gd" id="2_mnm6t"]
@@ -6,14 +6,7 @@
 [ext_resource type="Script" path="res://scripts/SceneButton.gd" id="4_eg0px"]
 [ext_resource type="Texture2D" uid="uid://cq3kwsr5gc2sa" path="res://assets/sprites/minus.svg" id="4_h7rbp"]
 [ext_resource type="PackedScene" uid="uid://dfnydgw3ld4pp" path="res://scenes/volume_slider.tscn" id="5_pqpiu"]
-
-[sub_resource type="Gradient" id="Gradient_nhu45"]
-colors = PackedColorArray(0.581376, 0.502449, 0.735807, 1, 0.799986, 0.292765, 0.850855, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_d5c7y"]
-gradient = SubResource("Gradient_nhu45")
-fill_from = Vector2(0, 1)
-fill_to = Vector2(0.752577, 0.0515464)
+[ext_resource type="Texture2D" uid="uid://f6cvddoqi6hu" path="res://assets/sprites/DTP BG.png" id="7_rmbj7"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_q11oh"]
 device = -1
@@ -31,15 +24,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_xylkh")
 script = ExtResource("2_mnm6t")
-
-[node name="BG" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("GradientTexture2D_d5c7y")
 
 [node name="title" type="Label" parent="."]
 layout_mode = 1
@@ -116,6 +100,7 @@ text = "(you do not need to input a channel if playing locally)"
 
 [node name="blacklist" type="LineEdit" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_left = 237.0
 offset_top = 419.0
@@ -134,6 +119,7 @@ text = "Add to Blacklist:"
 vertical_alignment = 1
 
 [node name="HFlowContainer" type="HFlowContainer" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 31.0
 offset_top = 465.0
@@ -252,5 +238,37 @@ text = "Exit"
 script = ExtResource("4_eg0px")
 Scene = "res://scenes/title/title.tscn"
 
+[node name="BG" type="TextureRect" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -43.0
+offset_top = -24.0
+offset_right = 42.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("7_rmbj7")
+expand_mode = 1
+
+[node name="OptionButton" type="OptionButton" parent="."]
+layout_mode = 0
+offset_left = 724.0
+offset_top = 256.0
+offset_right = 1102.0
+offset_bottom = 361.0
+theme_override_font_sizes/font_size = 48
+selected = 0
+item_count = 2
+popup/item_0/text = "Windowed"
+popup/item_1/text = "Fullscreen"
+popup/item_1/id = 1
+
+[connection signal="mouse_entered" from="title/gear" to="." method="gear_hover"]
+[connection signal="mouse_exited" from="title/gear" to="." method="gear_unhover"]
 [connection signal="text_changed" from="channel" to="." method="expand_channel"]
 [connection signal="text_submitted" from="channel" to="." method="submit_channel"]
+[connection signal="item_selected" from="OptionButton" to="." method="screen_mode_changed"]

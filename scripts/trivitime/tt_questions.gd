@@ -1,13 +1,10 @@
 extends Control
 
-@onready var round = %Round
-@onready var players_container = %Players
+@onready var question_num = %question_num
 
 var answers = []
 var ansLetter
 var letters = ["A", "B", "C", "D"]
-
-var sortedPlayers = GameManager.sortPlayers(4, 2)
 
 var game_active = true
 
@@ -16,331 +13,225 @@ var freshQuestions
 var time_elapsed
 var is_stopped := false
 
-func update():
-	%stats.position.y = 780
-	%stats.size = Vector2(1760, 300)
-	%Players.size.y = 200
-	%Players.position.y = 100
-	if game_active:
-		round.text = "Round " + str(GameManager.CurrentRound) + " of " + str(GameManager.MaxRounds)
-	else:
-		round.text = ""
-	displayPlayers(GameManager.players, true)
-			
-func displayPlayers(from, specifics : bool):
-	var pos = 0
-	var plr
-	for panel in players_container.get_children():
-		panel.visible = false
-		panel.get_child(2).visible = false
-		panel.get_child(4).visible = false
-	for player in from:
-		players_container.get_child(pos).texture = load(GameManager.players[player].icon_data.file)
-		if GameManager.players[player].icon_data.color == "RAINBOW":
-			var shader_material = ShaderMaterial.new()
-			shader_material.shader = load("res://shaders/rainbow.gdshader")
-			players_container.get_child(pos).material = shader_material
-		else:
-			players_container.get_child(pos).self_modulate = Color(GameManager.players[player].icon_data.color)
-		if GameManager.players.keys()[GameManager.turn] == player:
-			players_container.get_child(pos).get_child(4).visible = true
-		plr = GameManager.players[player]
-		if GameManager.players[player].bot != 0:
-			var bot_diff = GameManager.players[player].bot
-			match bot_diff: # BOT COLORS
-				1: # EASY
-					players_container.get_child(pos).get_child(0).modulate = "20f747"
-				2: # MEDIUM
-					players_container.get_child(pos).get_child(0).modulate = "e7f720"
-				3: # HARD
-					players_container.get_child(pos).get_child(0).modulate = "f75720"
-				4: # LORE ACCURATE
-					players_container.get_child(pos).get_child(0).modulate = "b620f7"
-		else:
-			players_container.get_child(pos).get_child(0).modulate = "ffffff"
-		players_container.get_child(pos).get_child(0).text = player
-		if specifics:
-			players_container.get_child(pos).get_child(1).text = str(plr.points)
-			var status = ""
-			# LOWEST PRIORITY
-			if plr.TRIVITIME.streak > 4: 
-				players_container.get_child(pos).get_child(3).texture = load("res://assets/sprites/fire.svg")
-				status = "streak"
-			# HIGHEST PRIORITY
-			if plr.points < 0:
-				players_container.get_child(pos).get_child(3).texture = load("res://assets/sprites/down.svg")
-				status = "neg."
-			if status == "":
-				players_container.get_child(pos).get_child(3).texture = null
-
-			if len(plr.supporters) > 0:
-				players_container.get_child(pos).get_child(2).get_child(0).text = str(len(plr.supporters))
-				players_container.get_child(pos).get_child(2).visible = true
-		players_container.get_child(pos).visible = true
-		pos += 1
-
-func newQuestion():
-		var old_t = GameManager.turn
-		var old_r = GameManager.CurrentRound
-		%TimerClock.start(SecondsToAnswer)
-		%TimerClock.timeout.connect(func ():
-			if old_r == GameManager.CurrentRound and old_t == GameManager.turn:
-				skip()
-		)
-		time_elapsed = 0.0
-		is_stopped = false
-		var questionPlace = randi_range(0, len(freshQuestions.questions.keys()) - 1)
-		var question = freshQuestions.questions.keys()[questionPlace]
-		answers = freshQuestions.questions[question]
-		freshQuestions.erase(question)
-		%question.text = GameManager.players.keys()[GameManager.turn] + ", " +  question
-		create_tween().tween_property($Cam, "zoom", Vector2(1, 1), 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
-		create_tween().tween_property($Cam, "position", Vector2(960, 540), 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
-		match GameManager.GAME_MODE:
-			GameManager.GAME_MODES.SINGULAR:
-				for que : Button in %Questions.get_children():
-					que.disabled = false
-					que.modulate = "ffffff"
-				var used = []
-				for ans in answers:
-					var spot = randi_range(0, len(answers) - 1)
-					while used.find(spot) != -1:
-						spot = randi_range(0, len(answers) - 1)
-					%Questions.get_child(spot).text = ans
-					used.append(spot)
-					if ans == answers[0]:
-						ansLetter = letters[spot]
-				var bot_diff = GameManager.players[GameManager.players.keys()[GameManager.turn]].bot
-				if bot_diff != 0 and game_active:
-					var old_round = GameManager.CurrentRound
-					var old_turn = GameManager.turn
-					await get_tree().create_timer(randf_range(1.00, 3.50)).timeout
-					if old_round == GameManager.CurrentRound and old_turn == GameManager.turn:
-						if bot_diff == 1: # EASY 15%
-							if randi_range(1, 20) <= 3:
-								answer(null, ansLetter)
-							else:
-								answer(null, letters[randi_range(0, 3)])
-						if bot_diff == 2: # NORMAL 35%
-							if randi_range(1, 20) <= 7:
-								answer(null, ansLetter)
-							else:
-								answer(null, letters[randi_range(0, 3)])
-						if bot_diff == 3: # HARD 50%
-							if randi_range(1, 20) <= 10:
-								answer(null, ansLetter)
-							else:
-								answer(null, letters[randi_range(0, 3)])
-						if bot_diff == 4: # LORE ACCURATE 75%
-							if randi_range(1, 20) <= 15:
-								answer(null, ansLetter)
-							else:
-								answer(null, letters[randi_range(0, 3)])
-
-@export var client_id : String = "2u590w96urx0e817va3xmt4sp8vjuz"
-# The name of the channel we want to connect to.
-var channel : String = GameManager.channel
-# The username of the bot account.
-var username : String = "TriviTime"
+var client_id : String = Global.client_id 
+var channel : String = Global.channel
+var bot_username : String = Global.bot_username
 
 var id : TwitchIDConnection
 var api : TwitchAPIConnection
 var irc : TwitchIRCConnection
 var eventsub : TwitchEventSubConnection
-
-var cmd_handler : GIFTCommandHandler = GIFTCommandHandler.new()
-
+var cmd_handler : GIFTCommandHandler
 var iconloader : TwitchIconDownloader
 
-@export var SecondsToAnswer := 30
+var players = Global.players
 
+var question
+
+var total_votes = 0
+var votes = [0, 0, 0, 0]
+var voters = {}
 func _ready() -> void:
-	freshQuestions = GameManager.Questions
+	freshQuestions = TriviTime.Questions
 	game_active = true
 	MusicHandler.start_track("res://assets/music/Guesstimation.wav")
-	newQuestion()
-	update()
 	
-	# DISPLAY SETTINGS
-	match GameManager.GAME_MODE:
-		GameManager.GAME_MODES.SINGULAR:
-			%Questions.visible = true
-			%Pinpoint.visible = false
-		GameManager.GAME_MODES.MULTICHOICE:
-			pass
-		GameManager.GAME_MODES.PINPOINT:
-			%Questions.visible = false
-			%Pinpoint.visible = true
+	id = Global.id
+	api = Global.api
+	irc = Global.irc
+	eventsub = Global.eventsub
+	cmd_handler = Global.cmd_handler
+	iconloader = Global.iconloader
 	
-	
-	# We will login using the Implicit Grant Flow, which only requires a client_id.
-	# Alternatively, you can use the Authorization Code Grant Flow or the Client Credentials Grant Flow.
-	# Note that the Client Credentials Grant Flow will only return an AppAccessToken, which can not be used
-	# for the majority of the Twitch API or to join a chat room.
-	# For the auth to work, we need to poll it regularly.
-	get_tree().process_frame.connect(GameManager.auth.poll) # You can also use a timer if you don't want to poll on every frame.
-
-	# Next, we actually get our token to authenticate. We want to be able to read and write messages,
-	# so we request the required scopes. See https://dev.twitch.tv/docs/authentication/scopes/#twitch-access-token-scopes
-	var token = GameManager.token
-	if (token == null):
-		# Authentication failed. Abort.
-		return
-
-	# Store the token in the ID connection, create all other connections.
-	id = TwitchIDConnection.new(token)
-	irc = TwitchIRCConnection.new(id)
-	api = TwitchAPIConnection.new(id)
-	iconloader = TwitchIconDownloader.new(api)
-	# For everything to work, the id connection has to be polled regularly.
-	get_tree().process_frame.connect(id.poll)
-
-	# Connect to the Twitch chat.
-	if(!await(irc.connect_to_irc(username))):
-		# Authentication failed. Abort.
-		return
-	# Request the capabilities. By default only twitch.tv/commands and twitch.tv/tags are used.
-	# Refer to https://dev.twitch.tv/docs/irc/capabilities/ for all available capapbilities.
-	irc.request_capabilities()
-	# Join the channel specified in the exported 'channel' variable.
-	irc.join_channel(channel)
-
-	cmd_handler.add_command("answer", answer, 12, 1)
+	cmd_handler.add_command("answer", answer_question, 1, 1)
 	cmd_handler.add_alias("answer", "a")
-	# For the chat example to work, we forward the messages received to the put_chat function.
-
-	GameManager.Game_Over.connect(game_over)
-
-	irc.chat_message.connect(tts_turn)
-
-	# We also have to forward the messages to the command handler to handle them.
+	if TriviTime.AUDIENCE_VOTING == true:
+		cmd_handler.add_command("vote", vote, 1, 1)
+	
 	irc.chat_message.connect(cmd_handler.handle_command)
-	# If you also want to accept whispers, connect the signal and bind true as the last arg.
 	irc.whisper_message.connect(cmd_handler.handle_command.bind(true))
-
-	# When we press enter on the chat bar or press the send button, we want to execute the send_message
-	# function.
-
-	# This part of the example only works if GIFT is logged in to your broadcaster account.
-	# If you are, you can uncomment this to also try receiving follow events.
-	# Don't forget to also add the 'moderator:read:followers' scope to your token.
-#	eventsub = TwitchEventSubConnection.new(api)
-#	await(eventsub.connect_to_eventsub())
-#	eventsub.event.connect(on_event)
-#	var user_ids : Dictionary = await(api.get_users_by_name([username]))
-#	if (user_ids.has("data") && user_ids["data"].size() > 0):
-#		var user_id : String = user_ids["data"][0]["id"]
-#		eventsub.subscribe_event("channel.follow", "2", {"broadcaster_user_id": user_id, "moderator_user_id": user_id})
-
-func _process(delta):
-	%timer.text = str(ceil(%TimerClock.time_left))
-	%TimerClock.paused = is_stopped
-	if !is_stopped:
-		time_elapsed += delta
-
-func suspense(ans = "A"):
-	match GameManager.GAME_MODE:
-		GameManager.GAME_MODES.SINGULAR:
-			for que : Button in %Questions.get_children():
-				que.disabled = true
-				if !que.name == "Button" + ans.to_upper():
-						que.modulate = "ffffff41"
-		GameManager.GAME_MODES.MULTICHOICE:
-			pass
-		GameManager.GAME_MODES.PINPOINT:
-			create_tween().tween_property($Cam, "zoom", Vector2(1.6, 1.6), 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
-			create_tween().tween_property($Cam, "position", Vector2(960, 500), 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
-	await MusicHandler.play_sfx("res://assets/sfx/heartbeat_loop.mp3", 2)
-
-func typewrite(text : String, length := 1.00):
-	var time_per_char = float(length) / float(len(text))
-	var cur_string = ""
 	
-	print(Array(text.split()))
-	for char in Array(text.split()):
-		print(char)
-		cur_string += char
-		%Pinpoint.text = cur_string
-		await get_tree().create_timer(time_per_char).timeout
-
-func answer(cmd_infor : CommandInfo, answer) -> void:
-	# LOCAL SETUP
-	var cmd_info = null
-	var ans = answer
-	var sender
-	if answer is PackedStringArray: # answer will only be a PackedStringArray when sent from Twitch
-		if GameManager.GAME_MODE == GameManager.GAME_MODES.SINGULAR:
-			ans = Array(answer)[0] # Set ans to a more readable format that both local and Twitch share
-		if GameManager.GAME_MODE == GameManager.GAME_MODES.PINPOINT:
-			ans = Array(answer)[0] # Set ans to a more readable format that both local and Twitch share
-	if cmd_infor is CommandInfo: # cmd_info will only be CommandInfo when sent from Twitch
-		cmd_info = cmd_infor
-		sender = cmd_info.sender_data.tags["display-name"]
-	print(sender)
+	QUESTIONS_PER_PERSON = floor(float(LENGTH_OF_GAME) / float(len(players))) * floor(60.0 / float(SECONDS_PER_ANSWER))
+	TOTAL_QUESTIONS = QUESTIONS_PER_PERSON * len(players)
 	
-	if game_active and not is_stopped:
-		var from_sender = GameManager.players.keys()[GameManager.turn] == sender 
-		if !from_sender and !cmd_info == null:
-			return
-		var correct = ans.to_upper() == ansLetter
-		if GameManager.GAME_MODE == GameManager.GAME_MODES.MULTICHOICE:
-			pass
-		if GameManager.GAME_MODE == GameManager.GAME_MODES.PINPOINT:
-			var cap_answers : Array[String]
-			for cap_answer in answers:
-				cap_answers.append(cap_answer.to_upper())
-			correct = cap_answers.find(ans.to_upper()) != -1
+	TOTAL_QUESTIONS = get_nearest_multiple(TOTAL_QUESTIONS, len(players))
+	QUESTIONS_PER_PERSON = TOTAL_QUESTIONS / len(players)
+	
+	var INTERMISSION_INTERVAL = ceil(float(TOTAL_QUESTIONS) / float(INTERMISSIONS))
+	INTERMISSION_INTERVAL = get_nearest_multiple(INTERMISSION_INTERVAL, len(players))
+	
+	INTERMISSION_INTERVALS = [0]
+	var pos = 0
+	for intermission in INTERMISSIONS:
+		print(INTERMISSION_INTERVAL)
+		INTERMISSION_INTERVALS.append(INTERMISSION_INTERVAL + INTERMISSION_INTERVALS[pos])
+		pos += 1
+	INTERMISSION_INTERVALS.remove_at(0)
+	print(INTERMISSION_INTERVALS)
+	
+	displayPlayers()
+	newQuestion()
+	
+	for ans : Button in %Answers.get_children():
+		ans.pressed.connect(
+			func():
+				answer_question(null, [ans.name.substr(6,1)])
+		)
+
+
+var QUESTIONS_PER_PERSON : int
+var TOTAL_QUESTIONS : int
+
+var INTERMISSIONS := TriviTime.INTERMISSIONS
+var INTERMISSION_INTERVALS = []
+
+var SECONDS_PER_ANSWER := TriviTime.SECONDS_PER_ANSWER # THE AMOUNT OF SECONDS A PLAYER HAS TO ANSWER A QUESTION
+var LENGTH_OF_GAME := TriviTime.LENGTH_OF_GAME # THE MAX LENGTH OF THE GAME IN MINUTES
+var CURRENT_QUESTION := 0 # THE CURRENT QUESTION
+var TOPIC := "HISTORY" # THE CURRENT TOPIC
+
+var TURN = 0
+
+func get_nearest_multiple(x: int, step: int) -> float:
+	var remainder = x % step
+	if remainder < step / 2:
+		return x - remainder
+	else:
+		return x + (step - remainder)
+
+func displayPlayers():
+	var plrnames = players.keys()
+
+	for player in plrnames:
+		var playerStats = players[player]
+		
+		var tempPlayer = %templatePlayer.duplicate()
+		tempPlayer.name = player
+		tempPlayer.get_child(0).text = player
+		tempPlayer.get_child(1).text = str(playerStats.points)
+		
+		tempPlayer.get_child(2).visible = false
+		if player == players.keys()[TURN]:
+			tempPlayer.get_child(2).visible = true
 			
-		if correct:
-			match(GameManager.GAME_MODE):
-				GameManager.GAME_MODES.SINGULAR:
-					if cmd_info == null or from_sender:
-						is_stopped = true # THIS STOPS THE ANSWER TIME
-						GameManager.players[GameManager.players.keys()[GameManager.turn]].TRIVITIME.ans_times.append(time_elapsed)
-						await suspense(ans[0])
-						GameManager.players[GameManager.players.keys()[GameManager.turn]].points += 100
-						GameManager.players[GameManager.players.keys()[GameManager.turn]].TRIVITIME.streak += 1
-						%Correct.play()
-				
-				GameManager.GAME_MODES.PINPOINT:
-					if cmd_info == null or from_sender:
-						is_stopped = true # THIS STOPS THE ANSWER TIME
-						GameManager.players[GameManager.players.keys()[GameManager.turn]].TRIVITIME.ans_times.append(time_elapsed)
-						typewrite(ans, 0.3)
-						DisplayServer.tts_speak(ans, "", db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Voices"))) * 100)
-						await suspense()
-						GameManager.players[GameManager.players.keys()[GameManager.turn]].points += 100
-						GameManager.players[GameManager.players.keys()[GameManager.turn]].TRIVITIME.streak += 0
-						%Correct.play()
-		else:
-			match(GameManager.GAME_MODE):
-				GameManager.GAME_MODES.SINGULAR:
-					if cmd_info == null or from_sender:
-						is_stopped = true
-						GameManager.players[GameManager.players.keys()[GameManager.turn]].TRIVITIME.ans_times.append(time_elapsed)
-						await suspense(ans[0])
-						GameManager.players[GameManager.players.keys()[GameManager.turn]].TRIVITIME.streak = 0
-						GameManager.players[GameManager.players.keys()[GameManager.turn]].points -= 50
-						%Incorrect.play()
-				GameManager.GAME_MODES.PINPOINT:
-					if cmd_info == null or from_sender:
-						is_stopped = true # THIS STOPS THE ANSWER TIME
-						GameManager.players[GameManager.players.keys()[GameManager.turn]].TRIVITIME.ans_times.append(time_elapsed)
-						typewrite(ans, 0.3)
-						DisplayServer.tts_speak(ans, "", db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Voices"))) * 100)
-						await suspense()
-						GameManager.players[GameManager.players.keys()[GameManager.turn]].points -= 50
-						GameManager.players[GameManager.players.keys()[GameManager.turn]].TRIVITIME.streak = 0
-						%Incorrect.play()
-		GameManager.turn += 1
-		newQuestion()
-		update()
+		%players.add_child(tempPlayer)
+		tempPlayer.visible = true
+	
+func update():
+		for player in %players.get_children():
+			var playerStats = players[player.name]
+			
+			player.get_child(1).text = str(playerStats.points)
+			player.get_child(2).visible = false
+			if player.name == players.keys()[TURN]:
+				player.get_child(2).visible = true
 
-func game_over():
-	game_active = false
-	GameManager.refresh_code()
-	GameManager.CurrentRound = 1
-	SceneTransition.change_scene_close("res://scenes/trivitime/tt_results.tscn", "#598647")
+func setup_minileaderboard(guy : TextureRect, place : int, sortedPlayers):
+	if place > len(sortedPlayers) - 1: 
+		guy.visible = false
+		return
+	else:
+		guy.visible = true
+	var plr_name = sortedPlayers[place]
+	guy.get_child(0).text = plr_name
+	guy.get_child(1).text = str(Global.players[plr_name].points)
+
+func newQuestion():
+	if CURRENT_QUESTION >= TOTAL_QUESTIONS:
+		question_num.text = "GAME OVER"
+		SceneTransition.change_scene_close("res://scripts/trivitime/tt_results.gd", "#598647")
+		return
+		
+	# INTERMISSION
+	if INTERMISSION_INTERVALS[0] == CURRENT_QUESTION: 
+		is_stopped = true
+		INTERMISSION_INTERVALS.pop_front()
+		var tick_sfx = preload("res://assets/sfx/trivitime/wheel tick.mp3")
+		question_num.text = "INTERMISSION"
+		
+		var leaderboard = Leaderboard.new()
+		var sortedPlayers = leaderboard.return_leaderboard(0).keys()
+		
+		setup_minileaderboard(%first, 0, sortedPlayers)
+		setup_minileaderboard(%second, 1, sortedPlayers)
+		setup_minileaderboard(%third, 2, sortedPlayers)
+		
+		%SceneAnimations.play("intermission")
+		
+		freshQuestions.erase(TOPIC.to_lower())
+		var topics : Array = freshQuestions.keys()
+		var new_topic = topics.pick_random()
+		
+		%TOPIC.text = TOPIC.to_upper()
+		
+		for i in range(15):
+			%TOPIC.text = topics[i % len(topics)].to_upper()
+			await wait(0.05 * i)
+			MusicHandler.play_sfx_from_preload(tick_sfx)
+			
+		TOPIC = new_topic
+		%TOPIC.text = TOPIC.to_upper()
+		MusicHandler.play_sfx("res://assets/sfx/trivitime/woohoo.mp3")
+		await wait(1.5)
+		%TOPIC.text = ""
+		%SceneAnimations.play_backwards("intermission")
+		is_stopped = false
+	
+	CURRENT_QUESTION += 1
+	votes = [0, 0, 0, 0]
+	total_votes = 0
+	update_votes()
+	
+	for button : Button in %Answers.get_children():
+		button.modulate = Color("ffffff")
+	
+	question_num.text = "QUESTION #" + str(CURRENT_QUESTION)
+	
+	question = freshQuestions[TOPIC.to_lower()].keys().pick_random()
+	var correct_answer = freshQuestions[TOPIC.to_lower()][question][0]
+	answers = shuffleList(freshQuestions[TOPIC.to_lower()][question])
+	
+	print(question)
+	print(answers)
+	#var string = question
+	for i in len(answers):
+		#string += "  " + letters[i].to_lower() + "). " + answers[i]
+		%Answers.get_child(i).text = answers[i]
+		if answers[i] == correct_answer:
+			ansLetter = letters[i]
+	# irc.chat(string)
+	%question.text = players.keys()[TURN] + ", " + question
+	freshQuestions[TOPIC.to_lower()].erase(question)
+
+func answer_question(cmd_info : CommandInfo, parameters : PackedStringArray):
+	if !is_stopped:
+		var answer = Array(parameters)[0]
+		if cmd_info != null:
+			var command_sender = cmd_info.sender_data.tags["display-name"]
+			if players.keys().find(command_sender) == -1: return
+			if players.keys()[TURN] != command_sender: return
+		var player = players[players.keys()[TURN]]
+		
+		var num_ans = letters.find(answer.to_upper())
+		if num_ans == -1: return
+		
+		is_stopped = true
+		await suspense(answer)
+		if ansLetter == answer.to_upper():
+			print(answer + " is correct!")
+			player.points += 100
+			player.TRIVITIME.answer_history.append(true)
+			# %players.find_child(command_sender).find_child("Animations").play("correct")
+		else:
+			print(answer + " is incorrect!")
+			player.points -= 50
+			player.TRIVITIME.answer_history.append(false)
+			# %players.find_child(command_sender).find_child("Animations").play("incorrect")
+		TURN = (TURN + 1 % len(players))
+		update()
+		is_stopped = false
+		newQuestion()
+	else: print("Game is stopped!")
 
 func on_event(type : String, data : Dictionary) -> void:
 	match(type):
@@ -364,29 +255,63 @@ class EmoteLocation extends RefCounted:
 	static func smaller(a : EmoteLocation, b : EmoteLocation):
 		return a.start < b.start
 
+func shuffleList(list : Array):
+	var shuffledList = []
+	var unused = list
+	for i in range(list.size()):
+		var item = unused.pick_random()
+		shuffledList.append(item)
+		unused.erase(item)
+	return shuffledList
 
-func skip():
-	GameManager.turn += 1
-	newQuestion()
-	update()
+func suspense(ans):
+	var chosen : Button = %Answers.find_child("Button" + ans.to_upper())
+	
+	for button : Button in %Answers.get_children():
+		if button.name != chosen.name:
+			print(button.button_mask)
+			button.modulate = Color("ffffff82")
+	
+	await MusicHandler.play_sfx("res://assets/sfx/heartbeat_loop.mp3", 2)
 
-func local_a():
-	answer(null, "a")
-func local_b():
-	answer(null, "b")
-func local_c():
-	answer(null, "c")
-func local_d():
-	answer(null, "d")
-
-func tts_turn(senderdata : SenderData, msg : String):
-	var sender = senderdata.tags["display-name"]
-	if GameManager.players.keys()[GameManager.turn] == sender and !msg.begins_with("!"):
-		DisplayServer.tts_speak(msg, "", db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Voices"))) * 100)
-
-func togglePause():
-	is_stopped = !is_stopped
-	if is_stopped:
-		%Pause.texture_normal = load("res://assets/sprites/play.svg")
+func vote(cmd_info : CommandInfo, parameters : PackedStringArray):
+	var command_sender = cmd_info.sender_data.tags["display-name"]
+	var answer = Array(parameters)[0]
+	if players.keys()[TURN] == command_sender: return
+	print("Voting..")
+	var num_ans = letters.find(answer.to_upper())
+	
+	if num_ans == - 1: return
+	
+	if voters.keys().find(command_sender) != -1:
+		var old_vote = voters[command_sender]
+		votes[old_vote] -= 1
 	else:
-		%Pause.texture_normal = load("res://assets/sprites/pause.svg")
+		total_votes += 1
+	voters[command_sender] = num_ans
+	votes[num_ans] += 1
+	
+	update_votes()
+
+func update_votes():
+	var pos = 0
+	for button : Button in %Answers.get_children():
+		var line : Line2D = button.get_child(2)
+		
+		var vote_percent : float = 0.00
+		if total_votes != 0: 
+			vote_percent = float(votes[pos]) / total_votes
+		
+		var length = vote_percent * 850
+		
+		if line.get_point_count() < 2:
+			line.add_point(Vector2(250, 0))
+			line.add_point(Vector2(0, 0))
+			
+		line.set_point_position(1, Vector2(length / 2, 0))
+		line.set_point_position(2, Vector2(-length / 2, 0))
+		
+		pos += 1
+
+func wait(sec : float):
+	await get_tree().create_timer(sec).timeout

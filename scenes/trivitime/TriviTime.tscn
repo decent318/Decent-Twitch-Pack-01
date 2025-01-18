@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bv6p36yxow2wy"]
+
+[ext_resource type="Script" path="res://scripts/trivitime/TriviTime.gd" id="1_7u4tk"]
+
+[node name="TriviTime" type="Node"]
+script = ExtResource("1_7u4tk")

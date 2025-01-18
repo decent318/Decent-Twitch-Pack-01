@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bp73jft8nkok3"]
+[gd_scene load_steps=7 format=3 uid="uid://bp73jft8nkok3"]
 
-[ext_resource type="Theme" uid="uid://cif1vlowbaquq" path="res://themes/word chain.tres" id="1_8leqv"]
+[ext_resource type="Theme" uid="uid://cif1vlowbaquq" path="res://themes/word cord.tres" id="1_8leqv"]
 [ext_resource type="Script" path="res://scripts/word cord/wc_players.gd" id="2_8xvcp"]
-[ext_resource type="Texture2D" uid="uid://gqf3xr3ttb4l" path="res://assets/sprites/word_cord_logo.svg" id="3_vjngr"]
+[ext_resource type="Texture2D" uid="uid://c2awmro0f50a3" path="res://assets/sprites/WORD CORD/WORD CORD BG.png" id="3_65vyj"]
 [ext_resource type="PackedScene" uid="uid://d07oe55owlkpm" path="res://scenes/scene_button.tscn" id="4_g37y4"]
+[ext_resource type="Texture2D" uid="uid://b70htdmwir2kk" path="res://assets/sprites/WORD CORD/png word cord logo.png" id="4_yptku"]
+[ext_resource type="Script" path="res://scripts/HoverComponent.gd" id="6_vmsnu"]
 
 [node name="wc_players" type="Control"]
 layout_mode = 3
@@ -16,85 +18,57 @@ theme = ExtResource("1_8leqv")
 script = ExtResource("2_8xvcp")
 username = "TriviTime"
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 0.32549, 0.47451, 1)
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("3_65vyj")
 
 [node name="title" type="TextureRect" parent="."]
 layout_mode = 1
-offset_left = 30.0
-offset_top = 30.0
-offset_right = 432.0
-offset_bottom = 184.0
-texture = ExtResource("3_vjngr")
-
-[node name="players" type="Label" parent="."]
-layout_mode = 0
-offset_left = 35.0
-offset_top = 216.0
-offset_right = 200.0
-offset_bottom = 267.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0.623529, 0.615686, 0.615686, 1)
-theme_override_constants/shadow_offset_x = 4
-theme_override_constants/shadow_offset_y = 4
-theme_override_font_sizes/font_size = 42
-text = "players"
+offset_left = 180.0
+offset_top = 178.0
+offset_right = 891.0
+offset_bottom = 450.0
+texture = ExtResource("4_yptku")
 
 [node name="join" type="Label" parent="."]
 layout_mode = 0
-offset_left = 35.0
-offset_top = 277.0
-offset_right = 190.0
-offset_bottom = 354.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0.623529, 0.615686, 0.615686, 1)
-theme_override_constants/shadow_offset_x = 4
-theme_override_constants/shadow_offset_y = 4
+offset_left = 180.0
+offset_top = 473.0
+offset_right = 335.0
+offset_bottom = 550.0
 theme_override_font_sizes/font_size = 64
 text = "!join"
 
 [node name="code" type="Label" parent="."]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 213.0
-offset_top = 277.0
-offset_right = 378.0
-offset_bottom = 354.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0.623529, 0.615686, 0.615686, 1)
-theme_override_constants/shadow_offset_x = 4
-theme_override_constants/shadow_offset_y = 4
+offset_left = 358.0
+offset_top = 473.0
+offset_right = 523.0
+offset_bottom = 550.0
 theme_override_font_sizes/font_size = 64
 text = "xxxx"
 
 [node name="reveal code" type="Label" parent="."]
 layout_mode = 0
-offset_left = 35.0
-offset_top = 357.0
-offset_right = 200.0
-offset_bottom = 434.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0.623529, 0.615686, 0.615686, 1)
-theme_override_constants/shadow_offset_x = 4
-theme_override_constants/shadow_offset_y = 4
+offset_left = 180.0
+offset_top = 556.0
+offset_right = 506.0
+offset_bottom = 607.0
 theme_override_font_sizes/font_size = 42
 text = "[e] reveal code"
 
 [node name="Players" type="GridContainer" parent="."]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 65.0
-offset_top = 454.0
-offset_right = 852.0
-offset_bottom = 719.0
-theme_override_constants/h_separation = 145
-theme_override_constants/v_separation = 89
+offset_left = 180.0
+offset_top = 644.0
+offset_right = 967.0
+offset_bottom = 909.0
+theme_override_constants/h_separation = 120
+theme_override_constants/v_separation = 80
 columns = 4
 
 [node name="Player1" type="Panel" parent="Players"]
@@ -121,6 +95,31 @@ theme_override_constants/shadow_offset_y = 2
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
+[node name="player_letter" type="Label" parent="Players/Player1"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -84.0
+offset_right = 40.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.290196, 0.290196, 0.290196, 1)
+theme_override_colors/font_shadow_color = Color(0.411765, 0.411765, 0.411765, 1)
+theme_override_colors/font_outline_color = Color(0.431373, 0.431373, 0.431373, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = -2
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 4
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
 [node name="Player2" type="Panel" parent="Players"]
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
@@ -143,6 +142,31 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
 horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[node name="player_letter" type="Label" parent="Players/Player2"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -84.0
+offset_right = 40.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.290196, 0.290196, 0.290196, 1)
+theme_override_colors/font_shadow_color = Color(0.411765, 0.411765, 0.411765, 1)
+theme_override_colors/font_outline_color = Color(0.431373, 0.431373, 0.431373, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = -2
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 4
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+vertical_alignment = 1
 text_overrun_behavior = 3
 
 [node name="Player3" type="Panel" parent="Players"]
@@ -169,6 +193,31 @@ theme_override_constants/shadow_offset_y = 2
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
+[node name="player_letter" type="Label" parent="Players/Player3"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -84.0
+offset_right = 40.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.290196, 0.290196, 0.290196, 1)
+theme_override_colors/font_shadow_color = Color(0.411765, 0.411765, 0.411765, 1)
+theme_override_colors/font_outline_color = Color(0.431373, 0.431373, 0.431373, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = -2
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 4
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
 [node name="Player4" type="Panel" parent="Players"]
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
@@ -191,6 +240,31 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
 horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[node name="player_letter" type="Label" parent="Players/Player4"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -84.0
+offset_right = 40.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.290196, 0.290196, 0.290196, 1)
+theme_override_colors/font_shadow_color = Color(0.411765, 0.411765, 0.411765, 1)
+theme_override_colors/font_outline_color = Color(0.431373, 0.431373, 0.431373, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = -2
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 4
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+vertical_alignment = 1
 text_overrun_behavior = 3
 
 [node name="Player5" type="Panel" parent="Players"]
@@ -217,6 +291,31 @@ theme_override_constants/shadow_offset_y = 2
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
+[node name="player_letter" type="Label" parent="Players/Player5"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -84.0
+offset_right = 40.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.290196, 0.290196, 0.290196, 1)
+theme_override_colors/font_shadow_color = Color(0.411765, 0.411765, 0.411765, 1)
+theme_override_colors/font_outline_color = Color(0.431373, 0.431373, 0.431373, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = -2
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 4
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
 [node name="Player6" type="Panel" parent="Players"]
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
@@ -239,6 +338,31 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
 horizontal_alignment = 1
+text_overrun_behavior = 3
+
+[node name="player_letter" type="Label" parent="Players/Player6"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -84.0
+offset_right = 40.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.290196, 0.290196, 0.290196, 1)
+theme_override_colors/font_shadow_color = Color(0.411765, 0.411765, 0.411765, 1)
+theme_override_colors/font_outline_color = Color(0.431373, 0.431373, 0.431373, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = -2
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 4
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+vertical_alignment = 1
 text_overrun_behavior = 3
 
 [node name="Player7" type="Panel" parent="Players"]
@@ -265,6 +389,31 @@ theme_override_constants/shadow_offset_y = 2
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
+[node name="player_letter" type="Label" parent="Players/Player7"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -84.0
+offset_right = 40.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.290196, 0.290196, 0.290196, 1)
+theme_override_colors/font_shadow_color = Color(0.411765, 0.411765, 0.411765, 1)
+theme_override_colors/font_outline_color = Color(0.431373, 0.431373, 0.431373, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = -2
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 4
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+vertical_alignment = 1
+text_overrun_behavior = 3
+
 [node name="Player8" type="Panel" parent="Players"]
 custom_minimum_size = Vector2(88, 88)
 layout_mode = 2
@@ -289,228 +438,61 @@ theme_override_constants/shadow_offset_y = 2
 horizontal_alignment = 1
 text_overrun_behavior = 3
 
-[node name="play" type="Button" parent="."]
+[node name="player_letter" type="Label" parent="Players/Player8"]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -462.0
-offset_top = 50.0
-offset_right = -50.0
-offset_bottom = 150.0
-grow_horizontal = 0
-flat = true
-
-[node name="HBoxContainer" type="HBoxContainer" parent="play"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -84.0
+offset_right = 40.0
+offset_bottom = -9.0
 grow_horizontal = 2
-grow_vertical = 2
-alignment = 2
-
-[node name="Panel" type="Panel" parent="play/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="Label" type="Label" parent="play/HBoxContainer/Panel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -35.0
-offset_top = -34.0
-offset_right = 35.0
-offset_bottom = 34.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 65
-text = "P"
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.290196, 0.290196, 0.290196, 1)
+theme_override_colors/font_shadow_color = Color(0.411765, 0.411765, 0.411765, 1)
+theme_override_colors/font_outline_color = Color(0.431373, 0.431373, 0.431373, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = -2
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 4
+theme_override_font_sizes/font_size = 64
 horizontal_alignment = 1
 vertical_alignment = 1
+text_overrun_behavior = 3
 
-[node name="Panel2" type="Panel" parent="play/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="Label" type="Label" parent="play/HBoxContainer/Panel2"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -35.0
-offset_top = -34.0
-offset_right = 35.0
-offset_bottom = 34.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 65
-text = "L"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Panel3" type="Panel" parent="play/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="Label" type="Label" parent="play/HBoxContainer/Panel3"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -35.0
-offset_top = -34.0
-offset_right = 35.0
-offset_bottom = 34.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 65
-text = "A"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Panel4" type="Panel" parent="play/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="Label" type="Label" parent="play/HBoxContainer/Panel4"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -35.0
-offset_top = -34.0
-offset_right = 35.0
-offset_bottom = 34.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 65
-text = "Y"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="exit" parent="." instance=ExtResource("4_g37y4")]
+[node name="START" parent="." instance=ExtResource("4_g37y4")]
 layout_mode = 0
-offset_left = 1458.0
-offset_top = 173.0
-offset_right = 1870.0
-offset_bottom = 273.0
-flat = true
+offset_left = 1444.0
+offset_top = 179.0
+offset_right = 1964.0
+offset_bottom = 299.0
+theme_override_font_sizes/font_size = 64
+text = "START               "
+Scene = "res://scenes/word cord/wc_game.tscn"
+color = Color(0.772549, 0.239216, 0.309804, 1)
+
+[node name="HoverComponent" type="Node" parent="START"]
+script = ExtResource("6_vmsnu")
+Translate = Vector2(-5, 0)
+style_easing = 1
+style_transition = 5
+
+[node name="SceneButton2" parent="." instance=ExtResource("4_g37y4")]
+layout_mode = 0
+offset_left = 1507.0
+offset_top = 313.0
+offset_right = 1964.0
+offset_bottom = 433.0
+theme_override_font_sizes/font_size = 64
+text = "EXIT              "
 Scene = "res://scenes/word cord/wc_title.tscn"
+color = Color(0.772549, 0.239216, 0.309804, 1)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="exit"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-alignment = 2
-
-[node name="Panel" type="Panel" parent="exit/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="Label" type="Label" parent="exit/HBoxContainer/Panel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -35.0
-offset_top = -34.0
-offset_right = 35.0
-offset_bottom = 34.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 65
-text = "E"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Panel2" type="Panel" parent="exit/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="Label" type="Label" parent="exit/HBoxContainer/Panel2"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -35.0
-offset_top = -34.0
-offset_right = 35.0
-offset_bottom = 34.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 65
-text = "X"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Panel3" type="Panel" parent="exit/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="Label" type="Label" parent="exit/HBoxContainer/Panel3"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -35.0
-offset_top = -34.0
-offset_right = 35.0
-offset_bottom = 34.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 65
-text = "I"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Panel4" type="Panel" parent="exit/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="Label" type="Label" parent="exit/HBoxContainer/Panel4"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -35.0
-offset_top = -34.0
-offset_right = 35.0
-offset_bottom = 34.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 65
-text = "T"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[connection signal="pressed" from="play" to="." method="play"]
+[node name="HoverComponent" type="Node" parent="SceneButton2"]
+script = ExtResource("6_vmsnu")
+Translate = Vector2(-5, 0)
+style_easing = 1
+style_transition = 5

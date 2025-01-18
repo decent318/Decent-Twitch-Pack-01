@@ -1,8 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://bydnbbr7ms6vk"]
+[gd_scene load_steps=8 format=3 uid="uid://bydnbbr7ms6vk"]
 
-[ext_resource type="Theme" uid="uid://cif1vlowbaquq" path="res://themes/word chain.tres" id="1_oyplh"]
+[ext_resource type="Theme" uid="uid://cif1vlowbaquq" path="res://themes/word cord.tres" id="1_oyplh"]
 [ext_resource type="Texture2D" uid="uid://gqf3xr3ttb4l" path="res://assets/sprites/word_cord_logo.svg" id="2_65j6i"]
+[ext_resource type="Texture2D" uid="uid://c2awmro0f50a3" path="res://assets/sprites/WORD CORD/WORD CORD BG.png" id="2_xrbe1"]
 [ext_resource type="PackedScene" uid="uid://d07oe55owlkpm" path="res://scenes/scene_button.tscn" id="3_7faxq"]
+[ext_resource type="Shader" path="res://shaders/dropshadow.gdshader" id="3_nnf3m"]
+[ext_resource type="Script" path="res://scripts/HoverComponent.gd" id="6_c3vj0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_52f4c"]
+shader = ExtResource("3_nnf3m")
+shader_parameter/offset = Vector2(1, 1)
+shader_parameter/modulate = null
 
 [node name="wc_title" type="Control"]
 layout_mode = 3
@@ -13,26 +21,25 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_oyplh")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 0.32549, 0.47451, 1)
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_xrbe1")
 
 [node name="title" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_52f4c")
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -315.5
-offset_top = 30.0
-offset_right = 315.5
-offset_bottom = 272.0
+offset_left = -352.0
+offset_top = 190.0
+offset_right = 352.0
+offset_bottom = 460.0
 grow_horizontal = 2
 texture = ExtResource("2_65j6i")
+expand_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -51,15 +58,31 @@ theme_override_constants/separation = 24
 alignment = 1
 
 [node name="play" parent="VBoxContainer" instance=ExtResource("3_7faxq")]
-custom_minimum_size = Vector2(0, 120)
+custom_minimum_size = Vector2(410, 120)
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 82
 text = "PLAY"
 Scene = "res://scenes/word cord/wc_players.tscn"
-color = Color(0.83, 0.2407, 0.368382, 1)
+color = Color(0.773424, 0.23937, 0.30848, 1)
+
+[node name="HoverComponent" type="Node" parent="VBoxContainer/play"]
+script = ExtResource("6_c3vj0")
+Translate = Vector2(0, -3)
+style_easing = 1
+style_transition = 5
+AnchorPoint = 4
 
 [node name="exit" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 120)
+custom_minimum_size = Vector2(370, 110)
 layout_mode = 2
-theme_override_font_sizes/font_size = 84
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 64
 text = "EXIT"
+
+[node name="HoverComponent" type="Node" parent="VBoxContainer/exit"]
+script = ExtResource("6_c3vj0")
+Translate = Vector2(0, -3)
+style_easing = 1
+style_transition = 5
+AnchorPoint = 4

@@ -1,7 +1,7 @@
 extends Control
 
 func _ready():
-	if GameManager.channel == "":
+	if Global.channel == "":
 		%Options.get_child(2).modulate = "ffffff"
 	else:
 		%Options.get_child(2).modulate = "ffffff00"

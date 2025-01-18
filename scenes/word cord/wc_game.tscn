@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ppb7pj5xahhx"]
+[gd_scene load_steps=4 format=3 uid="uid://ppb7pj5xahhx"]
 
-[ext_resource type="Theme" uid="uid://cif1vlowbaquq" path="res://themes/word chain.tres" id="1_xw55r"]
+[ext_resource type="Theme" uid="uid://cif1vlowbaquq" path="res://themes/word cord.tres" id="1_xw55r"]
 [ext_resource type="Script" path="res://scripts/word cord/wc_game.gd" id="2_0pqu4"]
+[ext_resource type="Texture2D" uid="uid://c2awmro0f50a3" path="res://assets/sprites/WORD CORD/WORD CORD BG.png" id="3_334iw"]
 
 [node name="wc_game" type="Control"]
 layout_mode = 3
@@ -13,14 +14,11 @@ grow_vertical = 2
 theme = ExtResource("1_xw55r")
 script = ExtResource("2_0pqu4")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 0.32549, 0.47451, 1)
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("3_334iw")
 
 [node name="letter" type="Panel" parent="."]
 unique_name_in_owner = true
@@ -46,7 +44,6 @@ offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 64
-text = "D"
 
 [node name="word" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -72,11 +69,12 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -210.0
-offset_top = -279.0
+offset_top = -435.0
 offset_right = 210.0
-offset_bottom = -218.0
+offset_bottom = -374.0
 grow_horizontal = 2
 grow_vertical = 0
+alignment = 1
 
 [node name="Players" type="HBoxContainer" parent="."]
 unique_name_in_owner = true
@@ -85,194 +83,27 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -913.0
-offset_top = 35.0
+offset_top = 174.0
 offset_right = 913.0
-offset_bottom = 135.0
+offset_bottom = 274.0
 grow_horizontal = 2
 theme_override_constants/separation = 115
 alignment = 1
 
-[node name="Player" type="Panel" parent="Players"]
-modulate = Color(1, 1, 1, 0.45098)
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Players/Player"]
+[node name="Label" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -10.0
-offset_right = 20.0
-offset_bottom = 10.0
+anchor_bottom = 1.0
+offset_left = -222.0
+offset_top = -356.0
+offset_right = 222.0
+offset_bottom = -117.0
 grow_horizontal = 2
-grow_vertical = 2
-rotation = -0.00972521
-theme_override_font_sizes/font_size = 64
+grow_vertical = 0
+theme_override_font_sizes/font_size = 200
+text = "30"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Player2" type="Panel" parent="Players"]
-modulate = Color(1, 1, 1, 0.529412)
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Players/Player2"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -10.0
-offset_right = 20.0
-offset_bottom = 10.0
-grow_horizontal = 2
-grow_vertical = 2
-rotation = -0.00972521
-theme_override_font_sizes/font_size = 64
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Player3" type="Panel" parent="Players"]
-modulate = Color(1, 1, 1, 0.607843)
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Players/Player3"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -10.0
-offset_right = 20.0
-offset_bottom = 10.0
-grow_horizontal = 2
-grow_vertical = 2
-rotation = -0.00972521
-theme_override_font_sizes/font_size = 64
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Player4" type="Panel" parent="Players"]
-modulate = Color(1, 1, 1, 0.686275)
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Players/Player4"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -10.0
-offset_right = 20.0
-offset_bottom = 10.0
-grow_horizontal = 2
-grow_vertical = 2
-rotation = -0.00972521
-theme_override_font_sizes/font_size = 64
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Player5" type="Panel" parent="Players"]
-modulate = Color(1, 1, 1, 0.764706)
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Players/Player5"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -10.0
-offset_right = 20.0
-offset_bottom = 10.0
-grow_horizontal = 2
-grow_vertical = 2
-rotation = -0.00972521
-theme_override_font_sizes/font_size = 64
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Player6" type="Panel" parent="Players"]
-modulate = Color(1, 1, 1, 0.843137)
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Players/Player6"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -10.0
-offset_right = 20.0
-offset_bottom = 10.0
-grow_horizontal = 2
-grow_vertical = 2
-rotation = -0.00972521
-theme_override_font_sizes/font_size = 64
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Player7" type="Panel" parent="Players"]
-modulate = Color(1, 1, 1, 0.921569)
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Players/Player7"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -10.0
-offset_right = 20.0
-offset_bottom = 10.0
-grow_horizontal = 2
-grow_vertical = 2
-rotation = -0.00972521
-theme_override_font_sizes/font_size = 64
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Player8" type="Panel" parent="Players"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Players/Player8"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -10.0
-offset_right = 20.0
-offset_bottom = 10.0
-grow_horizontal = 2
-grow_vertical = 2
-rotation = -0.00972521
-theme_override_font_sizes/font_size = 64
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[connection signal="text_submitted" from="word_input" to="." method="_on_line_edit_text_submitted"]
