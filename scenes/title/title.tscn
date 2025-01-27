@@ -1,62 +1,47 @@
-[gd_scene load_steps=24 format=3 uid="uid://g8vwqia1pcwp"]
+[gd_scene load_steps=28 format=3 uid="uid://g8vwqia1pcwp"]
 
 [ext_resource type="Texture2D" uid="uid://cehqaxlbljd0i" path="res://assets/sprites/title.png" id="1_30s3l"]
 [ext_resource type="Script" path="res://scripts/title/title.gd" id="2_ovs4d"]
 [ext_resource type="Theme" uid="uid://d23w4u6imctvp" path="res://themes/title.tres" id="2_r0pdg"]
-[ext_resource type="Texture2D" uid="uid://b7ot082q27nuv" path="res://assets/sprites/play.svg" id="2_s6d86"]
-[ext_resource type="Texture2D" uid="uid://f6cvddoqi6hu" path="res://assets/sprites/DTP BG.png" id="3_0ln61"]
-[ext_resource type="Texture2D" uid="uid://deppn4ndurh5k" path="res://assets/sprites/gear.svg" id="3_vgndh"]
-[ext_resource type="Texture2D" uid="uid://c0vooqxxiwagq" path="res://assets/sprites/credits.svg" id="4_icv6d"]
+[ext_resource type="Texture2D" uid="uid://cgjh4bdybhdo8" path="res://assets/sprites/bg.png" id="3_lai3m"]
+[ext_resource type="Shader" path="res://shaders/scroll.gdshader" id="3_tc1g5"]
 [ext_resource type="Shader" path="res://shaders/dropshadow.gdshader" id="4_rwnm5"]
-[ext_resource type="Texture2D" uid="uid://diq2c3y0rdhwf" path="res://assets/sprites/exit.svg" id="5_5lue6"]
-[ext_resource type="Texture2D" uid="uid://bdrh34gl1j6r0" path="res://assets/sprites/notifaction.svg" id="6_hs2jo"]
-[ext_resource type="Texture2D" uid="uid://cv27w3221i78h" path="res://assets/sprites/scroll.svg" id="6_rujar"]
-[ext_resource type="Script" path="res://scripts/SineComponent.gd" id="12_dcu6b"]
+[ext_resource type="Script" path="res://scripts/title/options.gd" id="10_a4r71"]
+[ext_resource type="FontFile" uid="uid://bb4kiw4dafxd1" path="res://assets/fonts/Sora/static/Sora-Bold.ttf" id="10_xrdea"]
+[ext_resource type="FontFile" uid="uid://daoje57hoslwn" path="res://assets/fonts/Sora/static/Sora-SemiBold.ttf" id="11_g04la"]
+[ext_resource type="PackedScene" uid="uid://dfnydgw3ld4pp" path="res://scenes/volume_slider.tscn" id="12_frc28"]
+[ext_resource type="ButtonGroup" uid="uid://doi334cplp435" path="res://button_groups/resolution.tres" id="13_7h2nr"]
+[ext_resource type="Theme" uid="uid://bwtmrapa7xqsy" path="res://themes/list.tres" id="13_fix48"]
+[ext_resource type="Script" path="res://scripts/HoverComponent.gd" id="13_yp4sj"]
+[ext_resource type="PackedScene" uid="uid://d07oe55owlkpm" path="res://scenes/scene_button.tscn" id="14_liwrj"]
+[ext_resource type="Texture2D" uid="uid://c68pavq0kjy0e" path="res://assets/sprites/credits/decent.png" id="14_oeadf"]
+[ext_resource type="Texture2D" uid="uid://cpr77ba1kiadk" path="res://assets/sprites/credits/flormatt.png" id="15_j0wo0"]
+[ext_resource type="Texture2D" uid="uid://cd3oati5yixr1" path="res://assets/sprites/credits/KINGBOO.png" id="15_wy2c3"]
+[ext_resource type="Texture2D" uid="uid://8kmydej5cq68" path="res://assets/sprites/credits/stari.png" id="16_d2a85"]
+[ext_resource type="Texture2D" uid="uid://o5h5ajhv5dm6" path="res://assets/sprites/credits/rainysebby.png" id="17_nky3a"]
+[ext_resource type="Texture2D" uid="uid://d38x7hf06prnj" path="res://assets/sprites/credits/qwerty.png" id="18_qveyd"]
+[ext_resource type="ButtonGroup" uid="uid://w8h1xp0jlmsf" path="res://button_groups/games.tres" id="20_c5ugh"]
+[ext_resource type="Script" path="res://scripts/title/top_leaderboard.gd" id="21_g8q2o"]
+[ext_resource type="FontFile" uid="uid://dk1vby5bmyso8" path="res://assets/fonts/Sora/static/Sora-Regular.ttf" id="23_x4xdp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bom4m"]
+shader = ExtResource("3_tc1g5")
+shader_parameter/x_speed = 0.0
+shader_parameter/y_speed = 0.2
+
+[sub_resource type="Gradient" id="Gradient_w3jx0"]
+offsets = PackedFloat32Array(0, 0.957576, 1)
+colors = PackedColorArray(0, 0, 0, 0.423529, 0, 0, 0, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8nx1y"]
+gradient = SubResource("Gradient_w3jx0")
+width = 1
+fill_from = Vector2(1, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wlvhd"]
 shader = ExtResource("4_rwnm5")
 shader_parameter/offset = Vector2(4, 4)
 shader_parameter/modulate = Color(0, 0, 0, 0.576471)
-
-[sub_resource type="InputEventKey" id="InputEventKey_5oadj"]
-device = -1
-keycode = 81
-unicode = 113
-
-[sub_resource type="Shortcut" id="Shortcut_tlw8b"]
-events = [SubResource("InputEventKey_5oadj")]
-
-[sub_resource type="InputEventKey" id="InputEventKey_36khe"]
-device = -1
-keycode = 87
-unicode = 119
-
-[sub_resource type="Shortcut" id="Shortcut_r6ap0"]
-events = [SubResource("InputEventKey_36khe")]
-
-[sub_resource type="InputEventKey" id="InputEventKey_c4pgn"]
-device = -1
-keycode = 69
-unicode = 101
-
-[sub_resource type="Shortcut" id="Shortcut_7kywd"]
-events = [SubResource("InputEventKey_c4pgn")]
-
-[sub_resource type="InputEventKey" id="InputEventKey_2i87e"]
-device = -1
-keycode = 82
-unicode = 114
-
-[sub_resource type="Shortcut" id="Shortcut_4ixvl"]
-events = [SubResource("InputEventKey_2i87e")]
-
-[sub_resource type="InputEventKey" id="InputEventKey_30oee"]
-device = -1
-keycode = 84
-unicode = 116
-
-[sub_resource type="Shortcut" id="Shortcut_jhjvh"]
-events = [SubResource("InputEventKey_30oee")]
 
 [node name="title" type="Control"]
 layout_mode = 3
@@ -70,6 +55,7 @@ script = ExtResource("2_ovs4d")
 
 [node name="BG" type="TextureRect" parent="."]
 z_index = -1
+material = SubResource("ShaderMaterial_bom4m")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -77,9 +63,57 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("3_0ln61")
+texture = ExtResource("3_lai3m")
 expand_mode = 1
-stretch_mode = 6
+stretch_mode = 1
+
+[node name="gradient2" type="TextureRect" parent="."]
+z_index = 1
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.99939
+offset_top = 832.0
+offset_right = -2.99939
+grow_horizontal = 2
+grow_vertical = 2
+mouse_force_pass_scroll_events = false
+texture = SubResource("GradientTexture2D_8nx1y")
+
+[node name="gradient3" type="TextureRect" parent="."]
+z_index = 1
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 1917.0
+offset_top = 248.0
+offset_right = 1917.0
+offset_bottom = 496.0
+grow_horizontal = 2
+rotation = 3.14159
+mouse_force_pass_scroll_events = false
+texture = SubResource("GradientTexture2D_8nx1y")
+
+[node name="Label" type="Label" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1870.0
+offset_top = -63.0
+offset_right = -1737.0
+offset_bottom = -21.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "v1.01.00"
+vertical_alignment = 2
 
 [node name="title" type="TextureRect" parent="."]
 material = SubResource("ShaderMaterial_wlvhd")
@@ -93,297 +127,655 @@ texture = ExtResource("1_30s3l")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
+[node name="Buttons" type="VBoxContainer" parent="."]
+layout_mode = 0
 offset_left = 50.0
-offset_top = -252.0
-offset_right = 1848.0
-offset_bottom = -125.0
-grow_vertical = 0
-theme_override_constants/separation = 43
+offset_top = 350.0
+offset_right = 386.0
+offset_bottom = 750.0
+theme = ExtResource("13_fix48")
 
-[node name="Play" type="TextureButton" parent="HBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(127, 127)
+[node name="TRIVITIME" parent="Buttons" instance=ExtResource("14_liwrj")]
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
-shortcut = SubResource("Shortcut_tlw8b")
-texture_normal = ExtResource("2_s6d86")
-ignore_texture_size = true
-stretch_mode = 5
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 36
+text = "TRIVITIME"
+flat = true
+alignment = 0
+Scene = "res://scenes/trivitime/tt_config.tscn"
 
-[node name="Label" type="Label" parent="HBoxContainer/Play"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -39.5
-offset_top = 13.0
-offset_right = 39.5
-offset_bottom = 46.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 28
-text = "Play"
-horizontal_alignment = 1
+[node name="HoverComponent" type="Node" parent="Buttons/TRIVITIME"]
+script = ExtResource("13_yp4sj")
+Translate = Vector2(5, 0)
+style_easing = 1
+style_transition = 5
 
-[node name="keybind" type="Label" parent="HBoxContainer/Play"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -39.5
-offset_top = 46.0
-offset_right = 39.5
-offset_bottom = 80.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 28
-text = "Q"
-horizontal_alignment = 1
-
-[node name="SineComponent" type="Node" parent="HBoxContainer/Play"]
-script = ExtResource("12_dcu6b")
-YSine = true
-YFrequency = 3.0
-YAmplitude = 0.05
-
-[node name="Options" type="TextureButton" parent="HBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(127, 127)
-layout_mode = 2
-shortcut = SubResource("Shortcut_r6ap0")
-texture_normal = ExtResource("3_vgndh")
-ignore_texture_size = true
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="HBoxContainer/Options"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -39.5
-offset_top = 13.0
-offset_right = 39.5
-offset_bottom = 46.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 28
-text = "Options"
-horizontal_alignment = 1
-
-[node name="keybind" type="Label" parent="HBoxContainer/Options"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -39.5
-offset_top = 46.0
-offset_right = 39.5
-offset_bottom = 80.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 28
-text = "W"
-horizontal_alignment = 1
-
-[node name="notifaction" type="TextureRect" parent="HBoxContainer/Options"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -22.0
-offset_top = -6.0
-offset_right = 18.0
-offset_bottom = 34.0
-grow_horizontal = 0
-rotation = -0.179874
-pivot_offset = Vector2(20, 20)
-texture = ExtResource("6_hs2jo")
-expand_mode = 1
-
-[node name="SineComponent" type="Node" parent="HBoxContainer/Options"]
-script = ExtResource("12_dcu6b")
-YSine = true
-YFrequency = 3.0
-YAmplitude = 0.05
-
-[node name="Credits" type="TextureButton" parent="HBoxContainer"]
-custom_minimum_size = Vector2(127, 127)
-layout_mode = 2
-shortcut = SubResource("Shortcut_7kywd")
-texture_normal = ExtResource("4_icv6d")
-ignore_texture_size = true
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="HBoxContainer/Credits"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -39.5
-offset_top = 13.0
-offset_right = 39.5
-offset_bottom = 46.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 28
-text = "Credits"
-horizontal_alignment = 1
-
-[node name="keybind" type="Label" parent="HBoxContainer/Credits"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -39.5
-offset_top = 46.0
-offset_right = 39.5
-offset_bottom = 80.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 28
-text = "E"
-horizontal_alignment = 1
-
-[node name="SineComponent" type="Node" parent="HBoxContainer/Credits"]
-script = ExtResource("12_dcu6b")
-YSine = true
-YFrequency = 3.0
-YAmplitude = 0.05
-
-[node name="Updatelog" type="TextureButton" parent="HBoxContainer"]
-modulate = Color(1, 1, 1, 0.498039)
-custom_minimum_size = Vector2(127, 127)
-layout_mode = 2
-shortcut = SubResource("Shortcut_4ixvl")
-texture_normal = ExtResource("6_rujar")
-ignore_texture_size = true
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="HBoxContainer/Updatelog"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -39.5
-offset_top = 13.0
-offset_right = 39.5
-offset_bottom = 46.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 28
-text = "Updatelog"
-horizontal_alignment = 1
-
-[node name="keybind" type="Label" parent="HBoxContainer/Updatelog"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -39.5
-offset_top = 46.0
-offset_right = 39.5
-offset_bottom = 80.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 28
-text = "R"
-horizontal_alignment = 1
-
-[node name="SineComponent" type="Node" parent="HBoxContainer/Updatelog"]
-script = ExtResource("12_dcu6b")
-YSine = true
-YFrequency = 3.0
-YAmplitude = 0.05
-
-[node name="Exit" type="TextureButton" parent="HBoxContainer"]
-custom_minimum_size = Vector2(127, 127)
-layout_mode = 2
-shortcut = SubResource("Shortcut_jhjvh")
-texture_normal = ExtResource("5_5lue6")
-ignore_texture_size = true
-stretch_mode = 5
-
-[node name="Label" type="Label" parent="HBoxContainer/Exit"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -39.5
-offset_top = 13.0
-offset_right = 39.5
-offset_bottom = 46.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 28
-text = "Exit"
-horizontal_alignment = 1
-
-[node name="keybind" type="Label" parent="HBoxContainer/Exit"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -39.5
-offset_top = 46.0
-offset_right = 39.5
-offset_bottom = 80.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 28
-text = "T"
-horizontal_alignment = 1
-
-[node name="SineComponent" type="Node" parent="HBoxContainer/Exit"]
-script = ExtResource("12_dcu6b")
-YSine = true
-YFrequency = 3.0
-YAmplitude = 0.05
-
-[node name="Label" type="Label" parent="."]
+[node name="???" parent="Buttons" instance=ExtResource("14_liwrj")]
 visible = false
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -602.0
-offset_top = -104.0
-offset_right = -21.0
-offset_bottom = -21.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_font_sizes/font_size = 64
-text = "[8.03.24]- DEMO #01"
-horizontal_alignment = 2
-vertical_alignment = 2
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 36
+text = "???"
+flat = true
+alignment = 0
 
-[connection signal="pressed" from="HBoxContainer/Play" to="." method="play"]
-[connection signal="pressed" from="HBoxContainer/Options" to="." method="options"]
-[connection signal="pressed" from="HBoxContainer/Credits" to="." method="credits"]
-[connection signal="pressed" from="HBoxContainer/Updatelog" to="." method="updatelog"]
-[connection signal="pressed" from="HBoxContainer/Exit" to="." method="exit"]
+[node name="HoverComponent" type="Node" parent="Buttons/???"]
+script = ExtResource("13_yp4sj")
+Translate = Vector2(5, 0)
+style_easing = 1
+style_transition = 5
+
+[node name="???2" parent="Buttons" instance=ExtResource("14_liwrj")]
+visible = false
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 36
+text = "???"
+flat = true
+alignment = 0
+
+[node name="HoverComponent" type="Node" parent="Buttons/???2"]
+script = ExtResource("13_yp4sj")
+Translate = Vector2(5, 0)
+style_easing = 1
+style_transition = 5
+
+[node name="???3" parent="Buttons" instance=ExtResource("14_liwrj")]
+visible = false
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 36
+text = "???"
+flat = true
+alignment = 0
+
+[node name="HoverComponent" type="Node" parent="Buttons/???3"]
+script = ExtResource("13_yp4sj")
+Translate = Vector2(5, 0)
+style_easing = 1
+style_transition = 5
+
+[node name="???4" parent="Buttons" instance=ExtResource("14_liwrj")]
+visible = false
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 36
+text = "???"
+flat = true
+alignment = 0
+
+[node name="HoverComponent" type="Node" parent="Buttons/???4"]
+script = ExtResource("13_yp4sj")
+Translate = Vector2(5, 0)
+style_easing = 1
+style_transition = 5
+
+[node name="SETTINGS" type="Button" parent="Buttons"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 36
+text = "SETTINGS"
+flat = true
+alignment = 0
+
+[node name="HoverComponent" type="Node" parent="Buttons/SETTINGS"]
+script = ExtResource("13_yp4sj")
+Translate = Vector2(5, 0)
+style_easing = 1
+style_transition = 5
+
+[node name="CREDITS" type="Button" parent="Buttons"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 36
+text = "CREDITS"
+flat = true
+alignment = 0
+
+[node name="HoverComponent" type="Node" parent="Buttons/CREDITS"]
+script = ExtResource("13_yp4sj")
+Translate = Vector2(5, 0)
+style_easing = 1
+style_transition = 5
+
+[node name="LEADERBOARD" type="Button" parent="Buttons"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 36
+text = "LEADERBOARD"
+flat = true
+alignment = 0
+
+[node name="HoverComponent" type="Node" parent="Buttons/LEADERBOARD"]
+script = ExtResource("13_yp4sj")
+Translate = Vector2(5, 0)
+style_easing = 1
+style_transition = 5
+
+[node name="UPDATELOG" type="Button" parent="Buttons"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 36
+text = "UPDATELOG"
+flat = true
+alignment = 0
+
+[node name="HoverComponent" type="Node" parent="Buttons/UPDATELOG"]
+script = ExtResource("13_yp4sj")
+Translate = Vector2(5, 0)
+style_easing = 1
+style_transition = 5
+
+[node name="EXIT" type="Button" parent="Buttons"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 36
+text = "EXIT"
+flat = true
+alignment = 0
+
+[node name="HoverComponent" type="Node" parent="Buttons/EXIT"]
+script = ExtResource("13_yp4sj")
+Translate = Vector2(5, 0)
+style_easing = 1
+style_transition = 5
+
+[node name="panels" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 1211)
+layout_mode = 0
+offset_left = 1061.0
+offset_top = 249.0
+offset_right = 1765.0
+offset_bottom = 2786.0
+theme_override_constants/separation = 46
+
+[node name="settings" type="Panel" parent="panels"]
+custom_minimum_size = Vector2(0, 583)
+layout_mode = 2
+theme = ExtResource("2_r0pdg")
+script = ExtResource("10_a4r71")
+
+[node name="title" type="Label" parent="panels/settings"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 13.0
+offset_right = 405.0
+offset_bottom = 74.0
+theme_override_fonts/font = ExtResource("10_xrdea")
+text = "SETTINGS"
+
+[node name="twitch" type="Control" parent="panels/settings"]
+anchors_preset = 0
+offset_left = 11.0
+offset_top = 74.0
+offset_right = 482.0
+offset_bottom = 210.0
+
+[node name="twitch_label" type="Label" parent="panels/settings/twitch"]
+layout_mode = 0
+offset_right = 207.0
+offset_bottom = 51.0
+theme_override_fonts/font = ExtResource("11_g04la")
+theme_override_font_sizes/font_size = 40
+text = "TWITCH"
+
+[node name="channel_label" type="Label" parent="panels/settings/twitch"]
+layout_mode = 0
+offset_top = 50.0
+offset_right = 207.0
+offset_bottom = 92.0
+theme_override_font_sizes/font_size = 32
+text = "CHANNEL"
+
+[node name="channel" type="HBoxContainer" parent="panels/settings/twitch"]
+layout_mode = 0
+offset_top = 95.0
+offset_right = 555.0
+offset_bottom = 136.0
+theme_override_constants/separation = 11
+
+[node name="channel" type="LineEdit" parent="panels/settings/twitch/channel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+placeholder_text = "Your channel here.."
+max_length = 20
+
+[node name="Button" type="Button" parent="panels/settings/twitch/channel"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "OK"
+
+[node name="audio" type="Control" parent="panels/settings"]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 11.0
+offset_top = 223.0
+offset_right = 352.0
+offset_bottom = 465.0
+
+[node name="audio_label" type="Label" parent="panels/settings/audio"]
+layout_mode = 0
+offset_top = -5.0
+offset_right = 207.0
+offset_bottom = 46.0
+theme_override_fonts/font = ExtResource("11_g04la")
+theme_override_font_sizes/font_size = 40
+text = "AUDIO"
+
+[node name="master" type="Label" parent="panels/settings/audio"]
+layout_mode = 0
+offset_top = 44.0
+offset_right = 207.0
+offset_bottom = 86.0
+theme_override_font_sizes/font_size = 32
+text = "MASTER"
+
+[node name="master_slider" parent="panels/settings/audio" instance=ExtResource("12_frc28")]
+layout_mode = 1
+offset_top = 86.0
+offset_right = 341.0
+offset_bottom = 114.0
+value = 0.55
+ticks_on_borders = true
+bus_name = "Master"
+
+[node name="music" type="Label" parent="panels/settings/audio"]
+layout_mode = 0
+offset_top = 111.0
+offset_right = 207.0
+offset_bottom = 153.0
+theme_override_font_sizes/font_size = 32
+text = "MUSIC"
+
+[node name="music_slider" parent="panels/settings/audio" instance=ExtResource("12_frc28")]
+layout_mode = 1
+offset_top = 153.0
+offset_right = 341.0
+offset_bottom = 181.0
+value = 0.55
+ticks_on_borders = true
+bus_name = "Music"
+
+[node name="sfx" type="Label" parent="panels/settings/audio"]
+layout_mode = 0
+offset_top = 179.0
+offset_right = 207.0
+offset_bottom = 221.0
+theme_override_font_sizes/font_size = 32
+text = "SFX"
+
+[node name="sfx_slider" parent="panels/settings/audio" instance=ExtResource("12_frc28")]
+layout_mode = 1
+offset_top = 221.0
+offset_right = 341.0
+offset_bottom = 249.0
+value = 0.55
+ticks_on_borders = true
+bus_name = "SFX"
+
+[node name="resolution" type="Control" parent="panels/settings"]
+anchors_preset = 0
+offset_left = 11.0
+offset_top = 476.0
+offset_right = 692.0
+offset_bottom = 566.0
+
+[node name="resolution_label" type="Label" parent="panels/settings/resolution"]
+layout_mode = 0
+offset_right = 217.0
+offset_bottom = 42.0
+theme_override_font_sizes/font_size = 32
+text = "RESOLUTION"
+
+[node name="resolution" type="HBoxContainer" parent="panels/settings/resolution"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -340.5
+offset_top = -43.0
+offset_right = 340.5
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 8
+
+[node name="windowed" type="Button" parent="panels/settings/resolution/resolution"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_pressed = true
+button_group = ExtResource("13_7h2nr")
+text = "WINDOWED"
+
+[node name="fullscreen" type="Button" parent="panels/settings/resolution/resolution"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = ExtResource("13_7h2nr")
+text = "FULLSCREEN"
+
+[node name="credits" type="Panel" parent="panels"]
+custom_minimum_size = Vector2(0, 583)
+layout_mode = 2
+theme = ExtResource("2_r0pdg")
+
+[node name="title" type="Label" parent="panels/credits"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 13.0
+offset_right = 405.0
+offset_bottom = 74.0
+theme_override_fonts/font = ExtResource("10_xrdea")
+text = "CREDITS"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="panels/credits"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 74.0
+offset_right = 382.0
+offset_bottom = 570.0
+theme_override_constants/separation = 124
+
+[node name="head_dev" type="Control" parent="panels/credits/VBoxContainer"]
+layout_mode = 2
+
+[node name="head_dev_label" type="Label" parent="panels/credits/VBoxContainer/head_dev"]
+layout_mode = 0
+offset_right = 207.0
+offset_bottom = 51.0
+theme_override_fonts/font = ExtResource("11_g04la")
+theme_override_font_sizes/font_size = 40
+text = "HEAD DEVELOPER"
+
+[node name="decent" type="HBoxContainer" parent="panels/credits/VBoxContainer/head_dev"]
+layout_mode = 0
+offset_top = 50.0
+offset_right = 40.0
+offset_bottom = 90.0
+
+[node name="decent" type="Label" parent="panels/credits/VBoxContainer/head_dev/decent"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "DECENT"
+
+[node name="TextureRect" type="TextureRect" parent="panels/credits/VBoxContainer/head_dev/decent"]
+custom_minimum_size = Vector2(42, 0)
+layout_mode = 2
+texture = ExtResource("14_oeadf")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="music" type="Control" parent="panels/credits/VBoxContainer"]
+layout_mode = 2
+
+[node name="head_dev_label" type="Label" parent="panels/credits/VBoxContainer/music"]
+layout_mode = 0
+offset_right = 207.0
+offset_bottom = 51.0
+theme_override_fonts/font = ExtResource("11_g04la")
+theme_override_font_sizes/font_size = 40
+text = "MUSIC"
+
+[node name="music" type="VBoxContainer" parent="panels/credits/VBoxContainer/music"]
+layout_mode = 0
+offset_top = 51.0
+offset_right = 368.0
+offset_bottom = 93.0
+theme_override_constants/separation = 5
+
+[node name="mattitap" type="HBoxContainer" parent="panels/credits/VBoxContainer/music/music"]
+layout_mode = 2
+
+[node name="decent" type="Label" parent="panels/credits/VBoxContainer/music/music/mattitap"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "MATTITAP"
+
+[node name="TextureRect" type="TextureRect" parent="panels/credits/VBoxContainer/music/music/mattitap"]
+custom_minimum_size = Vector2(42, 0)
+layout_mode = 2
+texture = ExtResource("15_j0wo0")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="playtesters" type="Control" parent="panels/credits/VBoxContainer"]
+layout_mode = 2
+
+[node name="head_dev_label" type="Label" parent="panels/credits/VBoxContainer/playtesters"]
+layout_mode = 0
+offset_right = 370.0
+offset_bottom = 51.0
+theme_override_fonts/font = ExtResource("11_g04la")
+theme_override_font_sizes/font_size = 40
+text = "PLAYTESTERS"
+
+[node name="playtesters" type="VBoxContainer" parent="panels/credits/VBoxContainer/playtesters"]
+layout_mode = 0
+offset_top = 51.0
+offset_right = 368.0
+offset_bottom = 234.0
+theme_override_constants/separation = 5
+
+[node name="kingblob" type="HBoxContainer" parent="panels/credits/VBoxContainer/playtesters/playtesters"]
+layout_mode = 2
+
+[node name="decent" type="Label" parent="panels/credits/VBoxContainer/playtesters/playtesters/kingblob"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "KINGBLOB"
+
+[node name="TextureRect" type="TextureRect" parent="panels/credits/VBoxContainer/playtesters/playtesters/kingblob"]
+custom_minimum_size = Vector2(42, 0)
+layout_mode = 2
+texture = ExtResource("15_wy2c3")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="stariwabi" type="HBoxContainer" parent="panels/credits/VBoxContainer/playtesters/playtesters"]
+layout_mode = 2
+
+[node name="stariwabi" type="Label" parent="panels/credits/VBoxContainer/playtesters/playtesters/stariwabi"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "STARIWABI"
+
+[node name="TextureRect" type="TextureRect" parent="panels/credits/VBoxContainer/playtesters/playtesters/stariwabi"]
+custom_minimum_size = Vector2(42, 0)
+layout_mode = 2
+texture = ExtResource("16_d2a85")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="rainysebby" type="HBoxContainer" parent="panels/credits/VBoxContainer/playtesters/playtesters"]
+layout_mode = 2
+
+[node name="rainysebby" type="Label" parent="panels/credits/VBoxContainer/playtesters/playtesters/rainysebby"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "RAINYSEBBY"
+
+[node name="TextureRect" type="TextureRect" parent="panels/credits/VBoxContainer/playtesters/playtesters/rainysebby"]
+custom_minimum_size = Vector2(42, 0)
+layout_mode = 2
+texture = ExtResource("17_nky3a")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="qwerty" type="HBoxContainer" parent="panels/credits/VBoxContainer/playtesters/playtesters"]
+layout_mode = 2
+
+[node name="rainysebby" type="Label" parent="panels/credits/VBoxContainer/playtesters/playtesters/qwerty"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "QWERTYMANKIRILL"
+
+[node name="TextureRect" type="TextureRect" parent="panels/credits/VBoxContainer/playtesters/playtesters/qwerty"]
+custom_minimum_size = Vector2(42, 0)
+layout_mode = 2
+texture = ExtResource("18_qveyd")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="leaderboard" type="Panel" parent="panels"]
+custom_minimum_size = Vector2(0, 650.755)
+layout_mode = 2
+theme = ExtResource("2_r0pdg")
+script = ExtResource("21_g8q2o")
+
+[node name="entry_template" type="HBoxContainer" parent="panels/leaderboard"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+offset_left = 11.0
+offset_top = 186.0
+offset_right = 693.0
+offset_bottom = 228.0
+
+[node name="place" type="Label" parent="panels/leaderboard/entry_template"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "1."
+
+[node name="username" type="Label" parent="panels/leaderboard/entry_template"]
+custom_minimum_size = Vector2(560, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 32
+text = "decent_games"
+text_overrun_behavior = 3
+
+[node name="score" type="Label" parent="panels/leaderboard/entry_template"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "400"
+
+[node name="title" type="Label" parent="panels/leaderboard"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 13.0
+offset_right = 405.0
+offset_bottom = 74.0
+theme_override_fonts/font = ExtResource("10_xrdea")
+text = "LEADERBOARD"
+
+[node name="search" type="LineEdit" parent="panels/leaderboard"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 11.0
+offset_top = 74.0
+offset_right = 692.0
+offset_bottom = 124.0
+placeholder_text = "Search for users.."
+
+[node name="buttons" type="HBoxContainer" parent="panels/leaderboard"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 135.0
+offset_right = 692.0
+offset_bottom = 172.0
+theme_override_constants/separation = 8
+
+[node name="trivitime" type="Button" parent="panels/leaderboard/buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_pressed = true
+button_group = ExtResource("20_c5ugh")
+text = "TRIVITIME"
+
+[node name="Button2" type="Button" parent="panels/leaderboard/buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = ExtResource("20_c5ugh")
+text = "???"
+
+[node name="Button3" type="Button" parent="panels/leaderboard/buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = ExtResource("20_c5ugh")
+text = "???"
+
+[node name="Button4" type="Button" parent="panels/leaderboard/buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = ExtResource("20_c5ugh")
+text = "???"
+
+[node name="Button5" type="Button" parent="panels/leaderboard/buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = ExtResource("20_c5ugh")
+text = "???"
+
+[node name="leaderboard" type="VBoxContainer" parent="panels/leaderboard"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(682, 382)
+layout_mode = 2
+offset_left = 11.0
+offset_top = 186.0
+offset_right = 693.0
+offset_bottom = 642.0
+
+[node name="updatelog" type="Panel" parent="panels"]
+custom_minimum_size = Vector2(0, 583)
+layout_mode = 2
+theme = ExtResource("2_r0pdg")
+
+[node name="title" type="Label" parent="panels/updatelog"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 13.0
+offset_right = 405.0
+offset_bottom = 74.0
+theme_override_fonts/font = ExtResource("10_xrdea")
+text = "UPDATELOG"
+
+[node name="version" type="Label" parent="panels/updatelog"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 77.0
+offset_right = 405.0
+offset_bottom = 119.0
+theme_override_fonts/font = ExtResource("11_g04la")
+theme_override_font_sizes/font_size = 32
+text = "v1.00"
+
+[node name="desc" type="Label" parent="panels/updatelog"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 123.0
+offset_right = 405.0
+offset_bottom = 154.0
+theme_override_fonts/font = ExtResource("23_x4xdp")
+theme_override_font_sizes/font_size = 24
+text = "- stuff"
+
+[connection signal="mouse_entered" from="Buttons/SETTINGS" to="." method="options"]
+[connection signal="mouse_entered" from="Buttons/CREDITS" to="." method="credits"]
+[connection signal="mouse_entered" from="Buttons/LEADERBOARD" to="." method="leaderboard"]
+[connection signal="mouse_entered" from="Buttons/UPDATELOG" to="." method="updatelog"]
+[connection signal="button_down" from="Buttons/EXIT" to="." method="exit"]
+[connection signal="text_submitted" from="panels/settings/twitch/channel/channel" to="panels/settings" method="submit_channel"]
+[connection signal="pressed" from="panels/settings/resolution/resolution/windowed" to="panels/settings" method="windowed"]
+[connection signal="pressed" from="panels/settings/resolution/resolution/fullscreen" to="panels/settings" method="fullscreen"]
+[connection signal="text_submitted" from="panels/leaderboard/search" to="panels/leaderboard" method="search"]
+[connection signal="pressed" from="panels/leaderboard/buttons/trivitime" to="panels/leaderboard" method="change_filter" binds= ["tt"]]
+[connection signal="pressed" from="panels/leaderboard/buttons/Button2" to="panels/leaderboard" method="change_filter" binds= ["wc"]]

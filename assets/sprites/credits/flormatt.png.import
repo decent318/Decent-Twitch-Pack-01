@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c68pavq0kjy0e"
-path="res://.godot/imported/decent.png-7f35ea6d890583199df60cf2de644dc2.ctex"
+uid="uid://cpr77ba1kiadk"
+path="res://.godot/imported/flormatt.png-dc95b39f22e4ef4ed6b43fffe5d27c66.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/credits/decent.png"
-dest_files=["res://.godot/imported/decent.png-7f35ea6d890583199df60cf2de644dc2.ctex"]
+source_file="res://assets/sprites/credits/flormatt.png"
+dest_files=["res://.godot/imported/flormatt.png-dc95b39f22e4ef4ed6b43fffe5d27c66.ctex"]
 
 [params]
 

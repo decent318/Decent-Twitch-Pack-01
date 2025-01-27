@@ -1,59 +1,39 @@
 class_name Leaderboard
 extends Resource
 
-@export var players = [
-	{"decent":
-		{
-		"tt": {"score": 200},
-		"wc": {"score": 71}
-		}
-	},
-	{"velk":
-		{
-		"tt": {"score": 120},
-		}
-	},
-	{"kingblob":
-		{
-		"wc": {"score": 70},
-		}
-	},
-]
+var hall_of_fame = {
+	"test_account01": {"tt": {"high_score": 500}, "wc": {"high_score": 300}},
+	"test_account02": {"tt": {"high_score": 700}},
+	"test_account03": {"tt": {"high_score": 300}},
+}
 
-# get list of all values and corresponding keys
-
-enum TYPE {CURRENT, LEADERBOARD}
-
-func return_leaderboard(type = 0, stat = "", game = "", preset_leaderboared : Dictionary = {}) -> Dictionary:
-	var leaderboard : Dictionary = preset_leaderboared
-	var leaderboard_players
-	if type == 0:
-		for plr in Global.players:
-			leaderboard[plr] = Global.players[plr]["points"]
-	if type == 1: leaderboard_players = players
-	
-	if type == 1:
-		var pos = 0
-		for player in leaderboard_players:
-			var player_name = player.keys()[0]
-			if leaderboard_players[pos][player_name].keys().find(game) != -1:
-				if game != "":
-					leaderboard[player_name] = leaderboard_players[pos][player_name][game][stat]
-				else:
-					if stat != "":
-						leaderboard[player_name] = leaderboard_players[pos][player_name][stat]
-					else:
-						leaderboard[player_name] = leaderboard_players[pos][player_name]["points"]
-			pos += 1
+func return_leaderboard(leaderboard : Dictionary, stat, game = "") -> Dictionary:
+	var leaderboard_players = leaderboard.keys()
+	var new_leaderboard : Dictionary
+	for player in leaderboard_players:
+		if game != "":
+			if leaderboard[player].keys().find(game) == -1:
+				continue
+			else:
+				if leaderboard[player][game].keys().find(stat) == -1:
+					continue
+		else:
+			if leaderboard[player].keys().find(stat) == -1:
+				continue
+				
+		if game != "":
+			new_leaderboard[player] = leaderboard[player][game][stat]
+		else:
+			if stat != "":
+				new_leaderboard[player] = leaderboard[player][stat]
 		
-	print(leaderboard)
-	var keys: Array = leaderboard.keys()
-	keys.sort_custom(func(x: String, y: String) -> bool: return leaderboard[x] > leaderboard[y])
+	var keys: Array = new_leaderboard.keys()
+	keys.sort_custom(func(x: String, y: String) -> bool: return new_leaderboard[x] > new_leaderboard[y])
 	
 	var final_leaderboard : Dictionary
 	
 	for k in keys:
-		final_leaderboard[k] = leaderboard[k]
+		final_leaderboard[k] = new_leaderboard[k]
 	return final_leaderboard
 
 func limit_leaderboard(leaderboard : Dictionary, limit):
