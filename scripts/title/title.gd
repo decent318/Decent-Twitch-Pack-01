@@ -6,25 +6,30 @@ func _ready():
 		#%Options.get_child(2).modulate = "ffffff"
 	#else:
 		#%Options.get_child(2).modulate = "ffffff00"
+	var save_data = SaveData.new()
+	print(SaveData.load_savegame().resolution)
+	save_data.resolution = "1280x720"
+	save_data.save_data()
 
-func play():
-	SceneTransition.change_scene_close("res://scenes/title/games.tscn", "#fffff")
+func trivitime():
+	panel_index = 0
+	update_panels()
 	
 func options():
-	create_tween().tween_property(%panels, "position", Vector2(1061, 249), 1).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
-	panel = 0
+	panel_index = 1
+	update_panels()
 	
 func credits():
-	create_tween().tween_property(%panels, "position", Vector2(1061, -357), 1).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
-	panel = 1
+	panel_index = 2
+	update_panels()
 	
 func leaderboard():
-	create_tween().tween_property(%panels, "position", Vector2(1061, -963), 1).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
-	panel = 2
+	panel_index = 3
+	update_panels()
 	
 func updatelog():
-	create_tween().tween_property(%panels, "position", Vector2(1061, -1569), 1).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
-	panel = 3
+	panel_index = 4
+	update_panels()
 	
 func exit():
 	SceneTransition.transition_callable_close(func(): 
@@ -32,12 +37,25 @@ func exit():
 		get_tree().quit(), 
 		"#fffff") # Color
 
-var panel = 0
+var old_panel = 0
+var panel_index = 0
+var panel : Panel
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_released("scroll_up") or Input.is_action_just_pressed("up"):
-		panel -= 1
-	if Input.is_action_just_released("scroll_down") or Input.is_action_just_pressed("down"):
-		panel += 1
-	panel = clamp(panel, 0, 3)
-	create_tween().tween_property(%panels, "position", Vector2(1061, 249 - (606 * panel)), 1).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+		panel_index -= 1
+	elif Input.is_action_just_released("scroll_down") or Input.is_action_just_pressed("down"):
+		panel_index += 1
+	else:
+		return
+	if panel_index != clamp(panel_index, 0, 4): 
+		panel_index = clamp(panel_index, 0, 4)
+		return
+	panel_index = clamp(panel_index, 0, 4)
+	update_panels()
+
+func update_panels():
+	panel = %panels.get_child(panel_index)
+	var tween_time = min(abs(old_panel - panel_index), 3.5)
+	old_panel = panel_index
+	create_tween().tween_property(%panels, "position", Vector2(1061, 249 - panel.position.y), tween_time).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)

@@ -13,11 +13,9 @@ func _ready() -> void:
 func update():
 	var top_leaderboard = leaderboard.return_leaderboard(hall_of_fame, "high_score", current_filter)
 	leaderboard.limit_leaderboard(top_leaderboard, 10)
-	print(top_leaderboard)
 	var new_leaderboard : Dictionary
 	if !search_filter.is_empty():
 		for user : String in top_leaderboard:
-			print(user)
 			if user.contains(search_filter):
 				new_leaderboard[user] = top_leaderboard[user]
 		top_leaderboard = new_leaderboard

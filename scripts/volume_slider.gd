@@ -15,7 +15,6 @@ func _on_value_changed(new_value : float) -> void:
 		bus_index,
 		linear_to_db(new_value)
 	)
-	print(linear_to_db(new_value))
 	
 func update():
 	create_tween().tween_property($".", "value", db_to_linear(AudioServer.get_bus_volume_db(bus_index)), 0.3).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUART)
