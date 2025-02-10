@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cd3oati5yixr1"
-path="res://.godot/imported/KINGBOO.png-f8baaf301a955135f0ddafa57a7c42ab.ctex"
+uid="uid://cfqyglftwtk8u"
+path="res://.godot/imported/xmark-solid.svg-85bd08099a08d2c103758d524672bf97.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/credits/KINGBOO.png"
-dest_files=["res://.godot/imported/KINGBOO.png-f8baaf301a955135f0ddafa57a7c42ab.ctex"]
+source_file="res://assets/sprites/xmark-solid.svg"
+dest_files=["res://.godot/imported/xmark-solid.svg-85bd08099a08d2c103758d524672bf97.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

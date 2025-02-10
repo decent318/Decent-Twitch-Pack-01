@@ -1,15 +1,36 @@
-[gd_scene load_steps=15 format=3 uid="uid://de7sc7l0440pu"]
+[gd_scene load_steps=20 format=3 uid="uid://de7sc7l0440pu"]
 
 [ext_resource type="Theme" uid="uid://c3hg6ndkr8syx" path="res://themes/trivitime.tres" id="1_0unt5"]
 [ext_resource type="Script" path="res://scripts/trivitime/tt_config.gd" id="1_v5777"]
-[ext_resource type="Texture2D" uid="uid://b61pxjfq6desr" path="res://assets/sprites/trivitime/trivitime bg.png" id="3_dgels"]
+[ext_resource type="Shader" path="res://shaders/scroll.gdshader" id="3_0x8cx"]
+[ext_resource type="Texture2D" uid="uid://dddqijbdr4y81" path="res://assets/sprites/tt_bg.png" id="3_u0msj"]
 [ext_resource type="Script" path="res://scripts/SceneButton.gd" id="3_xihwp"]
-[ext_resource type="Texture2D" uid="uid://dm5nsmn151qbx" path="res://assets/sprites/trivitime/trivtime horizantal.svg" id="4_qpsr8"]
+[ext_resource type="Texture2D" uid="uid://cqh44poo33kkm" path="res://assets/sprites/trivitime/trivitime title.png" id="5_5felh"]
 [ext_resource type="PackedScene" uid="uid://d07oe55owlkpm" path="res://scenes/scene_button.tscn" id="5_qgidx"]
 [ext_resource type="Script" path="res://scripts/HoverComponent.gd" id="5_yqvjc"]
 [ext_resource type="Texture2D" uid="uid://loohykrk0mo" path="res://assets/sprites/trivitime/timer.png" id="8_pdtxp"]
 [ext_resource type="Texture2D" uid="uid://8ajkhrhx0srr" path="res://assets/sprites/caret-down-solid.svg" id="9_gbkve"]
 [ext_resource type="Texture2D" uid="uid://cexcmdj13x6vu" path="res://assets/sprites/trivitime-icon.svg" id="10_2xxu8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g60xd"]
+shader = ExtResource("3_0x8cx")
+shader_parameter/x_speed = 0.1
+shader_parameter/y_speed = 0.05
+
+[sub_resource type="Gradient" id="Gradient_w3jx0"]
+offsets = PackedFloat32Array(0, 0.957576, 1)
+colors = PackedColorArray(0, 0, 0, 0.423529, 0, 0, 0, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_shevq"]
+gradient = SubResource("Gradient_w3jx0")
+width = 1
+fill_from = Vector2(1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7vumk"]
+gradient = SubResource("Gradient_w3jx0")
+width = 1
+fill_from = Vector2(1, 0)
+fill_to = Vector2(1, 1)
 
 [sub_resource type="InputEventKey" id="InputEventKey_6l8p4"]
 device = -1
@@ -38,16 +59,42 @@ time_value_label = NodePath("settings/time/value")
 intermission_value_label = NodePath("settings/topics/value")
 
 [node name="BG" type="TextureRect" parent="."]
+self_modulate = Color(0.423529, 0.811765, 0.439216, 1)
+material = SubResource("ShaderMaterial_g60xd")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -160.0
-offset_right = 168.0
-offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_dgels")
+texture = ExtResource("3_u0msj")
+stretch_mode = 1
+
+[node name="gradient2" type="TextureRect" parent="."]
+z_index = 1
+z_as_relative = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.77
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 0.399963
+grow_horizontal = 2
+grow_vertical = 2
+mouse_force_pass_scroll_events = false
+texture = SubResource("GradientTexture2D_shevq")
+
+[node name="gradient3" type="TextureRect" parent="."]
+z_index = 1
+z_as_relative = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.23
+offset_bottom = -0.400009
+grow_horizontal = 2
+mouse_force_pass_scroll_events = false
+texture = SubResource("GradientTexture2D_7vumk")
 
 [node name="TITLE" type="TextureRect" parent="."]
 z_index = 1
@@ -55,61 +102,39 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -644.0
-offset_top = 15.0
-offset_right = 644.0
-offset_bottom = 162.0
+offset_left = -486.0
+offset_top = 22.0
+offset_right = 485.0
+offset_bottom = 217.0
 grow_horizontal = 2
-texture = ExtResource("4_qpsr8")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="DROPSHADOW" type="TextureRect" parent="TITLE"]
-self_modulate = Color(0, 0, 0, 1)
-z_as_relative = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -644.0
-offset_top = -67.5
-offset_right = 644.0
-offset_bottom = 79.5
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_qpsr8")
+texture = ExtResource("5_5felh")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="BUTTONS" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 14
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -344.0
-offset_top = -209.0
-offset_right = 344.0
-offset_bottom = 390.0
+offset_left = 594.0
+offset_top = -218.0
+offset_right = -594.0
+offset_bottom = 385.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 45
 
-[node name="NEXT" type="Button" parent="BUTTONS"]
-custom_minimum_size = Vector2(513, 116)
+[node name="PLAY" type="Button" parent="BUTTONS"]
+custom_minimum_size = Vector2(500, 120)
 layout_mode = 2
-size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 72
 shortcut = SubResource("Shortcut_jc66f")
 text = "PLAY"
 script = ExtResource("3_xihwp")
 Scene = "res://scenes/trivitime/tt_players.tscn"
-color = Color(0.34902, 0.52549, 0.278431, 1)
 
-[node name="HoverComponent" type="Node" parent="BUTTONS/NEXT"]
+[node name="HoverComponent" type="Node" parent="BUTTONS/PLAY"]
 script = ExtResource("5_yqvjc")
 Translate = Vector2(0, -3)
 active_when_disabled = false
@@ -120,7 +145,6 @@ AnchorPoint = 4
 [node name="SETTINGS" type="Button" parent="BUTTONS"]
 custom_minimum_size = Vector2(560, 116)
 layout_mode = 2
-size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 72
 text = "SETTINGS"
 
@@ -150,13 +174,12 @@ style_transition = 5
 [node name="BACK" type="Button" parent="BUTTONS"]
 custom_minimum_size = Vector2(450, 116)
 layout_mode = 2
-size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 72
 shortcut = SubResource("Shortcut_eurf3")
 text = "BACK"
 script = ExtResource("3_xihwp")
-Scene = "res://scenes/title/games.tscn"
-color = Color(0.34902, 0.52549, 0.278431, 1)
+Scene = "res://scenes/title/title.tscn"
+fade = true
 
 [node name="HoverComponent" type="Node" parent="BUTTONS/BACK"]
 script = ExtResource("5_yqvjc")

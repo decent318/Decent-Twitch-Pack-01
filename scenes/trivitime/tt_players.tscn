@@ -2,32 +2,59 @@
 
 [ext_resource type="Theme" uid="uid://c3hg6ndkr8syx" path="res://themes/trivitime.tres" id="1_b85je"]
 [ext_resource type="Script" path="res://scripts/trivitime/tt_players.gd" id="2_80dee"]
-[ext_resource type="Texture2D" uid="uid://b61pxjfq6desr" path="res://assets/sprites/trivitime/trivitime bg.png" id="3_7axls"]
-[ext_resource type="Texture2D" uid="uid://dm5nsmn151qbx" path="res://assets/sprites/trivitime/trivtime horizantal.svg" id="3_pjb2j"]
-[ext_resource type="Texture2D" uid="uid://cq3kwsr5gc2sa" path="res://assets/sprites/minus.svg" id="4_eta3b"]
-[ext_resource type="Shader" path="res://shaders/dropshadow.gdshader" id="4_ot8d2"]
+[ext_resource type="Shader" path="res://shaders/scroll.gdshader" id="3_eldiy"]
+[ext_resource type="Texture2D" uid="uid://dddqijbdr4y81" path="res://assets/sprites/tt_bg.png" id="4_7y7p4"]
 [ext_resource type="Script" path="res://scripts/HoverComponent.gd" id="6_1tdrb"]
-[ext_resource type="Script" path="res://scripts/SineComponent.gd" id="6_8ve6c"]
+[ext_resource type="Texture2D" uid="uid://brwdo7yy83key" path="res://assets/sprites/ui/trivitime/panel.png" id="6_5vefg"]
+[ext_resource type="Texture2D" uid="uid://cqh44poo33kkm" path="res://assets/sprites/trivitime/trivitime title.png" id="6_8xglh"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_rsfkq"]
-shader = ExtResource("4_ot8d2")
-shader_parameter/offset = Vector2(3, 3)
-shader_parameter/modulate = null
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5dbl6"]
+shader = ExtResource("3_eldiy")
+shader_parameter/x_speed = 0.2
+shader_parameter/y_speed = 0.05
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lm25d"]
-content_margin_left = 2.0
-content_margin_top = 2.0
-content_margin_right = 2.0
-content_margin_bottom = 2.0
-bg_color = Color(0.4488, 0.6, 0.264, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-expand_margin_left = 2.0
-expand_margin_top = 2.0
-expand_margin_right = 2.0
-expand_margin_bottom = 2.0
+[sub_resource type="Gradient" id="Gradient_ttdrn"]
+offsets = PackedFloat32Array(0, 0.957576, 1)
+colors = PackedColorArray(0, 0, 0, 0.423529, 0, 0, 0, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wdcqf"]
+gradient = SubResource("Gradient_ttdrn")
+width = 1
+fill_from = Vector2(1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_k0iav"]
+gradient = SubResource("Gradient_ttdrn")
+width = 1
+fill_from = Vector2(1, 0)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sp3e7"]
+texture = ExtResource("6_5vefg")
+texture_margin_left = 70.0
+texture_margin_right = 70.0
+axis_stretch_horizontal = 1
+region_rect = Rect2(0, 0, 753, 138)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ledv2"]
+texture = ExtResource("6_5vefg")
+texture_margin_left = 70.0
+texture_margin_right = 70.0
+axis_stretch_horizontal = 1
+region_rect = Rect2(0, 0, 753, 138)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s5s0p"]
+texture = ExtResource("6_5vefg")
+texture_margin_left = 70.0
+texture_margin_right = 70.0
+axis_stretch_horizontal = 1
+region_rect = Rect2(0, 0, 753, 138)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vetv1"]
+texture = ExtResource("6_5vefg")
+texture_margin_left = 70.0
+texture_margin_right = 70.0
+axis_stretch_horizontal = 1
+region_rect = Rect2(0, 0, 753, 138)
 
 [sub_resource type="InputEventKey" id="InputEventKey_rjku3"]
 device = -1
@@ -43,281 +70,6 @@ keycode = 4194308
 [sub_resource type="Shortcut" id="Shortcut_o4e52"]
 events = [SubResource("InputEventKey_vn6ow")]
 
-[sub_resource type="InputEventKey" id="InputEventKey_mk7p8"]
-device = -1
-shift_pressed = true
-keycode = 66
-unicode = 66
-
-[sub_resource type="Shortcut" id="Shortcut_xsvhu"]
-events = [SubResource("InputEventKey_mk7p8")]
-
-[sub_resource type="Animation" id="Animation_wr36u"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("add_bot:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1837, 1001)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Play:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-29, 372)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Exit:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-29, 523)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("join:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(15, 678)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Code:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(20, 138)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("reveal_code:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(20, 251)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("timer:position")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(310, 254)]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("timer:modulate")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("timer:scale")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("PlayerPlace/instructions:modulate")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("PlayerPlace/instructions:scale")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_xnm45"]
-resource_name = "start"
-length = 1.7
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("add_bot:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.9),
-"transitions": PackedFloat32Array(0.5, 0.5),
-"update": 0,
-"values": [Vector2(1837, 1001), Vector2(2108, 1001)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Play:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(0.5, 0.5),
-"update": 0,
-"values": [Vector2(-29, 372), Vector2(-669, 372)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Exit:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(0.5, 0.5),
-"update": 0,
-"values": [Vector2(-29, 523), Vector2(-620, 523)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("join:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(0.5, 0.5),
-"update": 0,
-"values": [Vector2(15, 678), Vector2(-622, 678)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Code:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 1.4),
-"transitions": PackedFloat32Array(0.5, 0.5),
-"update": 0,
-"values": [Vector2(20, 138), Vector2(-370, 138)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("reveal_code:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 1.2),
-"transitions": PackedFloat32Array(0.5, 0.5),
-"update": 0,
-"values": [Vector2(20, 251), Vector2(-360, 251)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("timer:modulate")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.9, 1.6),
-"transitions": PackedFloat32Array(0, 0.5, 0.5),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("timer:scale")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.8, 1.3),
-"transitions": PackedFloat32Array(0, 0.5, 0.287175),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1.2, 1.2)]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("PlayerPlace/instructions:modulate")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(0.5, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("PlayerPlace/instructions:scale")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(0.5, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(0, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_seleq"]
-_data = {
-"RESET": SubResource("Animation_wr36u"),
-"start": SubResource("Animation_xnm45")
-}
-
 [node name="Players" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -329,795 +81,249 @@ theme = ExtResource("1_b85je")
 script = ExtResource("2_80dee")
 
 [node name="BG" type="TextureRect" parent="."]
+modulate = Color(0.423529, 0.811765, 0.439216, 1)
+material = SubResource("ShaderMaterial_5dbl6")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -31.0
-offset_top = -15.0
-offset_right = 10.0
-offset_bottom = 13.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_7axls")
+texture = ExtResource("4_7y7p4")
+stretch_mode = 1
+
+[node name="gradient2" type="TextureRect" parent="."]
+z_index = 1
+z_as_relative = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.77
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 0.399963
+grow_horizontal = 2
+grow_vertical = 2
+mouse_force_pass_scroll_events = false
+texture = SubResource("GradientTexture2D_wdcqf")
+
+[node name="gradient3" type="TextureRect" parent="."]
+z_index = 1
+z_as_relative = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.23
+offset_bottom = -0.400009
+grow_horizontal = 2
+mouse_force_pass_scroll_events = false
+texture = SubResource("GradientTexture2D_k0iav")
 
 [node name="TITLE" type="TextureRect" parent="."]
 z_index = 1
-material = SubResource("ShaderMaterial_rsfkq")
 layout_mode = 1
 offset_left = 21.0
 offset_top = 11.0
-offset_right = 495.0
-offset_bottom = 112.0
-texture = ExtResource("3_pjb2j")
+offset_right = 1237.0
+offset_bottom = 270.0
+texture = ExtResource("6_8xglh")
 expand_mode = 1
-stretch_mode = 6
+stretch_mode = 5
 
-[node name="version" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 10.0
-offset_top = -65.0
-offset_right = 424.0
-offset_bottom = -10.0
-grow_vertical = 0
-theme_override_colors/font_color = Color(0.85098, 0.890196, 0.8, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.25098)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 2
-theme_override_constants/shadow_outline_size = 8
-theme_override_font_sizes/font_size = 48
-text = "V1.0.0"
-vertical_alignment = 2
-
-[node name="Code" type="Panel" parent="."]
-layout_mode = 1
-offset_left = 20.0
-offset_top = 138.0
-offset_right = 380.0
-offset_bottom = 246.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_lm25d")
-
-[node name="code" type="Label" parent="Code"]
+[node name="join_the_game" type="Label" parent="."]
 unique_name_in_owner = true
-layout_mode = 1
-offset_right = 360.0
-offset_bottom = 108.0
-theme_override_colors/font_color = Color(0.41752, 0.51, 0.1836, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.25098)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 2
-theme_override_constants/shadow_outline_size = 8
-theme_override_font_sizes/font_size = 96
-text = "****"
-
-[node name="reveal_code" type="Label" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-offset_left = 20.0
-offset_top = 251.0
-offset_right = 380.0
-offset_bottom = 306.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.25098)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 2
-theme_override_constants/shadow_outline_size = 8
-theme_override_font_sizes/font_size = 48
-text = "[E] Show Code"
-
-[node name="PlayerPlace" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -598.0
-offset_right = -598.0
-grow_horizontal = 0
-grow_vertical = 2
-
-[node name="Players" type="Control" parent="PlayerPlace"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -416.0
-offset_top = -421.0
-offset_right = 416.0
-offset_bottom = 421.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(416, 421)
-mouse_filter = 2
-
-[node name="Player1" type="Panel" parent="PlayerPlace/Players"]
-custom_minimum_size = Vector2(222, 222)
-layout_mode = 1
-offset_right = 222.0
-offset_bottom = 222.0
-scale = Vector2(0.75, 0.75)
-pivot_offset = Vector2(111, 111)
-theme = ExtResource("1_b85je")
-
-[node name="Username" type="Label" parent="PlayerPlace/Players/Player1"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -203.0
-offset_top = 11.0
-offset_right = 202.0
-offset_bottom = 48.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 32
-horizontal_alignment = 1
-text_overrun_behavior = 3
-
-[node name="kick_button" type="TextureButton" parent="PlayerPlace/Players/Player1"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -75.0
-offset_top = -75.0
-offset_right = 75.0
-offset_bottom = 75.0
-grow_horizontal = 2
-grow_vertical = 2
-texture_normal = ExtResource("4_eta3b")
-texture_pressed = ExtResource("4_eta3b")
-texture_hover = ExtResource("4_eta3b")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="SineComponent" type="Node" parent="PlayerPlace/Players/Player1"]
-script = ExtResource("6_8ve6c")
-YSine = true
-YFrequency = 2.0
-YAmplitude = 0.25
-
-[node name="Player2" type="Panel" parent="PlayerPlace/Players"]
-custom_minimum_size = Vector2(222, 222)
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -111.0
-offset_right = 111.0
-offset_bottom = 222.0
-grow_horizontal = 2
-scale = Vector2(0.75, 0.75)
-pivot_offset = Vector2(111, 111)
-theme = ExtResource("1_b85je")
-
-[node name="Username" type="Label" parent="PlayerPlace/Players/Player2"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -203.0
-offset_top = 11.0
-offset_right = 202.0
-offset_bottom = 48.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 32
-horizontal_alignment = 1
-text_overrun_behavior = 3
-
-[node name="kick_button" type="TextureButton" parent="PlayerPlace/Players/Player2"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -75.0
-offset_top = -75.0
-offset_right = 75.0
-offset_bottom = 75.0
-grow_horizontal = 2
-grow_vertical = 2
-texture_normal = ExtResource("4_eta3b")
-texture_pressed = ExtResource("4_eta3b")
-texture_hover = ExtResource("4_eta3b")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="SineComponent" type="Node" parent="PlayerPlace/Players/Player2"]
-script = ExtResource("6_8ve6c")
-YSine = true
-YFrequency = 2.0
-YAmplitude = 0.25
-
-[node name="Player3" type="Panel" parent="PlayerPlace/Players"]
-custom_minimum_size = Vector2(222, 222)
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -222.0
-offset_bottom = 222.0
-grow_horizontal = 0
-scale = Vector2(0.75, 0.75)
-pivot_offset = Vector2(111, 111)
-theme = ExtResource("1_b85je")
-
-[node name="Username" type="Label" parent="PlayerPlace/Players/Player3"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -203.0
-offset_top = 11.0
-offset_right = 202.0
-offset_bottom = 48.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 32
-horizontal_alignment = 1
-text_overrun_behavior = 3
-
-[node name="kick_button" type="TextureButton" parent="PlayerPlace/Players/Player3"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -75.0
-offset_top = -75.0
-offset_right = 75.0
-offset_bottom = 75.0
-grow_horizontal = 2
-grow_vertical = 2
-texture_normal = ExtResource("4_eta3b")
-texture_pressed = ExtResource("4_eta3b")
-texture_hover = ExtResource("4_eta3b")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="SineComponent" type="Node" parent="PlayerPlace/Players/Player3"]
-script = ExtResource("6_8ve6c")
-YSine = true
-YFrequency = 2.0
-YAmplitude = 0.25
-
-[node name="Player4" type="Panel" parent="PlayerPlace/Players"]
-custom_minimum_size = Vector2(222, 222)
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -222.0
-offset_top = -111.0
-offset_bottom = 111.0
-grow_horizontal = 0
-grow_vertical = 2
-scale = Vector2(0.75, 0.75)
-pivot_offset = Vector2(111, 111)
-theme = ExtResource("1_b85je")
-
-[node name="Username" type="Label" parent="PlayerPlace/Players/Player4"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -203.0
-offset_top = 11.0
-offset_right = 202.0
-offset_bottom = 48.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 32
-horizontal_alignment = 1
-text_overrun_behavior = 3
-
-[node name="kick_button" type="TextureButton" parent="PlayerPlace/Players/Player4"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -75.0
-offset_top = -75.0
-offset_right = 75.0
-offset_bottom = 75.0
-grow_horizontal = 2
-grow_vertical = 2
-texture_normal = ExtResource("4_eta3b")
-texture_pressed = ExtResource("4_eta3b")
-texture_hover = ExtResource("4_eta3b")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="SineComponent" type="Node" parent="PlayerPlace/Players/Player4"]
-script = ExtResource("6_8ve6c")
-YSine = true
-YFrequency = 2.0
-YAmplitude = 0.25
-
-[node name="Player5" type="Panel" parent="PlayerPlace/Players"]
-custom_minimum_size = Vector2(222, 222)
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -222.0
-offset_top = -222.0
+offset_left = -605.0
+offset_top = -298.0
+offset_right = -58.0
+offset_bottom = -220.0
 grow_horizontal = 0
 grow_vertical = 0
-scale = Vector2(0.75, 0.75)
-pivot_offset = Vector2(111, 111)
-theme = ExtResource("1_b85je")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.25098)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 8
+theme_override_font_sizes/font_size = 64
+text = "JOIN THE GAME!"
+horizontal_alignment = 2
+vertical_alignment = 2
 
-[node name="Username" type="Label" parent="PlayerPlace/Players/Player5"]
+[node name="code" type="Label" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(1, 0)
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -203.0
-offset_top = 11.0
-offset_right = 202.0
-offset_bottom = 48.0
-grow_horizontal = 2
+offset_left = -891.0
+offset_top = -250.0
+offset_right = -57.0
+offset_bottom = -51.0
+grow_horizontal = 0
 grow_vertical = 0
-theme_override_font_sizes/font_size = 32
-horizontal_alignment = 1
-text_overrun_behavior = 3
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.25098)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 8
+theme_override_font_sizes/font_size = 164
+text = "LOCKED"
+horizontal_alignment = 2
+vertical_alignment = 2
 
-[node name="kick_button" type="TextureButton" parent="PlayerPlace/Players/Player5"]
-modulate = Color(1, 1, 1, 0)
+[node name="reveal" type="Label" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(1, 0)
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -75.0
-offset_top = -75.0
-offset_right = 75.0
-offset_bottom = 75.0
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -509.0
+offset_top = -74.0
+offset_right = -62.0
+offset_bottom = -15.0
+grow_horizontal = 0
+grow_vertical = 0
+pivot_offset = Vector2(447, 0)
+size_flags_horizontal = 10
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.25098)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 8
+theme_override_font_sizes/font_size = 48
+text = "[E] - LOCK GAME"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="player_panel" type="Button" parent="."]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+offset_left = 1430.0
+offset_top = 36.0
+offset_right = 2059.0
+offset_bottom = 116.0
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_sp3e7")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ledv2")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_s5s0p")
+theme_override_styles/normal = SubResource("StyleBoxTexture_vetv1")
+
+[node name="username" type="Label" parent="player_panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 67.0
+offset_top = 12.0
+offset_right = -132.0
+offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = ExtResource("4_eta3b")
-texture_pressed = ExtResource("4_eta3b")
-texture_hover = ExtResource("4_eta3b")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="SineComponent" type="Node" parent="PlayerPlace/Players/Player5"]
-script = ExtResource("6_8ve6c")
-YSine = true
-YFrequency = 2.0
-YAmplitude = 0.25
-
-[node name="Player6" type="Panel" parent="PlayerPlace/Players"]
-custom_minimum_size = Vector2(222, 222)
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -111.0
-offset_top = -222.0
-offset_right = 111.0
-grow_horizontal = 2
-grow_vertical = 0
-scale = Vector2(0.75, 0.75)
-pivot_offset = Vector2(111, 111)
-theme = ExtResource("1_b85je")
-
-[node name="Username" type="Label" parent="PlayerPlace/Players/Player6"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -203.0
-offset_top = 11.0
-offset_right = 202.0
-offset_bottom = 48.0
-grow_horizontal = 2
-grow_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.478431)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
 theme_override_font_sizes/font_size = 32
-horizontal_alignment = 1
+text = "decent_games"
+vertical_alignment = 1
 text_overrun_behavior = 3
 
-[node name="kick_button" type="TextureButton" parent="PlayerPlace/Players/Player6"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -75.0
-offset_top = -75.0
-offset_right = 75.0
-offset_bottom = 75.0
-grow_horizontal = 2
-grow_vertical = 2
-texture_normal = ExtResource("4_eta3b")
-texture_pressed = ExtResource("4_eta3b")
-texture_hover = ExtResource("4_eta3b")
-ignore_texture_size = true
-stretch_mode = 0
+[node name="players" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1430.0
+offset_top = 36.0
+offset_right = 2059.0
+offset_bottom = 757.0
+theme_override_constants/separation = 8
 
-[node name="SineComponent" type="Node" parent="PlayerPlace/Players/Player6"]
-script = ExtResource("6_8ve6c")
-YSine = true
-YFrequency = 2.0
-YAmplitude = 0.25
-
-[node name="Player7" type="Panel" parent="PlayerPlace/Players"]
-custom_minimum_size = Vector2(222, 222)
+[node name="buttons" type="Control" parent="."]
+clip_contents = true
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -222.0
-offset_right = 222.0
+offset_top = -423.0
+offset_right = 818.0
+offset_bottom = -54.0
 grow_vertical = 0
-scale = Vector2(0.75, 0.75)
-pivot_offset = Vector2(111, 111)
-theme = ExtResource("1_b85je")
 
-[node name="Username" type="Label" parent="PlayerPlace/Players/Player7"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -203.0
-offset_top = 11.0
-offset_right = 202.0
-offset_bottom = 48.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 32
-horizontal_alignment = 1
-text_overrun_behavior = 3
-
-[node name="kick_button" type="TextureButton" parent="PlayerPlace/Players/Player7"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -75.0
-offset_top = -75.0
-offset_right = 75.0
-offset_bottom = 75.0
-grow_horizontal = 2
-grow_vertical = 2
-texture_normal = ExtResource("4_eta3b")
-texture_pressed = ExtResource("4_eta3b")
-texture_hover = ExtResource("4_eta3b")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="SineComponent" type="Node" parent="PlayerPlace/Players/Player7"]
-script = ExtResource("6_8ve6c")
-YSine = true
-YFrequency = 2.0
-YAmplitude = 0.25
-
-[node name="Player8" type="Panel" parent="PlayerPlace/Players"]
-custom_minimum_size = Vector2(222, 222)
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -111.0
-offset_right = 222.0
-offset_bottom = 111.0
-grow_vertical = 2
-scale = Vector2(0.75, 0.75)
-pivot_offset = Vector2(111, 111)
-theme = ExtResource("1_b85je")
-
-[node name="Username" type="Label" parent="PlayerPlace/Players/Player8"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -203.0
-offset_top = 11.0
-offset_right = 202.0
-offset_bottom = 48.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 32
-horizontal_alignment = 1
-text_overrun_behavior = 3
-
-[node name="kick_button" type="TextureButton" parent="PlayerPlace/Players/Player8"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -75.0
-offset_top = -75.0
-offset_right = 75.0
-offset_bottom = 75.0
-grow_horizontal = 2
-grow_vertical = 2
-texture_normal = ExtResource("4_eta3b")
-texture_pressed = ExtResource("4_eta3b")
-texture_hover = ExtResource("4_eta3b")
-ignore_texture_size = true
-stretch_mode = 0
-
-[node name="SineComponent" type="Node" parent="PlayerPlace/Players/Player8"]
-script = ExtResource("6_8ve6c")
-YSine = true
-YFrequency = 2.0
-YAmplitude = 0.25
-
-[node name="instructions" type="Control" parent="PlayerPlace"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -185.0
-offset_top = -140.0
-offset_right = 185.0
-offset_bottom = 140.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(185, 140)
-
-[node name="instruction" type="Label" parent="PlayerPlace/instructions"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -230.0
-offset_top = -71.5
-offset_right = 230.0
-offset_bottom = 71.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.25098)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 2
-theme_override_constants/shadow_outline_size = 8
-theme_override_font_sizes/font_size = 128
-text = "!join"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="instruction2" type="Label" parent="PlayerPlace/instructions"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -163.0
-offset_top = -123.0
-offset_right = 173.0
-offset_bottom = -68.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.25098)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 2
-theme_override_constants/shadow_outline_size = 8
-theme_override_font_sizes/font_size = 48
-text = "type"
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="instruction3" type="Label" parent="PlayerPlace/instructions"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -163.0
-offset_top = 80.0
-offset_right = 173.0
-offset_bottom = 135.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.25098)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 2
-theme_override_constants/shadow_outline_size = 8
-theme_override_font_sizes/font_size = 48
-text = "to join!"
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="Play" type="Button" parent="."]
+[node name="join" type="Button" parent="buttons"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = -29.0
-offset_top = 372.0
-offset_right = 628.0
-offset_bottom = 502.0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -73.0
+offset_top = -369.0
+offset_right = 319.0
+offset_bottom = -286.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 48
+text = "JOIN"
+alignment = 2
+
+[node name="HoverComponent" type="Node" parent="buttons/join"]
+script = ExtResource("6_1tdrb")
+Translate = Vector2(10, 0)
+style_easing = 1
+style_transition = 5
+
+[node name="Play" type="Button" parent="buttons"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -73.0
+offset_top = -278.0
+offset_right = 821.0
+offset_bottom = -148.0
+grow_vertical = 0
 mouse_filter = 1
 theme_override_font_sizes/font_size = 96
 shortcut = SubResource("Shortcut_p76qg")
-text = "PLAY "
+text = "LET'S START!"
 alignment = 2
 
-[node name="HoverComponent" type="Node" parent="Play"]
+[node name="HoverComponent" type="Node" parent="buttons/Play"]
 script = ExtResource("6_1tdrb")
 Translate = Vector2(10, 0)
 style_easing = 1
 style_transition = 5
 
-[node name="Exit" type="Button" parent="."]
+[node name="Exit" type="Button" parent="buttons"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = -29.0
-offset_top = 523.0
-offset_right = 571.0
-offset_bottom = 653.0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -73.0
+offset_top = -140.0
+offset_right = 527.0
+offset_bottom = -10.0
+grow_vertical = 0
 theme_override_font_sizes/font_size = 96
 shortcut = SubResource("Shortcut_o4e52")
-text = "BACK "
+text = "BACK"
 alignment = 2
 
-[node name="HoverComponent" type="Node" parent="Exit"]
+[node name="HoverComponent" type="Node" parent="buttons/Exit"]
 script = ExtResource("6_1tdrb")
 Translate = Vector2(10, 0)
 style_easing = 1
 style_transition = 5
-
-[node name="add_bot" type="Button" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -83.0
-offset_top = -79.0
-offset_right = -20.0
-offset_bottom = -16.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_font_sizes/font_size = 48
-shortcut = SubResource("Shortcut_xsvhu")
-text = "+"
-
-[node name="diff_slider" type="HSlider" parent="add_bot"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = -168.0
-offset_top = 3.5
-offset_right = -20.0
-offset_bottom = 19.5
-grow_vertical = 2
-min_value = 1.0
-max_value = 4.0
-value = 2.0
-
-[node name="difficulty_txt" type="Label" parent="add_bot/diff_slider"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -63.0
-offset_top = -21.0
-offset_right = 63.0
-offset_bottom = 2.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 20
-text = "Medium"
-horizontal_alignment = 1
-
-[node name="label" type="Label" parent="add_bot/diff_slider/difficulty_txt"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -63.0
-offset_top = -18.0
-offset_right = 63.0
-offset_bottom = 1.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 16
-text = "Difficulty"
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="Label" type="Label" parent="add_bot"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -33.5
-offset_top = -27.0
-offset_right = 33.5
-offset_bottom = -8.0
-grow_horizontal = 2
-text = "Add Bot"
-
-[node name="join" type="Button" parent="."]
-layout_mode = 0
-offset_left = 15.0
-offset_top = 678.0
-offset_right = 188.0
-offset_bottom = 743.0
-theme_override_font_sizes/font_size = 32
-text = "Join as"
-
-[node name="player" type="LineEdit" parent="join"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 199.0
-offset_top = 2.0
-offset_right = 604.0
-offset_bottom = 65.0
-theme_override_font_sizes/font_size = 20
-max_length = 20
-expand_to_text_length = true
-
-[node name="HoverComponent" type="Node" parent="join"]
-script = ExtResource("6_1tdrb")
-Translate = Vector2(0, -5)
-style_easing = 1
-style_transition = 5
-
-[node name="start" type="AnimationPlayer" parent="."]
-unique_name_in_owner = true
-libraries = {
-"": SubResource("AnimationLibrary_seleq")
-}
 
 [node name="timer" type="Label" parent="."]
 modulate = Color(1, 1, 1, 0)
@@ -1126,9 +332,9 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 310.0
-offset_top = -286.0
+offset_top = -304.0
 offset_right = 610.0
-offset_bottom = 286.0
+offset_bottom = 315.0
 grow_vertical = 2
 pivot_offset = Vector2(150, 286)
 theme_override_font_sizes/font_size = 512
@@ -1136,22 +342,35 @@ text = "3"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StartTimer" type="Timer" parent="timer"]
+[node name="StartTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 3.0
 
+[node name="debug" type="LineEdit" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 21.0
+offset_top = 537.0
+offset_right = 619.0
+offset_bottom = 618.0
+
+[node name="tip" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 21.0
+offset_top = 278.0
+offset_right = 1132.0
+offset_bottom = 448.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.411765)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 32
+text = "TIP"
+autowrap_mode = 2
+
 [connection signal="mouse_entered" from="BG" to="." method="_on_bg_mouse_entered"]
 [connection signal="mouse_exited" from="BG" to="." method="_on_bg_mouse_exited"]
-[connection signal="pressed" from="PlayerPlace/Players/Player1/kick_button" to="." method="kick_player" binds= [0]]
-[connection signal="pressed" from="PlayerPlace/Players/Player2/kick_button" to="." method="kick_player" binds= [1]]
-[connection signal="pressed" from="PlayerPlace/Players/Player3/kick_button" to="." method="kick_player" binds= [2]]
-[connection signal="pressed" from="PlayerPlace/Players/Player4/kick_button" to="." method="kick_player" binds= [3]]
-[connection signal="pressed" from="PlayerPlace/Players/Player5/kick_button" to="." method="kick_player" binds= [4]]
-[connection signal="pressed" from="PlayerPlace/Players/Player6/kick_button" to="." method="kick_player" binds= [5]]
-[connection signal="pressed" from="PlayerPlace/Players/Player7/kick_button" to="." method="kick_player" binds= [6]]
-[connection signal="pressed" from="PlayerPlace/Players/Player8/kick_button" to="." method="kick_player" binds= [7]]
-[connection signal="pressed" from="Play" to="." method="play"]
-[connection signal="pressed" from="Exit" to="." method="back"]
-[connection signal="pressed" from="add_bot" to="." method="add_bot"]
-[connection signal="value_changed" from="add_bot/diff_slider" to="." method="difficulty_changed_bot"]
-[connection signal="pressed" from="join" to="." method="join"]
+[connection signal="pressed" from="buttons/join" to="." method="join"]
+[connection signal="pressed" from="buttons/Play" to="." method="play"]
+[connection signal="pressed" from="buttons/Exit" to="." method="back"]
+[connection signal="text_submitted" from="debug" to="." method="_on_debug_text_submitted"]

@@ -10,8 +10,8 @@ const SAVE_PATH : String = "user://savegame.tres"
 
 func save_data():
 	ResourceSaver.save(self, SAVE_PATH)
-	print("Saved!")
 	print(resolution)
+	print("Saved!")
 	
 static func load_savegame() -> Resource:
 	if ResourceLoader.exists(SAVE_PATH):

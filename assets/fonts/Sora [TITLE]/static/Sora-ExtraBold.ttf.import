@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://3srskjdgasq3"
-path="res://.godot/imported/Sora-ExtraLight.ttf-46c9ab1d5800bf5020845483831cb71d.fontdata"
+uid="uid://6604lk0tkyy8"
+path="res://.godot/imported/Sora-ExtraBold.ttf-0b50f7bcf58ee59f27b415f32d445d98.fontdata"
 
 [deps]
 
-source_file="res://assets/fonts/Sora/static/Sora-ExtraLight.ttf"
-dest_files=["res://.godot/imported/Sora-ExtraLight.ttf-46c9ab1d5800bf5020845483831cb71d.fontdata"]
+source_file="res://assets/fonts/Sora [TITLE]/static/Sora-ExtraBold.ttf"
+dest_files=["res://.godot/imported/Sora-ExtraBold.ttf-0b50f7bcf58ee59f27b415f32d445d98.fontdata"]
 
 [params]
 

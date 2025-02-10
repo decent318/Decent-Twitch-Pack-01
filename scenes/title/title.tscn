@@ -7,8 +7,8 @@
 [ext_resource type="Shader" path="res://shaders/scroll.gdshader" id="3_tc1g5"]
 [ext_resource type="Shader" path="res://shaders/dropshadow.gdshader" id="4_rwnm5"]
 [ext_resource type="Script" path="res://scripts/title/options.gd" id="10_a4r71"]
-[ext_resource type="FontFile" uid="uid://bb4kiw4dafxd1" path="res://assets/fonts/Sora/static/Sora-Bold.ttf" id="10_xrdea"]
-[ext_resource type="FontFile" uid="uid://daoje57hoslwn" path="res://assets/fonts/Sora/static/Sora-SemiBold.ttf" id="11_g04la"]
+[ext_resource type="FontFile" uid="uid://bb4kiw4dafxd1" path="res://assets/fonts/Sora [TITLE]/static/Sora-Bold.ttf" id="10_xrdea"]
+[ext_resource type="FontFile" uid="uid://daoje57hoslwn" path="res://assets/fonts/Sora [TITLE]/static/Sora-SemiBold.ttf" id="11_g04la"]
 [ext_resource type="PackedScene" uid="uid://dfnydgw3ld4pp" path="res://scenes/volume_slider.tscn" id="12_frc28"]
 [ext_resource type="ButtonGroup" uid="uid://doi334cplp435" path="res://button_groups/window_mode.tres" id="13_7h2nr"]
 [ext_resource type="Theme" uid="uid://bwtmrapa7xqsy" path="res://themes/list.tres" id="13_fix48"]
@@ -17,30 +17,30 @@
 [ext_resource type="Texture2D" uid="uid://c68pavq0kjy0e" path="res://assets/sprites/credits/decent.png" id="14_oeadf"]
 [ext_resource type="Texture2D" uid="uid://cpr77ba1kiadk" path="res://assets/sprites/credits/flormatt.png" id="15_j0wo0"]
 [ext_resource type="ButtonGroup" uid="uid://b6eda10nq0tug" path="res://button_groups/resolution.tres" id="15_kxq7n"]
-[ext_resource type="Texture2D" uid="uid://cd3oati5yixr1" path="res://assets/sprites/credits/kingboo.png" id="15_wy2c3"]
+[ext_resource type="Texture2D" uid="uid://cd3oati5yixr1" path="res://assets/sprites/credits/KINGBOO.png" id="15_wy2c3"]
 [ext_resource type="Texture2D" uid="uid://8kmydej5cq68" path="res://assets/sprites/credits/stari.png" id="16_d2a85"]
 [ext_resource type="Texture2D" uid="uid://o5h5ajhv5dm6" path="res://assets/sprites/credits/rainysebby.png" id="17_nky3a"]
 [ext_resource type="Texture2D" uid="uid://d38x7hf06prnj" path="res://assets/sprites/credits/qwerty.png" id="18_qveyd"]
 [ext_resource type="ButtonGroup" uid="uid://w8h1xp0jlmsf" path="res://button_groups/games.tres" id="20_c5ugh"]
 [ext_resource type="Script" path="res://scripts/title/top_leaderboard.gd" id="21_g8q2o"]
-[ext_resource type="FontFile" uid="uid://dk1vby5bmyso8" path="res://assets/fonts/Sora/static/Sora-Regular.ttf" id="23_x4xdp"]
+[ext_resource type="FontFile" uid="uid://dk1vby5bmyso8" path="res://assets/fonts/Sora [TITLE]/static/Sora-Regular.ttf" id="23_x4xdp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bom4m"]
 shader = ExtResource("3_tc1g5")
 shader_parameter/x_speed = 0.0
 shader_parameter/y_speed = 0.2
 
-[sub_resource type="Gradient" id="Gradient_w3jx0"]
+[sub_resource type="Gradient" id="Gradient_0w5c4"]
 offsets = PackedFloat32Array(0, 0.957576, 1)
 colors = PackedColorArray(0, 0, 0, 0.423529, 0, 0, 0, 0, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_8nx1y"]
-gradient = SubResource("Gradient_w3jx0")
+gradient = SubResource("Gradient_0w5c4")
 width = 1
 fill_from = Vector2(1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_02hl3"]
-gradient = SubResource("Gradient_w3jx0")
+gradient = SubResource("Gradient_0w5c4")
 width = 1
 fill_from = Vector2(1, 0)
 fill_to = Vector2(1, 1)
@@ -61,6 +61,7 @@ theme = ExtResource("2_r0pdg")
 script = ExtResource("2_ovs4d")
 
 [node name="BG" type="TextureRect" parent="."]
+modulate = Color(0.419188, 0.00206048, 0.720437, 1)
 z_index = -1
 material = SubResource("ShaderMaterial_bom4m")
 layout_mode = 1
@@ -152,6 +153,7 @@ text = "TRIVITIME"
 flat = true
 alignment = 0
 Scene = "res://scenes/trivitime/tt_config.tscn"
+fade = true
 
 [node name="HoverComponent" type="Node" parent="Buttons/TRIVITIME"]
 script = ExtResource("13_yp4sj")
@@ -806,21 +808,32 @@ offset_bottom = 74.0
 theme_override_fonts/font = ExtResource("10_xrdea")
 text = "LEADERBOARD"
 
+[node name="disclaimer" type="Label" parent="panels/leaderboard"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 72.0
+offset_right = 405.0
+offset_bottom = 103.0
+theme_override_colors/font_color = Color(0.76, 0.76, 0.76, 0.760784)
+theme_override_fonts/font = ExtResource("10_xrdea")
+theme_override_font_sizes/font_size = 24
+text = "(this is saved locally)"
+
 [node name="search" type="LineEdit" parent="panels/leaderboard"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 11.0
-offset_top = 74.0
+offset_top = 116.0
 offset_right = 692.0
-offset_bottom = 124.0
+offset_bottom = 166.0
 placeholder_text = "Search for users.."
 
 [node name="buttons" type="HBoxContainer" parent="panels/leaderboard"]
 layout_mode = 0
 offset_left = 11.0
-offset_top = 135.0
+offset_top = 177.0
 offset_right = 692.0
-offset_bottom = 172.0
+offset_bottom = 214.0
 theme_override_constants/separation = 8
 
 [node name="trivitime" type="Button" parent="panels/leaderboard/buttons"]
@@ -864,9 +877,9 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(682, 382)
 layout_mode = 2
 offset_left = 11.0
-offset_top = 186.0
+offset_top = 228.0
 offset_right = 693.0
-offset_bottom = 642.0
+offset_bottom = 638.0
 
 [node name="updatelog" type="Panel" parent="panels"]
 custom_minimum_size = Vector2(0, 583)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cd3oati5yixr1"
-path="res://.godot/imported/KINGBOO.png-f8baaf301a955135f0ddafa57a7c42ab.ctex"
+uid="uid://bxry0qtvk5f38"
+path="res://.godot/imported/button.png-43ba2dca1f29b8b1739c7200cf33a91b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/credits/KINGBOO.png"
-dest_files=["res://.godot/imported/KINGBOO.png-f8baaf301a955135f0ddafa57a7c42ab.ctex"]
+source_file="res://assets/sprites/ui/trivitime/button.png"
+dest_files=["res://.godot/imported/button.png-43ba2dca1f29b8b1739c7200cf33a91b.ctex"]
 
 [params]
 

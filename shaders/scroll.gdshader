@@ -7,4 +7,3 @@ void vertex() {
 	UV.x += TIME * x_speed;
 	UV.y += TIME * y_speed;
 }
-

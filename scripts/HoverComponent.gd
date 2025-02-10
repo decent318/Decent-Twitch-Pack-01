@@ -66,8 +66,8 @@ func _process(delta):
 		def_but_rot = button.rotation
 
 func onHover():
-	if !button.disabled or active_when_disabled:
-		MusicHandler.play_sfx(str(Hover_SFX))
+	if !(button is Button) or (!button.disabled or active_when_disabled):
+		SoundHandler.play_sfx(str(Hover_SFX))
 		
 		create_tween().set_parallel(true)
 		create_tween().tween_property(button, "position", def_but_pos + Translate, HoverLength).set_ease(style_easing).set_trans(style_transition)
@@ -75,8 +75,8 @@ func onHover():
 		create_tween().tween_property(button, "rotation", (Rotation + randf_range(-RotationRandomness, RotationRandomness)) / 50, HoverLength).set_ease(style_easing).set_trans(style_transition)
 
 func unHover():
-	if !button.disabled or active_when_disabled:
-		MusicHandler.play_sfx(str(Unhover_SFX))
+	if !(button is Button) or (!button.disabled or active_when_disabled):
+		SoundHandler.play_sfx(str(Unhover_SFX))
 	
 		create_tween().set_parallel(true)
 		create_tween().tween_property(button, "position", def_but_pos - Translate, HoverLength).set_ease(style_easing).set_trans(style_transition)

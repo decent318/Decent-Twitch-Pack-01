@@ -14,7 +14,9 @@ config/name="Decent Twitch Pack 01"
 config/tags=PackedStringArray("twitch_pack")
 run/main_scene="res://scenes/title/title.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
-boot_splash/image="res://assets/sprites/bootup.png"
+boot_splash/bg_color=Color(0.117647, 0.117647, 0.117647, 1)
+boot_splash/image="res://assets/sprites/title.png"
+boot_splash/fullsize=false
 config/icon="res://assets/sprites/icon.png"
 
 [audio]
@@ -27,7 +29,7 @@ Global="*res://scripts/global.gd"
 TriviTime="*res://scripts/trivitime/TriviTime.gd"
 WordCord="*res://scripts/word cord/WordCord.gd"
 SceneTransition="*res://scenes/scene_transition.tscn"
-MusicHandler="*res://scenes/music_handler.tscn"
+SoundHandler="*res://scenes/sound_handler.tscn"
 
 [display]
 

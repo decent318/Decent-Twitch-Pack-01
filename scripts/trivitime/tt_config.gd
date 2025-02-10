@@ -4,7 +4,7 @@ extends Control
 @export var intermission_value_label : Label
 
 func _ready():
-	MusicHandler.start_track("res://assets/music/trivitime_theme.mp3")
+	SoundHandler.start_track("res://assets/music/trivitime_theme.mp3")
 	time_choice = time_choices.find(TriviTime.LENGTH_OF_GAME)
 	intermission_choice = intermission_choices.find(TriviTime.INTERMISSIONS)
 	time_value_label.text = str(time_choices[time_choice]) + " MINS"

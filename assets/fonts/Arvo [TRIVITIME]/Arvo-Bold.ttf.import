@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://c5k4w037qqh7q"
-path="res://.godot/imported/Sora-Light.ttf-32dbee1d35d6c2b1a15b013d4a06c85b.fontdata"
+uid="uid://solrrg8iuyra"
+path="res://.godot/imported/Arvo-Bold.ttf-301ddb97809e555476551616fdf2fa91.fontdata"
 
 [deps]
 
-source_file="res://assets/fonts/Sora/static/Sora-Light.ttf"
-dest_files=["res://.godot/imported/Sora-Light.ttf-32dbee1d35d6c2b1a15b013d4a06c85b.fontdata"]
+source_file="res://assets/fonts/Arvo [TRIVITIME]/Arvo-Bold.ttf"
+dest_files=["res://.godot/imported/Arvo-Bold.ttf-301ddb97809e555476551616fdf2fa91.fontdata"]
 
 [params]
 

@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://e8bwurlch27q"
-path="res://.godot/imported/Sora-VariableFont_wght.ttf-eb2511d9b5b534e864ff7a4ba144a97b.fontdata"
+uid="uid://bb4kiw4dafxd1"
+path="res://.godot/imported/Sora-Bold.ttf-2ce39c4a14432c7ac7d8cb5d5c96ccf6.fontdata"
 
 [deps]
 
-source_file="res://assets/fonts/Sora/Sora-VariableFont_wght.ttf"
-dest_files=["res://.godot/imported/Sora-VariableFont_wght.ttf-eb2511d9b5b534e864ff7a4ba144a97b.fontdata"]
+source_file="res://assets/fonts/Sora [TITLE]/static/Sora-Bold.ttf"
+dest_files=["res://.godot/imported/Sora-Bold.ttf-2ce39c4a14432c7ac7d8cb5d5c96ccf6.fontdata"]
 
 [params]
 

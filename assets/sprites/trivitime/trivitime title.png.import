@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0ip7oylgdiei"
-path="res://.godot/imported/bootup.png-f6c716d220aec0ccddfede7abf455a69.ctex"
+uid="uid://cqh44poo33kkm"
+path="res://.godot/imported/trivitime title.png-466e78b4ef45b4a9e47e4607be3d32bc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/bootup.png"
-dest_files=["res://.godot/imported/bootup.png-f6c716d220aec0ccddfede7abf455a69.ctex"]
+source_file="res://assets/sprites/trivitime/trivitime title.png"
+dest_files=["res://.godot/imported/trivitime title.png-466e78b4ef45b4a9e47e4607be3d32bc.ctex"]
 
 [params]
 

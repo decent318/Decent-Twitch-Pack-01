@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://raeimsc7c6du"
-path="res://.godot/imported/Sora-Medium.ttf-ee1cbc6813b05276fc324f7c31ec3122.fontdata"
+path="res://.godot/imported/Sora-Medium.ttf-73e2db74ff1cbb98a91b94deeb44d083.fontdata"
 
 [deps]
 
-source_file="res://assets/fonts/Sora/static/Sora-Medium.ttf"
-dest_files=["res://.godot/imported/Sora-Medium.ttf-ee1cbc6813b05276fc324f7c31ec3122.fontdata"]
+source_file="res://assets/fonts/Sora [TITLE]/static/Sora-Medium.ttf"
+dest_files=["res://.godot/imported/Sora-Medium.ttf-73e2db74ff1cbb98a91b94deeb44d083.fontdata"]
 
 [params]
 

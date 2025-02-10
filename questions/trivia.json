@@ -210,12 +210,6 @@
 			"The Maurya dynasty",
 			"The Gupta dynasty"
 		],
-		"What are the seven wonders of the ancient world?": [
-			"The Great Pyramid of Giza in Egypt, the Hanging Gardens of Babylon, the Statue of Zeus at Olympia, the Temple of Artemis at Ephesus, the Mausoleum at Halicarnassus, the Colossus of Rhodes, and the Lighthouse of Alexandria",
-			"The Great Wall of China, the Taj Mahal, the Eiffel Tower, the Colosseum, the Statue of Liberty, Machu Picchu, and Christ the Redeemer",
-			"The Colossus of Rhodes, the Temple of Artemis, the Statue of Zeus, the Great Wall of China, the Lighthouse of Alexandria, the Pantheon, and the Parthenon",
-			"The Pyramids of Egypt, the Great Wall of China, the Colosseum, the Temple of Artemis, the Hanging Gardens of Babylon, the Lighthouse of Alexandria, and the Mausoleum at Halicarnassus"
-		],
 		"Who is the king of the Olympian gods in Greek mythology?": [
 			"Zeus",
 			"Poseidon",
@@ -845,331 +839,39 @@
 			"W.B. Yeats"
 		]
 	},
-	"biology": {
-		"What is the other name of the long appendage that hangs from an elephant's face?": [
-			"Trunk",
-			"Tusk",
-			"Snout",
-			"Proboscis"
-		],
-		"Where would you find the cornea?": [
-			"Eye",
-			"Heart",
-			"Lung",
-			"Stomach"
-		],
-		"What did a saber-tooth cat's canine teeth resemble?": [
-			"Curved knives",
-			"Straight daggers",
-			"Chisels",
-			"Flat blades"
-		],
-		"What is the offspring of a fish called?": [
-			"Fry",
-			"Larva",
-			"Egg",
-			"Fingerling"
-		],
-		"How do flowers attract bees and insects?": [
-			"Bright colors",
-			"Strong roots",
-			"Thick stems",
-			"Large leaves"
-		],
-		"What probably caused the extinction of the dinosaurs?": [
-			"Asteroid impact",
-			"Volcanic eruption",
-			"Climate change",
-			"Overhunting"
-		],
-		"How are domesticated canines more commonly known?": [
-			"Dogs",
-			"Wolves",
-			"Coyotes",
-			"Foxes"
-		],
-		"Where do frogs live?": [
-			"Freshwater",
-			"Deserts",
-			"Mountains",
-			"Oceans"
-		],
-		"Simple animals rely on reflex reactions for how much of their behavior?": [
-			"Most",
-			"None",
-			"A little",
-			"Half"
-		],
-		"Which liquid does a flower produce to attract insects?": [
-			"Nectar",
-			"Sap",
-			"Juice",
-			"Pollen"
-		],
-		"What would fossilized skin feel like?": [
-			"Hard",
-			"Soft",
-			"Elastic",
-			"Smooth"
-		],
-		"How many lungs does the average mammal have?": [
-			"2",
-			"1",
-			"3",
-			"4"
-		],
-		"Which performs photosynthesis?": [
-			"Plants",
-			"Humans",
-			"Animals",
-			"Fungi"
-		],
-		"What is the base unit of life?": [
-			"Cells",
-			"Atoms",
-			"Organs",
-			"Tissues"
-		],
-		"Reptiles usually create their green color by mixing yellow and which other pigment?": [
-			"Blue",
-			"Red",
-			"Black",
-			"Brown"
-		],
-		"What color is the chest of a male robin?": [
-			"Red",
-			"Blue",
-			"Yellow",
-			"Green"
-		],
-		"What happens to new dinosaur fossils when they are found?": [
-			"Named",
-			"Destroyed",
-			"Ignored",
-			"Sold"
-		],
-		"What is a common name for a fungal infection of the foot?": [
-			"Athlete's foot",
-			"Runner's heel",
-			"Hiker's toe",
-			"Walker's rash"
-		],
-		"Which plant takes its name from the Italian phrase for Beautiful women?": [
-			"Belladonna",
-			"Margherita",
-			"Fiore",
-			"Amore"
-		],
-		"What was first obtained from the willow tree in the 1890s?": [
-			"Aspirin",
-			"Morphine",
-			"Ibuprofen",
-			"Paracetamol"
-		],
-		"Lemons contain which kind of acid?": [
-			"Citric",
-			"Acetic",
-			"Lactic",
-			"Tartaric"
-		],
-		"What molecule is produced by photosynthesis?": [
-			"Oxygen",
-			"Carbon dioxide",
-			"Nitrogen",
-			"Hydrogen"
-		],
-		"Which part of a flower is often scented and attracts insects?": [
-			"Petal",
-			"Stem",
-			"Leaf",
-			"Root"
-		],
-		"Pitcher plants eat what?": [
-			"Insects",
-			"Seeds",
-			"Berries",
-			"Leaves"
-		],
-		"What are the building blocks of all plants and animals?": [
-			"Cells",
-			"Atoms",
-			"Tissues",
-			"Molecules"
-		],
-		"How is the polar bear adapted to survive the cold temperatures?": [
-			"Lots of fat",
-			"Thick skin",
-			"Short legs",
-			"Small ears"
-		],
-		"The tallest dog in the world is which breed?": [
-			"Great Dane",
-			"German Shepherd",
-			"Mastiff",
-			"Golden Retriever"
-		],
-		"A buffalo is which of these?": [
-			"Herbivore",
-			"Carnivore",
-			"Omnivore",
-			"Scavenger"
-		],
-		"Beef comes from which animal?": [
-			"Cow",
-			"Sheep",
-			"Pig",
-			"Goat"
-		],
-		"The addictive substance in alcoholic drinks is called what?": [
-			"Ethanol",
-			"Methanol",
-			"Propanol",
-			"Butanol"
-		],
-		"Insects make up what percentage of the world's animals?": [
-			"80",
-			"50",
-			"60",
-			"70"
-		],
-		"Triceratops may have traveled in what?": [
-			"Herds",
-			"Pairs",
-			"Alone",
-			"Packs"
-		],
-		"What type of factor is involved in determining eye color?": [
-			"Inherited",
-			"Environmental",
-			"Nutritional",
-			"Random"
-		],
-		"The anther is the what part of a plant?": [
-			"Male",
-			"Female",
-			"Neutral",
-			"Seed"
-		],
-		"Caterpillars develop into which animal?": [
-			"Butterflies",
-			"Moths",
-			"Flies",
-			"Grasshoppers"
-		],
-		"Which of these is a well-known cave-dweller?": [
-			"Bat",
-			"Frog",
-			"Lizard",
-			"Spider"
-		],
-		"Toucans are famous for being what?": [
-			"Colorful",
-			"Nocturnal",
-			"Fast",
-			"Silent"
-		],
-		"What is the other name of Japanese giant salamander?": [
-			"Asian Giant Salamander",
-			"Eastern Newt",
-			"Mountain Salamander",
-			"Pacific Amphibian"
-		],
-		"What is the other name of sweetfish?": [
-			"Ayu",
-			"Koi",
-			"Snapper",
-			"Carp"
-		],
-		"What type of animal is a bronco?": [
-			"Horse",
-			"Deer",
-			"Cow",
-			"Goat"
-		],
-		"Flying fish do what?": [
-			"Glide",
-			"Fly",
-			"Hop",
-			"Jump"
-		],
-		"What type of clear resin often has insects from the dinosaur era preserved in it?": [
-			"Amber",
-			"Tar",
-			"Clay",
-			"Wax"
-		],
-		"Some snails use what to breathe?": [
-			"Gills",
-			"Lungs",
-			"Skin",
-			"Mouth"
-		],
-		"Honeycomb is made by which creature?": [
-			"Bees",
-			"Ants",
-			"Wasps",
-			"Termites"
-		],
-		"Which of these animals hibernates?": [
-			"Bears",
-			"Lions",
-			"Elephants",
-			"Zebras"
-		],
-		"Which species of bird is the smallest?": [
-			"Hummingbird",
-			"Sparrow",
-			"Finch",
-			"Wren"
-		],
-		"How many different species of dog are there worldwide?": [
-			"800",
-			"500",
-			"1000",
-			"1200"
-		],
-		"Spot the amphibian among the fish.": [
-			"Frog",
-			"Salmon",
-			"Trout",
-			"Bass"
-		],
-		"Which insect is red with black spots?": [
-			"Ladybird",
-			"Firefly",
-			"Dragonfly",
-			"Butterfly"
-		],
-		"Which small dog originated in Mexico?": [
-			"Chihuahua",
-			"Pomeranian",
-			"Beagle",
-			"Dachshund"
-		],
-		"Where are Polar Bears native to?": [
-			"Arctic",
-			"Antarctic",
-			"Tundra",
-			"Taiga"
-		],
-		"A crocodile is which of these?": [
-			"Carnivore",
-			"Herbivore",
-			"Omnivore",
-			"Detritivore"
-		],
-		"What is the name for an animal who only eats meat?": [
-			"Carnivore",
-			"Herbivore",
-			"Omnivore",
-			"Frugivore"
-		],
-		"A humpback is what type of animal?": [
-			"Whale",
-			"Dolphin",
-			"Shark",
-			"Seal"
-		]
+	"art" : {
+		"Who painted the Mona Lisa?": ["Leonardo da Vinci", "Vincent van Gogh", "Michelangelo", "Claude Monet"],
+		"Which famous artist cut off his own ear?": ["Vincent van Gogh", "Pablo Picasso", "Salvador Dalí", "Edvard Munch"],
+		"What is the art movement associated with Pablo Picasso?": ["Cubism", "Impressionism", "Surrealism", "Abstract Expressionism"],
+		"In which city is the Louvre Museum located?": ["Paris", "London", "Rome", "Madrid"],
+		"Who painted the ceiling of the Sistine Chapel?": ["Michelangelo", "Leonardo da Vinci", "Raphael", "Caravaggio"],
+		"Which artist is known for the painting 'The Persistence of Memory'?": ["Salvador Dalí", "Pablo Picasso", "Henri Matisse", "Joan Miró"],
+		"Who is the Dutch artist famous for his self-portraits and the painting 'The Night Watch'?": ["Rembrandt", "Vermeer", "Van Gogh", "Bosch"],
+		"What is the primary characteristic of Impressionism?": ["Emphasis on light and color", "Use of geometric shapes", "Focus on surreal scenes", "Highly detailed realism"],
+		"Which artist is known for the mural 'Guernica'?": ["Pablo Picasso", "Diego Rivera", "Frida Kahlo", "Salvador Dalí"],
+		"Which American artist is known for his depictions of the American West?": ["Frederic Remington", "Edward Hopper", "Jackson Pollock", "Grant Wood"],
+		"What style is the artist Jackson Pollock known for?": ["Abstract Expressionism", "Cubism", "Dadaism", "Surrealism"],
+		"Who is the Spanish surrealist known for his melting clocks?": ["Salvador Dalí", "Joan Miró", "Pablo Picasso", "Antoni Gaudí"],
+		"Which artist created the sculpture 'David'?": ["Michelangelo", "Donatello", "Gian Lorenzo Bernini", "Leonardo da Vinci"],
+		"Who painted 'The Birth of Venus'?": ["Sandro Botticelli", "Leonardo da Vinci", "Raphael", "Titian"],
+		"Which female artist is known for her self-portraits and Mexican heritage?": ["Frida Kahlo", "Georgia O'Keeffe", "Mary Cassatt", "Tamara de Lempicka"],
+		"What art movement is Claude Monet associated with?": ["Impressionism", "Realism", "Romanticism", "Cubism"],
+		"Which artist is famous for the 'Campbell's Soup Cans' artwork?": ["Andy Warhol", "Roy Lichtenstein", "Keith Haring", "Jean-Michel Basquiat"],
+		"Who painted 'Girl with a Pearl Earring'?": ["Johannes Vermeer", "Rembrandt", "Van Gogh", "Peter Paul Rubens"],
+		"What is the term for a painting done on wet plaster?": ["Fresco", "Mosaic", "Tempera", "Encaustic"],
+		"Which Renaissance artist is known for the painting 'The Last Supper'?": ["Leonardo da Vinci", "Raphael", "Michelangelo", "Titian"],
+		"Who created the sculpture 'The Thinker'?": ["Auguste Rodin", "Michelangelo", "Donatello", "Gian Lorenzo Bernini"],
+		"What is the primary focus of the art movement known as Surrealism?": ["Exploring the unconscious mind", "Depicting realistic scenes", "Use of bright colors", "Focus on symmetry"],
+		"Who painted 'American Gothic'?": ["Grant Wood", "Edward Hopper", "Andrew Wyeth", "Norman Rockwell"],
+		"Which artist is known for his Blue and Rose periods?": ["Pablo Picasso", "Henri Matisse", "Joan Miró", "Salvador Dalí"],
+		"What art movement is Wassily Kandinsky associated with?": ["Abstract Art", "Cubism", "Impressionism", "Dadaism"],
+		"Who is the French artist famous for his water lilies paintings?": ["Claude Monet", "Pierre-Auguste Renoir", "Édouard Manet", "Camille Pissarro"],
+		"Which artist is known for the painting 'The Scream'?": ["Edvard Munch", "Vincent van Gogh", "Salvador Dalí", "Gustav Klimt"],
+		"Who painted 'The School of Athens'?": ["Raphael", "Leonardo da Vinci", "Michelangelo", "Titian"],
+		"What technique did Georges Seurat develop?": ["Pointillism", "Impasto", "Sfumato", "Chiaroscuro"],
+		"Which artist is famous for the series of paintings featuring ballerinas?": ["Edgar Degas", "Claude Monet", "Pierre-Auguste Renoir", "Mary Cassatt"],
+		"What is the name of the famous prehistoric cave paintings in France?": ["Lascaux", "Altamira", "Chauvet", "Cosquer"],
+		"Who painted 'The Garden of Earthly Delights'?": ["Hieronymus Bosch", "Pieter Bruegel", "Albrecht Dürer", "Jan van Eyck"],
 	},
 	"science": {
 		"Who wrote the science law 'for every action there is an equal and opposite reaction'?": [

@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=7 format=3 uid="uid://bwtmrapa7xqsy"]
 
-[ext_resource type="FontFile" uid="uid://bb4kiw4dafxd1" path="res://assets/fonts/Sora/static/Sora-Bold.ttf" id="1_s7hcy"]
+[ext_resource type="FontFile" uid="uid://bb4kiw4dafxd1" path="res://assets/fonts/Sora [TITLE]/static/Sora-Bold.ttf" id="1_s7hcy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v6vdj"]
 content_margin_left = 4.0

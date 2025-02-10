@@ -73,7 +73,7 @@ func _ready():
 	
 	irc.chat_message.connect(tts_podium)
 	
-	playersScore = leaderboard.return_leaderboard(0)
+	playersScore = leaderboard.return_leaderboard(Global.players, "points")
 	sortedPlayers = playersScore.keys()
 	print(playersScore)
 	
@@ -184,7 +184,7 @@ func tts_podium(senderdata : SenderData, msg : String):
 	print(sortedPlayers.find(sender))
 	if (sortedPlayers.find(sender) <= 2 and sortedPlayers.find(sender) != -1) or allowed_voices:
 		if !msg.begins_with("!"):
-			DisplayServer.tts_speak(msg, "", db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Voices"))) * 100)
+			SoundHandler.tts(msg)
 
 
 func next_person() -> void:

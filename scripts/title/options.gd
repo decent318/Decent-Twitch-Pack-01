@@ -1,8 +1,12 @@
 extends Control
 
+var twitch_loaded : bool = false
+
 func _ready():
 	if Global.channel != "":
 		%channel.text = Global.channel
+		Global.load_twitch()
+		twitch_loaded = true
 		
 	for resolution : Button in %resolutions.get_children():
 		resolution.pressed.connect(set_resolution.bind(resolution.name))
@@ -24,6 +28,9 @@ func submit_channel(x:String):
 	var new_channel = removeBannedCharacters(x, [" ", ".", "!", "?", ",", "/", "|", "\\", "*", "%", "&", "+", "-"])
 	%channel.text = new_channel
 	Global.channel = new_channel
+	if !twitch_loaded:
+		Global.load_twitch()
+		twitch_loaded = true
 
 func add_to_blacklist():
 	pass

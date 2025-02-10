@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://daoje57hoslwn"
-path="res://.godot/imported/Sora-SemiBold.ttf-7bf5c19959626d8c617954932aa6513d.fontdata"
+uid="uid://2v1dhedvxu1x"
+path="res://.godot/imported/Sora-Thin.ttf-28ee580768a4387ddc0953b60c4040de.fontdata"
 
 [deps]
 
-source_file="res://assets/fonts/Sora/static/Sora-SemiBold.ttf"
-dest_files=["res://.godot/imported/Sora-SemiBold.ttf-7bf5c19959626d8c617954932aa6513d.fontdata"]
+source_file="res://assets/fonts/Sora [TITLE]/static/Sora-Thin.ttf"
+dest_files=["res://.godot/imported/Sora-Thin.ttf-28ee580768a4387ddc0953b60c4040de.fontdata"]
 
 [params]
 

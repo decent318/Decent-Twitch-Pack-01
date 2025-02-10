@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cd3oati5yixr1"
-path="res://.godot/imported/KINGBOO.png-f8baaf301a955135f0ddafa57a7c42ab.ctex"
+uid="uid://datjnimucfrb6"
+path="res://.godot/imported/kick.png-f893dedbc7e5bb31bdb8a55cc5f5c623.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/credits/KINGBOO.png"
-dest_files=["res://.godot/imported/KINGBOO.png-f8baaf301a955135f0ddafa57a7c42ab.ctex"]
+source_file="res://assets/sprites/ui/trivitime/kick.png"
+dest_files=["res://.godot/imported/kick.png-f893dedbc7e5bb31bdb8a55cc5f5c623.ctex"]
 
 [params]
 

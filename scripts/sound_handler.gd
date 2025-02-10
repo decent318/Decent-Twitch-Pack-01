@@ -3,7 +3,7 @@ extends Node
 @export var MusicBus : String = "Music"
 @export var SFXBus : String = "SFX"
 
-func start_track(path : String, channel := 0, volume : float = 1.00, loop : bool = true, override : bool = true, bus : String = MusicBus):
+func start_track(path : String, channel := 0, volume : float = 1.00, loop : bool = true, override : bool = false, bus : String = MusicBus):
 	var stream_player : AudioStreamPlayer = %Channels.get_child(channel)
 	var audio_stream = load(path)
 	if !override:
@@ -50,3 +50,11 @@ func add_effect(bus : String, effect : AudioEffect, override : bool = false):
 			if AudioServer.get_bus_effect(bus_index, i).is_class(effect.get_class()):
 				return
 	AudioServer.add_bus_effect(bus_index, effect)
+
+func fade(channel : int = 0, to : float = 0.0, time : float = 0.5, easing : Tween.EaseType = Tween.EASE_IN, transition : Tween.TransitionType = Tween.TRANS_LINEAR):
+	if channel == -1: return
+	var stream_player : AudioStreamPlayer = %Channels.get_child(channel)
+	create_tween().tween_property(stream_player, "volume_db", linear_to_db(to), time).set_ease(easing).set_trans(transition)
+
+func tts(msg : String):
+	DisplayServer.tts_speak(msg, "", db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Voices"))) * 100)

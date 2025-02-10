@@ -34,7 +34,7 @@ var voters = {}
 func _ready() -> void:
 	freshQuestions = TriviTime.Questions
 	game_active = true
-	MusicHandler.start_track("res://assets/music/Guesstimation.wav")
+	SoundHandler.start_track("res://assets/music/Guesstimation.wav")
 	
 	id = Global.id
 	api = Global.api
@@ -48,26 +48,11 @@ func _ready() -> void:
 	if TriviTime.AUDIENCE_VOTING == true:
 		cmd_handler.add_command("vote", vote, 1, 1)
 	
+	irc.chat_message.connect(think)
+	
 	irc.chat_message.connect(cmd_handler.handle_command)
 	irc.whisper_message.connect(cmd_handler.handle_command.bind(true))
 	
-	QUESTIONS_PER_PERSON = floor(float(LENGTH_OF_GAME) / float(len(players))) * floor(60.0 / float(SECONDS_PER_ANSWER))
-	TOTAL_QUESTIONS = QUESTIONS_PER_PERSON * len(players)
-	
-	TOTAL_QUESTIONS = get_nearest_multiple(TOTAL_QUESTIONS, len(players))
-	QUESTIONS_PER_PERSON = TOTAL_QUESTIONS / len(players)
-	
-	var INTERMISSION_INTERVAL = ceil(float(TOTAL_QUESTIONS) / float(INTERMISSIONS))
-	INTERMISSION_INTERVAL = get_nearest_multiple(INTERMISSION_INTERVAL, len(players))
-	
-	INTERMISSION_INTERVALS = [0]
-	var pos = 0
-	for intermission in INTERMISSIONS:
-		print(INTERMISSION_INTERVAL)
-		INTERMISSION_INTERVALS.append(INTERMISSION_INTERVAL + INTERMISSION_INTERVALS[pos])
-		pos += 1
-	INTERMISSION_INTERVALS.remove_at(0)
-	print(INTERMISSION_INTERVALS)
 	
 	displayPlayers()
 	newQuestion()
@@ -78,26 +63,11 @@ func _ready() -> void:
 				answer_question(null, [ans.name.substr(6,1)])
 		)
 
-
-var QUESTIONS_PER_PERSON : int
-var TOTAL_QUESTIONS : int
-
-var INTERMISSIONS := TriviTime.INTERMISSIONS
-var INTERMISSION_INTERVALS = []
-
 var SECONDS_PER_ANSWER := TriviTime.SECONDS_PER_ANSWER # THE AMOUNT OF SECONDS A PLAYER HAS TO ANSWER A QUESTION
-var LENGTH_OF_GAME := TriviTime.LENGTH_OF_GAME # THE MAX LENGTH OF THE GAME IN MINUTES
 var CURRENT_QUESTION := 0 # THE CURRENT QUESTION
 var TOPIC := "HISTORY" # THE CURRENT TOPIC
 
 var TURN = 0
-
-func get_nearest_multiple(x: int, step: int) -> float:
-	var remainder = x % step
-	if remainder < step / 2:
-		return x - remainder
-	else:
-		return x + (step - remainder)
 
 func displayPlayers():
 	var plrnames = players.keys()
@@ -126,66 +96,34 @@ func update():
 			if player.name == players.keys()[TURN]:
 				player.get_child(2).visible = true
 
-func setup_minileaderboard(guy : TextureRect, place : int, sortedPlayers):
-	if place > len(sortedPlayers) - 1: 
-		guy.visible = false
-		return
-	else:
-		guy.visible = true
-	var plr_name = sortedPlayers[place]
-	guy.get_child(0).text = plr_name
-	guy.get_child(1).text = str(Global.players[plr_name].points)
+var topic_colors = {
+	"HISTORY": "3163f7",
+	"TECHNOLOGY": "262626",
+	"LITERATURE": "ffff00",
+	"ART": "f73131",
+	"SCIENCE": "31f787"
+}
+
+var question_person_prefixes = [
+	"THIS ONE'S FOR ",
+	"SO, ",
+	"OFF TO YOU, ",
+	"TRY THIS ONE, "
+]
 
 func newQuestion():
-	if CURRENT_QUESTION >= TOTAL_QUESTIONS:
-		question_num.text = "GAME OVER"
-		SceneTransition.change_scene_close("res://scripts/trivitime/tt_results.gd", "#598647")
-		return
-		
-	# INTERMISSION
-	if INTERMISSION_INTERVALS[0] == CURRENT_QUESTION: 
-		is_stopped = true
-		INTERMISSION_INTERVALS.pop_front()
-		var tick_sfx = preload("res://assets/sfx/trivitime/wheel tick.mp3")
-		question_num.text = "INTERMISSION"
-		
-		var leaderboard = Leaderboard.new()
-		var sortedPlayers = leaderboard.return_leaderboard(0).keys()
-		
-		setup_minileaderboard(%first, 0, sortedPlayers)
-		setup_minileaderboard(%second, 1, sortedPlayers)
-		setup_minileaderboard(%third, 2, sortedPlayers)
-		
-		%SceneAnimations.play("intermission")
-		
-		freshQuestions.erase(TOPIC.to_lower())
-		var topics : Array = freshQuestions.keys()
-		var new_topic = topics.pick_random()
-		
-		%TOPIC.text = TOPIC.to_upper()
-		
-		for i in range(15):
-			%TOPIC.text = topics[i % len(topics)].to_upper()
-			await wait(0.05 * i)
-			MusicHandler.play_sfx_from_preload(tick_sfx)
-			
-		TOPIC = new_topic
-		%TOPIC.text = TOPIC.to_upper()
-		MusicHandler.play_sfx("res://assets/sfx/trivitime/woohoo.mp3")
-		await wait(1.5)
-		%TOPIC.text = ""
-		%SceneAnimations.play_backwards("intermission")
-		is_stopped = false
-	
 	CURRENT_QUESTION += 1
+	TOPIC = TriviTime.Questions.keys().pick_random()
 	votes = [0, 0, 0, 0]
 	total_votes = 0
+	%message.text = "THINKING.."
 	update_votes()
 	
 	for button : Button in %Answers.get_children():
 		button.modulate = Color("ffffff")
 	
-	question_num.text = "QUESTION #" + str(CURRENT_QUESTION)
+	var topic_color = topic_colors[TOPIC.to_upper()]
+	question_num.text = "QUESTION #" + str(CURRENT_QUESTION) + " - [b][color=" + topic_color + "]" + TOPIC.to_upper()
 	
 	question = freshQuestions[TOPIC.to_lower()].keys().pick_random()
 	var correct_answer = freshQuestions[TOPIC.to_lower()][question][0]
@@ -200,8 +138,17 @@ func newQuestion():
 		if answers[i] == correct_answer:
 			ansLetter = letters[i]
 	# irc.chat(string)
-	%question.text = players.keys()[TURN] + ", " + question
+	var plr_color = Global.player_colors.pick_random()
+	plr_color = Color(plr_color).to_html(false)
+	%question_person.text = "[i]" + question_person_prefixes.pick_random() + "[/i][color=" + plr_color + "][b]" + players.keys()[TURN] + "[/b][/color]:"
+	%question.text = question
 	freshQuestions[TOPIC.to_lower()].erase(question)
+
+var answer_prefixes = [
+	"I think it's %s!",
+	"It's %s!",
+	"I'll say %s.",
+]
 
 func answer_question(cmd_info : CommandInfo, parameters : PackedStringArray):
 	if !is_stopped:
@@ -215,23 +162,45 @@ func answer_question(cmd_info : CommandInfo, parameters : PackedStringArray):
 		var num_ans = letters.find(answer.to_upper())
 		if num_ans == -1: return
 		
+		var answer_msg = answer_prefixes.pick_random() % answer.to_upper()
+		%message.text = answer_msg
+		SoundHandler.tts(answer_msg)
+		
 		is_stopped = true
 		await suspense(answer)
 		if ansLetter == answer.to_upper():
 			print(answer + " is correct!")
 			player.points += 100
 			player.TRIVITIME.answer_history.append(true)
+			SoundHandler.play_sfx("res://assets/sfx/trivitime/correct.wav")
 			# %players.find_child(command_sender).find_child("Animations").play("correct")
+			await wait(0.3)
+			%message.text = "Woohoo!"
+			SoundHandler.tts("Woohoo!")
 		else:
 			print(answer + " is incorrect!")
 			player.points -= 50
 			player.TRIVITIME.answer_history.append(false)
+			SoundHandler.play_sfx("res://assets/sfx/trivitime/incorrect.wav")
+			await wait(0.3)
+			%message.text = "No!"
+			SoundHandler.tts("No!")
 			# %players.find_child(command_sender).find_child("Animations").play("incorrect")
+		await wait(0.7)
 		TURN = (TURN + 1 % len(players))
 		update()
 		is_stopped = false
 		newQuestion()
 	else: print("Game is stopped!")
+
+func think(senderdata : SenderData, msg : String):
+	var command_sender = senderdata.tags["display-name"]
+	if players.keys()[TURN] != command_sender: return
+	if msg.begins_with("!"): return
+	
+	%message.text = msg
+	SoundHandler.tts(msg)
+
 
 func on_event(type : String, data : Dictionary) -> void:
 	match(type):
@@ -272,7 +241,7 @@ func suspense(ans):
 			print(button.button_mask)
 			button.modulate = Color("ffffff82")
 	
-	await MusicHandler.play_sfx("res://assets/sfx/heartbeat_loop.mp3", 2)
+	await SoundHandler.play_sfx("res://assets/sfx/heartbeat_loop.mp3", 2)
 
 func vote(cmd_info : CommandInfo, parameters : PackedStringArray):
 	var command_sender = cmd_info.sender_data.tags["display-name"]
@@ -291,27 +260,27 @@ func vote(cmd_info : CommandInfo, parameters : PackedStringArray):
 	voters[command_sender] = num_ans
 	votes[num_ans] += 1
 	
-	update_votes()
 
 func update_votes():
-	var pos = 0
-	for button : Button in %Answers.get_children():
-		var line : Line2D = button.get_child(2)
-		
-		var vote_percent : float = 0.00
-		if total_votes != 0: 
-			vote_percent = float(votes[pos]) / total_votes
-		
-		var length = vote_percent * 850
-		
-		if line.get_point_count() < 2:
-			line.add_point(Vector2(250, 0))
-			line.add_point(Vector2(0, 0))
-			
-		line.set_point_position(1, Vector2(length / 2, 0))
-		line.set_point_position(2, Vector2(-length / 2, 0))
-		
-		pos += 1
+	pass
+	#var pos = 0
+	#for button : Button in %Answers.get_children():
+		#var line : Line2D = button.get_child(2)
+		#
+		#var vote_percent : float = 0.00
+		#if total_votes != 0: 
+			#vote_percent = float(votes[pos]) / total_votes
+		#
+		#var length = vote_percent * 850
+		#
+		#if line.get_point_count() < 2:
+			#line.add_point(Vector2(250, 0))
+			#line.add_point(Vector2(0, 0))
+			#
+		#line.set_point_position(1, Vector2(length / 2, 0))
+		#line.set_point_position(2, Vector2(-length / 2, 0))
+		#
+		#pos += 1
 
 func wait(sec : float):
 	await get_tree().create_timer(sec).timeout

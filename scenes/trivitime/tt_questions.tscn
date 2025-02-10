@@ -1,33 +1,49 @@
-[gd_scene load_steps=39 format=3 uid="uid://cjrlscy12n6hv"]
+[gd_scene load_steps=46 format=3 uid="uid://cjrlscy12n6hv"]
 
 [ext_resource type="Script" path="res://scripts/trivitime/tt_questions.gd" id="1_pp1ea"]
 [ext_resource type="Theme" uid="uid://c3hg6ndkr8syx" path="res://themes/trivitime.tres" id="2_jqjqm"]
 [ext_resource type="Script" path="res://scripts/HoverComponent.gd" id="3_4ij46"]
-[ext_resource type="Texture2D" uid="uid://b61pxjfq6desr" path="res://assets/sprites/trivitime/trivitime bg.png" id="3_w0r7e"]
+[ext_resource type="Shader" path="res://shaders/scroll.gdshader" id="3_rucof"]
+[ext_resource type="Texture2D" uid="uid://dddqijbdr4y81" path="res://assets/sprites/tt_bg.png" id="4_8ak8f"]
 [ext_resource type="Texture2D" uid="uid://cxn1lgnq5eqan" path="res://icon.svg" id="4_557qg"]
 [ext_resource type="Texture2D" uid="uid://c7fhsonlap363" path="res://assets/sprites/turn.svg" id="4_v7ey5"]
+[ext_resource type="FontFile" uid="uid://darawfct6t3b0" path="res://assets/fonts/Arvo [TRIVITIME]/Arvo-Regular.ttf" id="5_tc5cy"]
 [ext_resource type="AudioStream" uid="uid://c3upufn15mm1x" path="res://assets/sfx/trivitime/correct.wav" id="5_xb4g2"]
+[ext_resource type="FontFile" uid="uid://jkpqmxna3e8v" path="res://assets/fonts/Arvo [TRIVITIME]/Arvo-Italic.ttf" id="6_k43ld"]
 [ext_resource type="AudioStream" uid="uid://cekrjsp464tol" path="res://assets/sfx/trivitime/incorrect.wav" id="6_negle"]
+[ext_resource type="FontFile" uid="uid://8i47j14f7bb1" path="res://assets/fonts/Arvo [TRIVITIME]/Arvo-BoldItalic.ttf" id="7_6hxnm"]
 [ext_resource type="Texture2D" uid="uid://cy25ixu5m4a5k" path="res://assets/sprites/pause.svg" id="7_kj1xp"]
 [ext_resource type="Texture2D" uid="uid://dp7cjvbw7hdxg" path="res://assets/sprites/fast-forward.svg" id="7_puayb"]
+[ext_resource type="FontFile" uid="uid://solrrg8iuyra" path="res://assets/fonts/Arvo [TRIVITIME]/Arvo-Bold.ttf" id="8_30ik3"]
 [ext_resource type="Shader" path="res://shaders/shake.gdshader" id="8_xq6fu"]
 [ext_resource type="PackedScene" uid="uid://d07oe55owlkpm" path="res://scenes/scene_button.tscn" id="10_os711"]
 [ext_resource type="Texture2D" uid="uid://8ajkhrhx0srr" path="res://assets/sprites/caret-down-solid.svg" id="11_v1lw6"]
+[ext_resource type="Texture2D" uid="uid://chs1omojkli6b" path="res://assets/sprites/trivitime/plr_icons/better_icons/Vector-1.svg" id="19_168ug"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_efupd"]
-content_margin_left = 0.0
-content_margin_top = 0.0
-content_margin_right = 0.0
-content_margin_bottom = 0.0
-bg_color = Color(0.356863, 0.458824, 0.235294, 1)
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-corner_detail = 5
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_44dv3"]
+shader = ExtResource("3_rucof")
+shader_parameter/x_speed = 0.1
+shader_parameter/y_speed = 0.05
 
-[sub_resource type="Theme" id="Theme_rtsl7"]
-Panel/styles/panel = SubResource("StyleBoxFlat_efupd")
+[sub_resource type="Gradient" id="Gradient_m555j"]
+offsets = PackedFloat32Array(0, 0.957576, 1)
+colors = PackedColorArray(0, 0, 0, 0.423529, 0, 0, 0, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jrupw"]
+gradient = SubResource("Gradient_m555j")
+width = 1
+fill_from = Vector2(1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tn08x"]
+gradient = SubResource("Gradient_m555j")
+width = 1
+fill_from = Vector2(1, 0)
+fill_to = Vector2(1, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6pu4m"]
+
+[sub_resource type="FontVariation" id="FontVariation_v5qp3"]
+baseline_offset = 0.18
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lgrha"]
 content_margin_left = 4.0
@@ -214,235 +230,12 @@ shader = ExtResource("8_xq6fu")
 shader_parameter/dist = 0.0
 shader_parameter/speed = 0.01
 
-[sub_resource type="Animation" id="Animation_hbekr"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("players_container:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(80, 800)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("questionPanel:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(80, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Pause:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(18, 12)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Skip:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(18, 77)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Exit:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(8, 138)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Answers:scale")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Answers:modulate")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("question_num:position")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(634, 747)]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("minileaderboard:position")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(419, 1193)]
-}
-
-[sub_resource type="Animation" id="Animation_plqgg"]
-resource_name = "intermission"
-length = 0.8
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("players_container:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.5, 0.5),
-"update": 0,
-"values": [Vector2(80, 800), Vector2(80, 1110)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("questionPanel:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.5, 0.5),
-"update": 0,
-"values": [Vector2(80, 0), Vector2(80, -250)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Pause:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.5, 0.5),
-"update": 0,
-"values": [Vector2(18, 12), Vector2(-50, 12)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Skip:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.7),
-"transitions": PackedFloat32Array(0.5, 0.5),
-"update": 0,
-"values": [Vector2(18, 77), Vector2(-50, 77)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Exit:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(0.5, 0.5),
-"update": 0,
-"values": [Vector2(8, 138), Vector2(-50, 138)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Answers:scale")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.7),
-"transitions": PackedFloat32Array(-2, 0.5),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(0, 0)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Answers:modulate")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.55),
-"transitions": PackedFloat32Array(-2, 0.5),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("question_num:position")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.7),
-"transitions": PackedFloat32Array(-2, 0.5),
-"update": 0,
-"values": [Vector2(634, 745), Vector2(634, 39)]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("minileaderboard:position")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0, 0.65),
-"transitions": PackedFloat32Array(0.5, 0.5),
-"update": 0,
-"values": [Vector2(419, 1193), Vector2(419, 875)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_32xtd"]
-_data = {
-"RESET": SubResource("Animation_hbekr"),
-"intermission": SubResource("Animation_plqgg")
-}
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lkjl6"]
+bg_color = Color(0.1, 0.1, 0.1, 0.862745)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [node name="Questions" type="Control"]
 layout_mode = 3
@@ -455,99 +248,133 @@ theme = ExtResource("2_jqjqm")
 script = ExtResource("1_pp1ea")
 
 [node name="BG" type="TextureRect" parent="."]
+modulate = Color(0.423529, 0.811765, 0.439216, 1)
+material = SubResource("ShaderMaterial_44dv3")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -4.0
-offset_top = -4.0
-offset_right = 4.0
-offset_bottom = 107.0
 grow_horizontal = 2
 grow_vertical = 2
-rotation = 0.00202999
-scale = Vector2(1.01055, 0.91885)
-texture = ExtResource("3_w0r7e")
-stretch_mode = 6
+texture = ExtResource("4_8ak8f")
+stretch_mode = 1
 
-[node name="questionPanel" type="Panel" parent="."]
+[node name="gradient2" type="TextureRect" parent="."]
+z_index = 1
+z_as_relative = false
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -880.0
-offset_right = 880.0
-offset_bottom = 230.0
+anchors_preset = -1
+anchor_top = 0.77
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 0.399963
 grow_horizontal = 2
-theme = SubResource("Theme_rtsl7")
+grow_vertical = 2
+mouse_force_pass_scroll_events = false
+texture = SubResource("GradientTexture2D_jrupw")
 
-[node name="question" type="Label" parent="questionPanel"]
+[node name="gradient3" type="TextureRect" parent="."]
+z_index = 1
+z_as_relative = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.23
+offset_bottom = -0.400009
+grow_horizontal = 2
+mouse_force_pass_scroll_events = false
+texture = SubResource("GradientTexture2D_tn08x")
+
+[node name="question_person" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 34.0
+offset_top = 159.0
+offset_right = 1001.0
+offset_bottom = 216.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.513726)
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_offset_x = 2
+theme_override_fonts/normal_font = ExtResource("5_tc5cy")
+theme_override_fonts/italics_font = ExtResource("6_k43ld")
+theme_override_fonts/bold_italics_font = ExtResource("7_6hxnm")
+theme_override_fonts/bold_font = ExtResource("8_30ik3")
+theme_override_font_sizes/italics_font_size = 42
+theme_override_font_sizes/normal_font_size = 42
+theme_override_font_sizes/bold_font_size = 46
+bbcode_enabled = true
+text = "THIS ONE'S FOR [color=e05353][b]DECENT[/b][/color]:"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="question" type="Label" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 19.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = 34.0
+offset_top = 217.0
+offset_right = 1001.0
+offset_bottom = 535.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.513726)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
 theme_override_font_sizes/font_size = 48
-text = "decent, What did the ancient Romans use as a mouthwash?"
-horizontal_alignment = 1
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit?"
 autowrap_mode = 3
 
-[node name="Answers" type="GridContainer" parent="."]
+[node name="Answers" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -874.0
-offset_top = 243.0
-offset_right = 874.0
-offset_bottom = 691.0
-grow_horizontal = 2
-pivot_offset = Vector2(874, 224)
-theme = ExtResource("2_jqjqm")
-theme_override_constants/h_separation = 48
-theme_override_constants/v_separation = 48
-columns = 2
-
-[node name="ButtonA" type="Button" parent="Answers"]
-unique_name_in_owner = true
-material = SubResource("ShaderMaterial_6pu4m")
-custom_minimum_size = Vector2(850, 200)
-layout_mode = 2
-theme = ExtResource("2_jqjqm")
-theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 32
-theme_override_styles/disabled = SubResource("StyleBoxFlat_lgrha")
-shortcut = SubResource("Shortcut_tai68")
-text = "Saltwater"
-
-[node name="A" type="Label" parent="Answers/ButtonA"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -177.0
-offset_top = -54.0
-offset_right = -17.0
-offset_bottom = -17.0
+offset_left = -890.0
+offset_top = -960.0
+offset_right = -90.0
+offset_bottom = -134.0
 grow_horizontal = 0
 grow_vertical = 0
+theme_override_constants/separation = 55
+alignment = 1
+
+[node name="ButtonA" type="Button" parent="Answers"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_6pu4m")
+custom_minimum_size = Vector2(800, 160)
+layout_mode = 2
+theme = ExtResource("2_jqjqm")
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("FontVariation_v5qp3")
 theme_override_font_sizes/font_size = 32
-text = "!answer A"
-horizontal_alignment = 2
-vertical_alignment = 2
+theme_override_styles/disabled = SubResource("StyleBoxFlat_lgrha")
+shortcut = SubResource("Shortcut_tai68")
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+autowrap_mode = 2
+
+[node name="A" type="Label" parent="Answers/ButtonA"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -82.0
+offset_top = 10.0
+offset_right = 78.0
+offset_bottom = 49.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.6984, 0.97, 0.721033, 1)
+theme_override_font_sizes/font_size = 24
+text = "!A"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HoverComponent" type="Node" parent="Answers/ButtonA"]
 script = ExtResource("3_4ij46")
-Translate = Vector2(0, -5)
-Rotation = 1.0
-RotationRandomness = 0.1
+Translate = Vector2(0, -10)
 active_when_disabled = false
 style_easing = 1
 style_transition = 6
@@ -562,38 +389,20 @@ end_cap_mode = 2
 
 [node name="ButtonB" type="Button" parent="Answers"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(850, 200)
+custom_minimum_size = Vector2(800, 160)
 layout_mode = 2
 theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("FontVariation_v5qp3")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/disabled = SubResource("StyleBoxFlat_yyqm1")
 shortcut = SubResource("Shortcut_wsr4u")
-text = "Vinegar"
-
-[node name="B" type="Label" parent="Answers/ButtonB"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -54.0
-offset_right = -17.0
-offset_bottom = -17.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_font_sizes/font_size = 32
-text = "!answer B"
-horizontal_alignment = 2
-vertical_alignment = 2
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+autowrap_mode = 2
 
 [node name="HoverComponent" type="Node" parent="Answers/ButtonB"]
 script = ExtResource("3_4ij46")
-Translate = Vector2(0, -5)
-Rotation = -1.0
-RotationRandomness = 0.1
+Translate = Vector2(0, -10)
 active_when_disabled = false
 style_easing = 1
 style_transition = 6
@@ -607,40 +416,38 @@ joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
 
+[node name="B" type="Label" parent="Answers/ButtonB"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -82.0
+offset_top = 10.0
+offset_right = 78.0
+offset_bottom = 49.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.6984, 0.97, 0.721033, 1)
+theme_override_font_sizes/font_size = 24
+text = "!B"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="ButtonC" type="Button" parent="Answers"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(850, 200)
+custom_minimum_size = Vector2(800, 160)
 layout_mode = 2
 theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("FontVariation_v5qp3")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/disabled = SubResource("StyleBoxFlat_yyqm1")
 shortcut = SubResource("Shortcut_rsflm")
-text = "Wine"
-
-[node name="C" type="Label" parent="Answers/ButtonC"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -54.0
-offset_right = -17.0
-offset_bottom = -17.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_font_sizes/font_size = 32
-text = "!answer C"
-horizontal_alignment = 2
-vertical_alignment = 2
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+autowrap_mode = 2
 
 [node name="HoverComponent" type="Node" parent="Answers/ButtonC"]
 script = ExtResource("3_4ij46")
-Translate = Vector2(0, 5)
-Rotation = -1.0
-RotationRandomness = 0.1
+Translate = Vector2(0, -10)
 active_when_disabled = false
 style_easing = 1
 style_transition = 6
@@ -654,40 +461,38 @@ joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
 
+[node name="C" type="Label" parent="Answers/ButtonC"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -82.0
+offset_top = 10.0
+offset_right = 78.0
+offset_bottom = 49.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.6984, 0.97, 0.721033, 1)
+theme_override_font_sizes/font_size = 24
+text = "!C"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="ButtonD" type="Button" parent="Answers"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(850, 200)
+custom_minimum_size = Vector2(800, 160)
 layout_mode = 2
 theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = SubResource("FontVariation_v5qp3")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/disabled = SubResource("StyleBoxFlat_yyqm1")
 shortcut = SubResource("Shortcut_dltf0")
-text = "Urine"
-
-[node name="D" type="Label" parent="Answers/ButtonD"]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -54.0
-offset_right = -17.0
-offset_bottom = -17.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_font_sizes/font_size = 32
-text = "!answer D"
-horizontal_alignment = 2
-vertical_alignment = 2
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+autowrap_mode = 2
 
 [node name="HoverComponent" type="Node" parent="Answers/ButtonD"]
 script = ExtResource("3_4ij46")
-Translate = Vector2(0, 5)
-Rotation = 1.0
-RotationRandomness = 0.1
+Translate = Vector2(0, -10)
 active_when_disabled = false
 style_easing = 1
 style_transition = 6
@@ -701,28 +506,59 @@ joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
 
-[node name="question_num" type="Label" parent="."]
-unique_name_in_owner = true
+[node name="C" type="Label" parent="Answers/ButtonD"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -326.0
-offset_top = 205.0
-offset_right = 326.0
-offset_bottom = 249.0
+offset_left = -82.0
+offset_top = 10.0
+offset_right = 78.0
+offset_bottom = 49.0
 grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.25098)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 2
-theme_override_constants/shadow_outline_size = 2
-theme_override_font_sizes/font_size = 32
-text = "QUESTION #1"
+theme_override_colors/font_color = Color(0.6984, 0.97, 0.721033, 1)
+theme_override_font_sizes/font_size = 24
+text = "!D"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="question_num2" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+offset_left = 634.0
+offset_top = 39.0
+offset_right = 1286.0
+offset_bottom = 83.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.376471)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 32
+text = "QUESTION #1 - HISTORY"
+vertical_alignment = 1
+
+[node name="question_num" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 34.0
+offset_top = 107.0
+offset_right = 1001.0
+offset_bottom = 155.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.513726)
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_offset_x = 2
+theme_override_fonts/normal_font = ExtResource("5_tc5cy")
+theme_override_fonts/italics_font = ExtResource("6_k43ld")
+theme_override_fonts/bold_italics_font = ExtResource("7_6hxnm")
+theme_override_fonts/bold_font = ExtResource("8_30ik3")
+theme_override_font_sizes/normal_font_size = 36
+theme_override_font_sizes/bold_font_size = 38
+bbcode_enabled = true
+text = "QUESTION #1 - HISTORY"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
 
 [node name="templatePlayer" type="TextureRect" parent="."]
 unique_name_in_owner = true
@@ -766,7 +602,7 @@ anchor_right = 0.5
 offset_left = -105.5
 offset_top = -43.0
 offset_right = 105.5
-offset_bottom = -6.0
+offset_bottom = -4.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 32
 text = "100"
@@ -797,6 +633,7 @@ libraries = {
 
 [node name="players_container" type="HBoxContainer" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -804,9 +641,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -880.0
-offset_top = -280.0
+offset_top = 30.0
 offset_right = 880.0
-offset_bottom = 20.0
+offset_bottom = 330.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 48
@@ -851,10 +688,11 @@ vertical_alignment = 1
 
 [node name="Pause" type="TextureButton" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 0
-offset_left = 18.0
+offset_left = -50.0
 offset_top = 12.0
-offset_right = 64.0
+offset_right = -4.0
 offset_bottom = 58.0
 shortcut = SubResource("Shortcut_q1g0r")
 texture_normal = ExtResource("7_kj1xp")
@@ -869,11 +707,12 @@ style_easing = 1
 style_transition = 6
 
 [node name="Skip" type="TextureButton" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_vo8ec")
 layout_mode = 0
-offset_left = 18.0
+offset_left = -50.0
 offset_top = 77.0
-offset_right = 64.0
+offset_right = -4.0
 offset_bottom = 123.0
 shortcut = SubResource("Shortcut_q1g0r")
 texture_normal = ExtResource("7_puayb")
@@ -888,13 +727,14 @@ style_easing = 1
 style_transition = 6
 
 [node name="Exit" parent="." instance=ExtResource("10_os711")]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -952.0
+offset_left = -1010.0
 offset_top = 138.0
-offset_right = -891.0
+offset_right = -830.0
 offset_bottom = 197.0
 grow_horizontal = 2
 icon = ExtResource("11_v1lw6")
@@ -914,16 +754,24 @@ style_transition = 6
 [node name="timer" type="Label" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 3
 anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
-offset_left = -80.0
-offset_top = 12.0
-offset_bottom = 67.0
+anchor_bottom = 1.0
+offset_left = -244.0
+offset_top = -114.0
+offset_right = -80.0
+offset_bottom = -36.0
 grow_horizontal = 0
-theme_override_font_sizes/font_size = 48
-text = "30"
-horizontal_alignment = 1
+grow_vertical = 0
+pivot_offset = Vector2(165, 0)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.4)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 64
+text = "30s"
+horizontal_alignment = 2
 
 [node name="TimerClock" type="Timer" parent="timer"]
 unique_name_in_owner = true
@@ -938,167 +786,54 @@ unique_name_in_owner = true
 stream = ExtResource("6_negle")
 bus = &"SFX"
 
-[node name="SceneAnimations" type="AnimationPlayer" parent="."]
-unique_name_in_owner = true
-libraries = {
-"": SubResource("AnimationLibrary_32xtd")
-}
+[node name="current_player" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 775.0
+offset_right = 960.0
+offset_bottom = 935.0
+theme_override_constants/separation = 16
 
-[node name="TOPIC" type="Label" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -319.0
-offset_top = -70.0
-offset_right = 319.0
-offset_bottom = 70.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 124
-horizontal_alignment = 1
-
-[node name="minileaderboard" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -541.0
-offset_top = 113.0
-offset_right = 541.0
-offset_bottom = 259.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/separation = 160
-alignment = 1
-
-[node name="second" type="TextureRect" parent="minileaderboard"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 100)
+[node name="MarginContainer" type="MarginContainer" parent="current_player"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("4_557qg")
-expand_mode = 1
-stretch_mode = 5
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
 
-[node name="Username" type="Label" parent="minileaderboard/second"]
-modulate = Color(0.608567, 0.837466, 0.844415, 1)
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -106.0
-offset_top = -191.0
-offset_right = 105.0
-offset_bottom = -154.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 24
-horizontal_alignment = 1
-vertical_alignment = 2
-text_overrun_behavior = 3
-
-[node name="score" type="Label" parent="minileaderboard/second"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -105.5
-offset_top = -43.0
-offset_right = 105.5
-offset_bottom = -6.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 32
-horizontal_alignment = 1
-text_overrun_behavior = 3
-
-[node name="first" type="TextureRect" parent="minileaderboard"]
+[node name="player_texture" type="TextureRect" parent="current_player/MarginContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(120, 120)
+custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("4_557qg")
+size_flags_horizontal = 0
+texture = ExtResource("19_168ug")
 expand_mode = 1
-stretch_mode = 5
+stretch_mode = 4
 
-[node name="Username" type="Label" parent="minileaderboard/first"]
-modulate = Color(0.336932, 0.961796, 0.668493, 1)
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -105.5
-offset_top = -80.0
-offset_right = 105.5
-offset_bottom = -43.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 24
-horizontal_alignment = 1
-vertical_alignment = 2
-text_overrun_behavior = 3
+[node name="PanelContainer" type="PanelContainer" parent="current_player"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_lkjl6")
 
-[node name="score" type="Label" parent="minileaderboard/first"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -105.5
-offset_top = -43.0
-offset_right = 105.5
-offset_bottom = -6.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 32
-horizontal_alignment = 1
-text_overrun_behavior = 3
+[node name="MarginContainer" type="MarginContainer" parent="current_player/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
 
-[node name="third" type="TextureRect" parent="minileaderboard"]
+[node name="VBoxContainer" type="VBoxContainer" parent="current_player/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="current_player" type="Label" parent="current_player/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("4_557qg")
-expand_mode = 1
-stretch_mode = 5
+theme_override_font_sizes/font_size = 28
+text = "decent_games:"
 
-[node name="Username" type="Label" parent="minileaderboard/third"]
-modulate = Color(0.546925, 0.506692, 0.945725, 1)
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -106.0
-offset_top = -191.0
-offset_right = 105.0
-offset_bottom = -154.0
-grow_horizontal = 2
-grow_vertical = 0
+[node name="message" type="Label" parent="current_player/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
 theme_override_font_sizes/font_size = 24
-horizontal_alignment = 1
-vertical_alignment = 2
-text_overrun_behavior = 3
-
-[node name="score" type="Label" parent="minileaderboard/third"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -105.5
-offset_top = -43.0
-offset_right = 105.5
-offset_bottom = -6.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 32
-horizontal_alignment = 1
-text_overrun_behavior = 3
+text = "THINKING.."

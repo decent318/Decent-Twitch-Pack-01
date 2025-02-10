@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://6604lk0tkyy8"
-path="res://.godot/imported/Sora-ExtraBold.ttf-82e77ce1f23802be60a8c2c461cf9636.fontdata"
+uid="uid://darawfct6t3b0"
+path="res://.godot/imported/Arvo-Regular.ttf-5e901a73a542ce9ec5ffd0149507cf20.fontdata"
 
 [deps]
 
-source_file="res://assets/fonts/Sora/static/Sora-ExtraBold.ttf"
-dest_files=["res://.godot/imported/Sora-ExtraBold.ttf-82e77ce1f23802be60a8c2c461cf9636.fontdata"]
+source_file="res://assets/fonts/Arvo [TRIVITIME]/Arvo-Regular.ttf"
+dest_files=["res://.godot/imported/Arvo-Regular.ttf-5e901a73a542ce9ec5ffd0149507cf20.fontdata"]
 
 [params]
 

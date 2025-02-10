@@ -1,15 +1,15 @@
 extends Control
 
 func _ready():
-	MusicHandler.start_track("res://assets/music/title music - gotta go.mp3", 0, 1.0, true, false)
+	Global.load_twitch()
+	Global.setup_twitch()
+	SoundHandler.fade(0, 0, 0)
+	SoundHandler.fade(0, 1.0, 0.5)
+	SoundHandler.start_track("res://assets/music/title music - gotta go.mp3", 0, 1.0, true, false)
 	#if Global.channel == "":
 		#%Options.get_child(2).modulate = "ffffff"
 	#else:
 		#%Options.get_child(2).modulate = "ffffff00"
-	var save_data = SaveData.new()
-	print(SaveData.load_savegame().resolution)
-	save_data.resolution = "1280x720"
-	save_data.save_data()
 
 func trivitime():
 	panel_index = 0

@@ -34,7 +34,7 @@ const alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M
 var code_length = 4
 var code = ""
 
-var blacklist = ["decent_games"] # Players not allowed in the game
+var blacklist = [] # Players not allowed in the game
 
 var leaderboard: Leaderboard
 
@@ -58,6 +58,10 @@ var cmd_handler : GIFTCommandHandler = GIFTCommandHandler.new()
 var token : UserAccessToken
 var auth: ImplicitGrantFlow
 func _ready():
+	load_twitch()
+	twitch_setup.emit()
+	
+func load_twitch():
 	auth = ImplicitGrantFlow.new()
 	# For the auth to work, we need to poll it regularly.
 	get_tree().process_frame.connect(auth.poll) # You can also use a timer if you don't want to poll on every frame.
@@ -70,9 +74,7 @@ func _ready():
 		return
 		
 	await setup_twitch()
-	
-	twitch_setup.emit()
-	
+
 func setup_twitch():
 	get_tree().process_frame.connect(auth.poll) # You can also use a timer if you don't want to poll on every frame.
 
@@ -99,3 +101,14 @@ func setup_twitch():
 	irc.request_capabilities()
 	# Join the channel specified in the exported 'channel' variable.
 	irc.join_channel(channel)
+
+var player_colors = [
+	Color(0.88, 0.326, 0.326),
+	Color(0.88, 0.468, 0.246),
+	Color(0.88, 0.88, 0.308),
+	Color(0.308, 0.88, 0.48),
+	Color(0.308, 0.87, 0.88),
+	Color(0.308, 0.594, 0.88),
+	Color(0.415, 0.343, 0.88),
+	Color(0.88, 0.387, 0.88),
+]
